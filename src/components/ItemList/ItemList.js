@@ -7,6 +7,7 @@ class ItemList extends Component {
     console.log(`render ----- ItemList`);
     return (
       <section className="app__item-list">
+        <h1>{this.props.isAutoplay ? `ON` : `OFF`}</h1>
         <Item />
         <Item />
         <Item />
