@@ -1,57 +1,35 @@
 import React, { Component } from "react";
 import "./content.scss";
 import ItemList from "../ItemList/ItemList";
-import { connect } from "react-redux";
-import { createRequestFromURL } from "../../utils/utils";
-import { loadData } from "../../ActionCreator/index";
+import { DEFAULT_OFFSET_VALUE, INCREASE_OFFSET_VALUE } from "../../constant";
 
 class Content extends Component {
   state = {
     offset: 0
   };
 
-  componentWillMount() {
-    console.log(`********** willmount`, this.props);
-    const url = this.props.match.url;
-    const request = createRequestFromURL(url);
-    this.props.loadData(request);
-  }
+  increaseOffset = () => {
+    this.setState({ offset: this.state.offset + INCREASE_OFFSET_VALUE });
+  };
 
-  componentWillReceiveProps(nextProps) {
-    console.log(`********** resiveprops`);
-    if (nextProps.match.url !== this.props.match.url) {
-      const url = nextProps.match.url;
-      const request = createRequestFromURL(url);
-      nextProps.loadData(request);
-    }
-  }
+  resetOffset = () => {
+    this.setState({ offset: DEFAULT_OFFSET_VALUE });
+  };
 
   render() {
-    const { isAutoplay, isLoading, data } = this.props;
+    const url = this.props.match.url;
+    const offset = this.state.offset;
+
     console.log(`render ----- Content`);
     return (
-      <ItemList isAutoplay={isAutoplay} isLoading={isLoading} data={data} />
+      <ItemList
+        url={url}
+        offset={offset}
+        increaseOffset={this.increaseOffset}
+        resetOffset={this.resetOffset}
+      />
     );
   }
 }
 
-const mapStateToProps = store => {
-  return {
-    isAutoplay: store.isAutoplay,
-    isLoading: store.data.isLoading,
-    data: store.data.data
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    loadData: request => {
-      dispatch(loadData(request));
-    }
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Content);
+export default Content;
