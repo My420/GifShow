@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./serchbar.scss";
 import { withRouter } from "react-router";
-import { calcNewURL } from "../../utils/utils";
+import { calcNewURL, convertUserInput } from "../../utils/utils";
 import { SERCH } from "../../constant";
 
 class SerchBar extends Component {
@@ -19,11 +19,11 @@ class SerchBar extends Component {
   };
 
   onSerchButtonClick = evt => {
-    console.log(this.state.userInputValue);
+    const serchText = convertUserInput(this.state.userInputValue);
 
     const path = evt.target.dataset.path;
     const currentUrl = this.props.history.location.pathname;
-    const newURL = calcNewURL(currentUrl, path, this.state.userInputValue);
+    const newURL = calcNewURL(currentUrl, path, serchText);
     if (newURL && newURL !== currentUrl) this.props.history.push(newURL);
   };
 

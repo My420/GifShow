@@ -13,7 +13,7 @@ import { GIF, STICKER, TRENDS } from "../../constant";
 
 class ContainerType extends Component {
   render() {
-    console.log(`render ----- Container`);
+    console.log(`render ----- ContainerType`);
 
     return (
       <Switch>

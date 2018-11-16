@@ -26,3 +26,22 @@ export const calcNewURL = function(prevUrl, path, data = false) {
 
   return newURL;
 };
+
+export const convertUserInput = function(text) {
+  let convertText = text.trim().replace(/ /g, `+`); // регуляркой разбить на массив слов/ .join(`+`)
+  return convertText;
+};
+
+export const createRequestFromURL = function(url, offset) {
+  url = url.split(`/`);
+  return {
+    itemType: url[1],
+    actionType: url[2],
+    offset: offset,
+    payload: url[3]
+  };
+};
+
+export const getRequestURL = function(parameters) {
+  return `http://localhost:3000/trends.json`;
+};
