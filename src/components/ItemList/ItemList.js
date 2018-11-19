@@ -31,23 +31,45 @@ class ItemList extends Component {
     this.props.loadData(request);
   };
 
+  getBody = (data, isAutoplay) => {
+    let body = [];
+    for (const key in data) {
+      body.push(
+        <Item
+          src={
+            isAutoplay
+              ? data[key].images.fixed_width
+              : data[key].images.fixed_width_still
+          }
+          title={data[key].title}
+          id={key}
+          key={key}
+        />
+      );
+    }
+    return body;
+  };
+
   render() {
-    const { isAutoplay, isLoading, data, offset } = this.props;
     console.log(`render ----- ItemList`);
+
+    const { isAutoplay, data, increaseOffset } = this.props;
+    const {
+      isLoading,
+      isError,
+      currentData,
+      errorMassage,
+      itemTotalCount
+    } = data;
+
     return (
       <section className="app__item-list">
         <h1>{isAutoplay ? `ON` : `OFF`}</h1>
-        <h2>
-          {isLoading
-            ? `Загрузка.....`
-            : `${data.itemType} + ${data.actionType} + ${offset} + ${
-                data.payload
-              } `}
-        </h2>
-        <button
-          className="app__more-button"
-          onClick={this.props.increaseOffset}
-        >
+        <h2>{isLoading ? `Загрузка.....` : `Отображение`}</h2>
+        <h2>{isError ? `Возникла Ошибка: '${errorMassage}' ` : null}</h2>
+        <h2>Всего итемов: {itemTotalCount}</h2>
+        <div>{this.getBody(currentData, isAutoplay)}</div>
+        <button className="app__more-button" onClick={increaseOffset}>
           ЕЩЕ
         </button>
       </section>
@@ -58,8 +80,7 @@ class ItemList extends Component {
 const mapStateToProps = store => {
   return {
     isAutoplay: store.isAutoplay,
-    isLoading: store.data.isLoading,
-    data: store.data.data
+    data: store.data
   };
 };
 

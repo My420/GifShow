@@ -2,10 +2,11 @@ import { LOAD_START, GET_LOAD_DATA, LOAD_COMPLETE } from "../constant";
 
 const defaultState = {
   isLoading: false,
-  data: [],
+  currentData: [],
   isError: false,
   ErrorMassage: ``,
-  dataStore: {}
+  dataStore: {},
+  itemTotalCount: null
 };
 
 export default (dataState = defaultState, action) => {
@@ -15,8 +16,13 @@ export default (dataState = defaultState, action) => {
     case LOAD_START:
       return { ...dataState, isLoading: true };
 
-    case LOAD_COMPLETE:
-      return { ...dataState, isLoading: false, data: payload };
+    case LOAD_COMPLETE: //пришло все, но в стор ложим только то, что нужно [1], [2]
+      return {
+        ...dataState,
+        isLoading: false,
+        currentData: payload.data.data, // [1]
+        itemTotalCount: payload.data.pagination.total_count //[2]
+      };
   }
   return dataState;
 };

@@ -9,7 +9,7 @@ import {
   Redirect
 } from "react-router-dom";
 
-import { GIF, STICKER, TRENDS } from "../../constant";
+import { GIFS, STICKER, TRENDING } from "../../constant";
 
 class ContainerType extends Component {
   render() {
@@ -17,9 +17,9 @@ class ContainerType extends Component {
 
     return (
       <Switch>
-        <Route path={`/${GIF}/`} component={Container} />
+        <Route path={`/${GIFS}/`} component={Container} />
         <Route path={`/${STICKER}/`} component={Container} />
-        <Redirect from="*" to={`/${GIF}/${TRENDS}/`} />
+        <Redirect from="*" to={`/${GIFS}/${TRENDING}/`} />
       </Switch>
     );
   }

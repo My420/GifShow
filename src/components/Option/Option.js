@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./option.scss";
 import { HashRouter as Router, Route, NavLink } from "react-router-dom";
-import { GIF, STICKER } from "../../constant";
+import { GIFS, STICKER } from "../../constant";
 import { withRouter } from "react-router";
 import { calcNewURL } from "../../utils/utils";
 import { connect } from "react-redux";
@@ -38,7 +38,7 @@ class Option extends Component {
           </button>
           <button
             className="option__button option__button--gif"
-            data-path={GIF}
+            data-path={GIFS}
             onClick={this.onNavButtonClick}
           >
             Gif

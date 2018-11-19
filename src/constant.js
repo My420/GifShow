@@ -1,7 +1,7 @@
-export const TRENDS = `trends`;
+export const TRENDING = `trending`;
 export const SERCH = `serch`;
 
-export const GIF = `gif`;
+export const GIFS = `gifs`;
 export const STICKER = `sticker`;
 
 export const SET_AUTOPLAY = `SET_AUTOPLAY`;
@@ -12,3 +12,7 @@ export const LOAD_COMPLETE = `LOAD_COMPLETE`;
 
 export const DEFAULT_OFFSET_VALUE = 0;
 export const INCREASE_OFFSET_VALUE = 25;
+
+export const API_HOST = `http://api.giphy.com/v1`;
+
+export const API_KEY = `ZWmPvfk5xK6wl6k7YSQShDqklkHlKgFv`;

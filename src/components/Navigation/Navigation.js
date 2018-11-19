@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./navigation.scss";
 import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import { calcNewURL } from "../../utils/utils";
-import { TRENDS } from "../../constant";
+import { TRENDING } from "../../constant";
 import { withRouter } from "react-router";
 
 class Navigation extends Component {
@@ -20,7 +20,7 @@ class Navigation extends Component {
         <h2 className="visually-hidden">Навигация</h2>
         <button
           className="navigation__button navigation__button--trends"
-          data-path={TRENDS}
+          data-path={TRENDING}
           onClick={this.onNavButtonClick}
         >
           Popular
