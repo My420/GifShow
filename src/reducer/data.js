@@ -25,11 +25,19 @@ export default (dataState = defaultState, action) => {
         }
       };
 
+      const getCurrentTotalCount = function() {
+        if (payload.addressForStorage) {
+          return payload.data.pagination.total_count;
+        } else {
+          return 1;
+        }
+      };
+
       return {
         ...dataState,
         isLoading: false,
         currentData: getCurrentData(), // [1] // если оффсет = 0, то заменяем все текущие данные, в ином случае добавляем новые данные к уже имеющимся
-        itemTotalCount: payload.data.pagination.total_count //[2]
+        itemTotalCount: getCurrentTotalCount() //[2]
       };
 
     default:

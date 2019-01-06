@@ -1,5 +1,6 @@
 export const TRENDING = `trending`;
 export const SEARCH = `search`;
+export const ID = `id`;
 
 export const GIFS = `gifs`;
 export const STICKERS = `stickers`;

@@ -24,7 +24,12 @@ export default store => next => action => {
           `дляинна загруженного массива`,
           requestedData.data.data.length
         );
-        requestedData.data.data = massToObj(requestedData.data.data); // преобразовываем массив картинок в объект для удобства
+        if (requestedData.addressForStorage) {
+          requestedData.data.data = massToObj(requestedData.data.data); // преобразовываем массив картинок в объект для удобства
+        } else {
+          const id = requestedData.data.data.id;
+          requestedData.data.data = { [id]: requestedData.data.data };
+        }
         next({ ...action, type: LOAD_COMPLETE, payload: requestedData }); // отправляем все что пришло
       });
 

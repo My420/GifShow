@@ -1,6 +1,7 @@
 import {
   TRENDING,
   SEARCH,
+  ID,
   GIFS,
   STICKERS,
   API_HOST,
@@ -60,10 +61,17 @@ export const getAddressFromRequest = function(param) {
     case TRENDING: {
       addressForStorage = `${itemType}/${actionType}/${offset}`;
       addressForAPI = `${API_HOST}/${itemType}/${actionType}?&api_key=${API_KEY}&offset=${offset}`;
+      break;
     }
     case SEARCH: {
       addressForStorage = `${itemType}/${actionType}/${payload}/${offset}`;
       addressForAPI = `${API_HOST}/${itemType}/${actionType}?q=${payload}&api_key=${API_KEY}&offset=${offset}`;
+      break;
+    }
+    case ID: {
+      addressForStorage = false;
+      addressForAPI = `${API_HOST}/${itemType}/${payload}?q=&api_key=${API_KEY}`;
+      break;
     }
   }
 

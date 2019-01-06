@@ -28,6 +28,7 @@ class ItemList extends Component {
 
   getData = (url, offset) => {
     const request = createRequestFromURL(url, offset);
+    this.itemType = request.itemType;
     console.log(`**********`, request);
     this.props.loadData(request);
   };
@@ -37,6 +38,7 @@ class ItemList extends Component {
     for (const key in data) {
       body.push(
         <Item
+          itemType={this.itemType}
           src={
             isAutoplay
               ? data[key].images.fixed_width
