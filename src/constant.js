@@ -2,7 +2,7 @@ export const TRENDING = `trending`;
 export const SERCH = `serch`;
 
 export const GIFS = `gifs`;
-export const STICKER = `sticker`;
+export const STICKERS = `stickers`;
 
 export const SET_AUTOPLAY = `SET_AUTOPLAY`;
 

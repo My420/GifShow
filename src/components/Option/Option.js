@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./option.scss";
 import { HashRouter as Router, Route, NavLink } from "react-router-dom";
-import { GIFS, STICKER } from "../../constant";
+import { GIFS, STICKERS } from "../../constant";
 import { withRouter } from "react-router";
 import { calcNewURL } from "../../utils/utils";
 import { connect } from "react-redux";
@@ -31,7 +31,7 @@ class Option extends Component {
         <div className="option__wrapper">
           <button
             className="option__button option__button--sticker"
-            data-path={STICKER}
+            data-path={STICKERS}
             onClick={this.onNavButtonClick}
           >
             Sticker

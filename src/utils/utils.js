@@ -1,4 +1,11 @@
-import { TRENDING, SERCH, GIFS, STICKER, API_HOST, API_KEY } from "../constant";
+import {
+  TRENDING,
+  SERCH,
+  GIFS,
+  STICKERS,
+  API_HOST,
+  API_KEY
+} from "../constant";
 
 export const calcNewURL = function(prevUrl, path, data = false) {
   let newURL;
@@ -6,14 +13,14 @@ export const calcNewURL = function(prevUrl, path, data = false) {
   if (path === TRENDING || path === SERCH) {
     newURL = prevUrl.split(`/`, 3);
     newURL[2] = path;
-    if (newURL[1] !== GIFS && newURL[1] !== STICKER) {
+    if (newURL[1] !== GIFS && newURL[1] !== STICKERS) {
       newURL[1] = GIFS;
     }
     if (data) {
       newURL[3] = data;
     }
     newURL = newURL.join(`/`) + `/`;
-  } else if (path === GIFS || path === STICKER) {
+  } else if (path === GIFS || path === STICKERS) {
     newURL = prevUrl.split(`/`);
     newURL[1] = path;
     if (newURL[2] === ``) {
