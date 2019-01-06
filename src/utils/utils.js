@@ -44,7 +44,8 @@ export const createRequestFromURL = function(url, offset) {
 
 export const getAddressFromRequest = function(param) {
   console.log(param);
-  const { itemType, actionType, offset, payload } = param;
+
+  const { itemType, actionType, offset } = param;
   let addressForStorage;
   let addressForAPI;
 
@@ -55,7 +56,7 @@ export const getAddressFromRequest = function(param) {
     }
   }
 
-  return { addressForStorage, addressForAPI };
+  return { addressForStorage, addressForAPI, offset };
 };
 
 export const massToObj = function(arr) {

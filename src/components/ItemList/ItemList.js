@@ -28,6 +28,7 @@ class ItemList extends Component {
 
   getData = (url, offset) => {
     const request = createRequestFromURL(url, offset);
+    console.log(`**********`, request);
     this.props.loadData(request);
   };
 

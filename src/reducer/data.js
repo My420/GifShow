@@ -11,7 +11,6 @@ const defaultState = {
 
 export default (dataState = defaultState, action) => {
   const { type, payload } = action;
-
   switch (type) {
     case LOAD_START:
       return { ...dataState, isLoading: true };
@@ -20,7 +19,9 @@ export default (dataState = defaultState, action) => {
       return {
         ...dataState,
         isLoading: false,
-        currentData: payload.data.data, // [1]
+        currentData: (payload.offset = 0
+          ? { ...payload.data.data }
+          : { ...dataState.currentData, ...payload.data.data }), // [1] // если оффсет = 0, то заменяем все текущие данные, в ином случае добавляем новые данные к уже имеющимся
         itemTotalCount: payload.data.pagination.total_count //[2]
       };
   }
