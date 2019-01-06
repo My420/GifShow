@@ -1,5 +1,5 @@
 export const TRENDING = `trending`;
-export const SERCH = `serch`;
+export const SEARCH = `search`;
 
 export const GIFS = `gifs`;
 export const STICKERS = `stickers`;

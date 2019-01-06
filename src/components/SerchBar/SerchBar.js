@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./serchbar.scss";
 import { withRouter } from "react-router";
 import { calcNewURL, convertUserInput } from "../../utils/utils";
-import { SERCH } from "../../constant";
+import { SEARCH } from "../../constant";
 
 class SerchBar extends Component {
   state = {
@@ -40,7 +40,7 @@ class SerchBar extends Component {
         />
         <button
           className="app__search-button"
-          data-path={SERCH}
+          data-path={SEARCH}
           onClick={this.onSerchButtonClick}
           disabled={this.state.isInputEmpty}
         >

@@ -1,6 +1,6 @@
 import {
   TRENDING,
-  SERCH,
+  SEARCH,
   GIFS,
   STICKERS,
   API_HOST,
@@ -10,7 +10,7 @@ import {
 export const calcNewURL = function(prevUrl, path, data = false) {
   let newURL;
 
-  if (path === TRENDING || path === SERCH) {
+  if (path === TRENDING || path === SEARCH) {
     newURL = prevUrl.split(`/`, 3);
     newURL[2] = path;
     if (newURL[1] !== GIFS && newURL[1] !== STICKERS) {
@@ -52,7 +52,7 @@ export const createRequestFromURL = function(url, offset) {
 export const getAddressFromRequest = function(param) {
   console.log(param);
 
-  const { itemType, actionType, offset } = param;
+  const { itemType, actionType, offset, payload } = param;
   let addressForStorage;
   let addressForAPI;
 
@@ -60,6 +60,10 @@ export const getAddressFromRequest = function(param) {
     case TRENDING: {
       addressForStorage = `${itemType}/${actionType}/${offset}`;
       addressForAPI = `${API_HOST}/${itemType}/${actionType}?&api_key=${API_KEY}&offset=${offset}`;
+    }
+    case SEARCH: {
+      addressForStorage = `${itemType}/${actionType}/${payload}/${offset}`;
+      addressForAPI = `${API_HOST}/${itemType}/${actionType}?q=${payload}&api_key=${API_KEY}&offset=${offset}`;
     }
   }
 
