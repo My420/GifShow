@@ -3,7 +3,7 @@ import "./itemlist.scss";
 import Item from "../Item/Item";
 import { connect } from "react-redux";
 import { createRequestFromURL } from "../../utils/utils";
-import { loadData } from "../../ActionCreator/index";
+import { loadData, change } from "../../ActionCreator/index";
 import { DEFAULT_OFFSET_VALUE } from "../../constant";
 
 class ItemList extends Component {
@@ -47,6 +47,7 @@ class ItemList extends Component {
           title={data[key].title}
           id={key}
           key={key}
+          onUserClick={this.props.change}
         />
       );
     }
@@ -91,6 +92,9 @@ const mapDispatchToProps = dispatch => {
   return {
     loadData: request => {
       dispatch(loadData(request));
+    },
+    change: data => {
+      dispatch(change(data));
     }
   };
 };

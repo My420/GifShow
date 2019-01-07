@@ -14,3 +14,10 @@ export const loadData = function(request) {
     payload: request
   };
 };
+
+export const change = function(data) {
+  return {
+    type: `CHANGE`,
+    payload: data
+  };
+};
