@@ -39,15 +39,11 @@ class ItemList extends Component {
       body.push(
         <Item
           itemType={this.itemType}
-          src={
-            isAutoplay
-              ? data[key].images.fixed_width
-              : data[key].images.fixed_width_still
-          }
-          title={data[key].title}
+          itemData={data[key]}
           id={key}
           key={key}
-          onUserClick={this.props.change}
+          onUserClick={this.props.changeGalleryItem}
+          isAutoplay={isAutoplay}
         />
       );
     }
@@ -93,8 +89,8 @@ const mapDispatchToProps = dispatch => {
     loadData: request => {
       dispatch(loadData(request));
     },
-    change: (url, data) => {
-      dispatch(change(url, data));
+    changeGalleryItem: (itemUrl, itemData) => {
+      dispatch(change(itemUrl, itemData));
     }
   };
 };

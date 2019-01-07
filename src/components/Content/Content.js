@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./content.scss";
 import ItemList from "../ItemList/ItemList";
-import ItemScreen from "../ItemScreen/ItemScreen";
+import ItemGallery from "../ItemGallery/ItemGallery";
 import { DEFAULT_OFFSET_VALUE, INCREASE_OFFSET_VALUE } from "../../constant";
 
 class Content extends Component {
@@ -24,7 +24,7 @@ class Content extends Component {
     console.log(`render ----- Content`);
     return (
       <div className="app__item-wrapper">
-        <ItemScreen />
+        <ItemGallery />
         <ItemList
           url={url}
           offset={offset}

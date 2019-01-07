@@ -4,18 +4,24 @@ import "./item.scss";
 import { ID } from "../../constant";
 
 class Item extends Component {
-  onClick = () => {
-    const { src, title, id, itemType } = this.props;
-    this.props.onUserClick(`/${itemType}/${ID}/${id}`, src);
+  onUserClick = () => {
+    const { itemData, id, itemType } = this.props;
+    const itemUrl = `/${itemType}/${ID}/${id}`;
+    const dataForGallery = { ...itemData }; // клонируем объект (иммутабельность данных)
+    this.props.onUserClick(itemUrl, dataForGallery);
   };
   render() {
     console.log(`render ----- Item`);
-    const { src, title, id, itemType } = this.props;
+    const { itemData, id, itemType, isAutoplay } = this.props;
+    const title = itemData.title;
+    const src = isAutoplay
+      ? itemData.images.fixed_width
+      : itemData.images.fixed_width_still;
     return (
       <article className={`app__item app__item--${id} item`}>
         <h2 className="item__title">{title}</h2>
         <h2 className="item__title">{itemType}</h2>
-        <div className="item__image-wrapper" onClick={this.onClick}>
+        <div className="item__image-wrapper" onClick={this.onUserClick}>
           <img className="item__image" src={src.url} alt="rfhnbyrf" />
         </div>
       </article>

@@ -11,6 +11,11 @@ export const LOAD_DATA = `LOAD_DATA`;
 export const LOAD_START = `LOAD_START`;
 export const LOAD_COMPLETE = `LOAD_COMPLETE`;
 
+export const CHANGE_GALLERY_ITEM = `CHANGE_GALLERY_ITEM`;
+
+export const ORIGINAL = `ORIGINAL`;
+export const SMALL = `SMALL`;
+
 export const DEFAULT_OFFSET_VALUE = 0;
 export const INCREASE_OFFSET_VALUE = 25;
 
