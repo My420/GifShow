@@ -93,8 +93,8 @@ const mapDispatchToProps = dispatch => {
     loadData: request => {
       dispatch(loadData(request));
     },
-    change: data => {
-      dispatch(change(data));
+    change: (url, data) => {
+      dispatch(change(url, data));
     }
   };
 };

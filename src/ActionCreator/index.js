@@ -15,9 +15,9 @@ export const loadData = function(request) {
   };
 };
 
-export const change = function(data) {
+export const change = function(url, data) {
   return {
     type: `CHANGE`,
-    payload: data
+    payload: { url, data }
   };
 };

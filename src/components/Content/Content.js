@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./content.scss";
 import ItemList from "../ItemList/ItemList";
+import ItemScreen from "../ItemScreen/ItemScreen";
 import { DEFAULT_OFFSET_VALUE, INCREASE_OFFSET_VALUE } from "../../constant";
 
 class Content extends Component {
@@ -22,12 +23,15 @@ class Content extends Component {
 
     console.log(`render ----- Content`);
     return (
-      <ItemList
-        url={url}
-        offset={offset}
-        increaseOffset={this.increaseOffset}
-        resetOffset={this.resetOffset}
-      />
+      <div className="app__item-wrapper">
+        <ItemScreen />
+        <ItemList
+          url={url}
+          offset={offset}
+          increaseOffset={this.increaseOffset}
+          resetOffset={this.resetOffset}
+        />
+      </div>
     );
   }
 }

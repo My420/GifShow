@@ -6,7 +6,7 @@ import { ID } from "../../constant";
 class Item extends Component {
   onClick = () => {
     const { src, title, id, itemType } = this.props;
-    this.props.onUserClick(`/${itemType}/${ID}/${id}`);
+    this.props.onUserClick(`/${itemType}/${ID}/${id}`, src);
   };
   render() {
     console.log(`render ----- Item`);

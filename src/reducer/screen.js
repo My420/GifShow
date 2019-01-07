@@ -10,7 +10,7 @@ export default (screenState = defaultState, action) => {
 
   switch (type) {
     case `CHANGE`:
-      return { ...screenState, itemUrl: payload };
+      return { ...screenState, itemUrl: payload.url, item: payload.data };
 
     default:
       return screenState;
