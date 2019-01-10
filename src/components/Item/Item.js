@@ -12,15 +12,20 @@ class Item extends Component {
   };
   render() {
     console.log(`render ----- Item`);
-    const { itemData, id, itemType, isAutoplay } = this.props;
+
+    const { itemData, id, position, isAutoplay } = this.props;
+    const top = position.top + `px`;
+    const left = position.left + `px`;
     const title = itemData.title;
     const src = isAutoplay
       ? itemData.images.fixed_width
       : itemData.images.fixed_width_still;
     return (
-      <article className={`app__item app__item--${id} item`}>
-        <h2 className="item__title">{title}</h2>
-        <h2 className="item__title">{itemType}</h2>
+      <article
+        className={`app__item app__item--${id} item`}
+        style={{ top: top, left: left }}
+      >
+        <h2 className="item__title visually-hidden">{title}</h2>
         <div className="item__image-wrapper" onClick={this.onUserClick}>
           <img className="item__image" src={src.url} alt="rfhnbyrf" />
         </div>

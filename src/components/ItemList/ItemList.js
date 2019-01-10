@@ -33,8 +33,23 @@ class ItemList extends Component {
     this.props.loadData(request);
   };
 
+  calcPosition = (columnHeight, columnPosition, row, col) => {
+    const topSpace = row === 0 ? 10 : row * 10 + 10;
+    const leftSpace = col === 0 ? 10 : col * 10 + 10;
+
+    return {
+      top: columnHeight + topSpace,
+      left: columnPosition + leftSpace
+    };
+  };
+
   getBody = (data, isAutoplay) => {
     let body = [];
+    let columnHeight = [0, 0, 0, 0];
+    let columnPosition = [0, 200, 400, 600];
+    let col = 0;
+    let row = 0;
+
     for (const key in data) {
       body.push(
         <Item
@@ -44,8 +59,24 @@ class ItemList extends Component {
           key={key}
           onUserClick={this.props.changeGalleryItem}
           isAutoplay={isAutoplay}
+          position={this.calcPosition(
+            columnHeight[col],
+            columnPosition[col],
+            row,
+            col
+          )}
         />
       );
+
+      columnHeight[col] =
+        columnHeight[col] + +data[key].images.fixed_width.height;
+
+      if (col === 3) {
+        col = 0;
+        row++;
+      } else {
+        col++;
+      }
     }
     return body;
   };
@@ -63,12 +94,14 @@ class ItemList extends Component {
     } = data;
 
     return (
-      <section className="app__item-list">
+      <section className="app__item-list catalogue">
         <h1>{isAutoplay ? `ON` : `OFF`}</h1>
         <h2>{isLoading ? `Загрузка.....` : `Отображение`}</h2>
         <h2>{isError ? `Возникла Ошибка: '${errorMassage}' ` : null}</h2>
         <h2>Всего итемов: {itemTotalCount}</h2>
-        <div>{this.getBody(currentData, isAutoplay)}</div>
+        <div className="catalogue__item-wrapper">
+          {this.getBody(currentData, isAutoplay)}
+        </div>
         <button className="app__more-button" onClick={increaseOffset}>
           ЕЩЕ
         </button>
