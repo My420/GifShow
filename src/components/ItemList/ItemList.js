@@ -4,9 +4,18 @@ import Item from "../Item/Item";
 import { connect } from "react-redux";
 import { createRequestFromURL } from "../../utils/utils";
 import { loadData, change } from "../../ActionCreator/index";
-import { DEFAULT_OFFSET_VALUE } from "../../constant";
+import {
+  DEFAULT_OFFSET_VALUE,
+  DISTANCE_BETWEEN_ITEM,
+  COLUMN_AMOUNT,
+  COLUMN_POSITION
+} from "../../constant";
 
 class ItemList extends Component {
+  constructor(props) {
+    super(props);
+    this.fullColumnHeight = new Array(COLUMN_AMOUNT["PC"]).fill(0);
+  }
   componentDidMount() {
     console.log(`********** willmount`);
     this.getData(this.props.url, this.props.offset);
@@ -34,8 +43,14 @@ class ItemList extends Component {
   };
 
   calcPosition = (columnHeight, columnPosition, row, col) => {
-    const topSpace = row === 0 ? 10 : row * 10 + 10;
-    const leftSpace = col === 0 ? 10 : col * 10 + 10;
+    const topSpace =
+      row === 0
+        ? DISTANCE_BETWEEN_ITEM
+        : row * DISTANCE_BETWEEN_ITEM + DISTANCE_BETWEEN_ITEM;
+    const leftSpace =
+      col === 0
+        ? DISTANCE_BETWEEN_ITEM
+        : col * DISTANCE_BETWEEN_ITEM + DISTANCE_BETWEEN_ITEM;
 
     return {
       top: columnHeight + topSpace,
@@ -45,10 +60,11 @@ class ItemList extends Component {
 
   getBody = (data, isAutoplay) => {
     let body = [];
-    let columnHeight = [0, 0, 0, 0];
-    let columnPosition = [0, 200, 400, 600];
+    let columnHeight = new Array(COLUMN_AMOUNT["PC"]).fill(0);
+    let columnPosition = COLUMN_POSITION["PC"].slice(); // клонируем
     let col = 0;
     let row = 0;
+    this.fullColumnHeight = this.fullColumnHeight.fill(0); // обнуляем счетчик длины
 
     for (const key in data) {
       body.push(
@@ -68,18 +84,35 @@ class ItemList extends Component {
         />
       );
 
+      this.fullColumnHeight[col] =
+        this.fullColumnHeight[col] +
+        +data[key].images.fixed_width.height +
+        DISTANCE_BETWEEN_ITEM;
+
       columnHeight[col] =
         columnHeight[col] + +data[key].images.fixed_width.height;
 
-      if (col === 3) {
+      if (col === COLUMN_AMOUNT["PC"] - 1) {
         col = 0;
         row++;
       } else {
         col++;
       }
     }
+
     return body;
   };
+
+  getButtonTopPosition() {
+    let newArry = this.fullColumnHeight.slice(); // клонируем массив
+    newArry.sort((a, b) => {
+      if (a > b) return 1;
+      if (a < b) return -1;
+      return 0;
+    });
+
+    return `${newArry[newArry.length - 1] + DISTANCE_BETWEEN_ITEM}px`;
+  }
 
   render() {
     console.log(`render ----- ItemList`);
@@ -99,12 +132,20 @@ class ItemList extends Component {
         <h2>{isLoading ? `Загрузка.....` : `Отображение`}</h2>
         <h2>{isError ? `Возникла Ошибка: '${errorMassage}' ` : null}</h2>
         <h2>Всего итемов: {itemTotalCount}</h2>
-        <div className="catalogue__item-wrapper">
+        <div className="catalogue__wrapper">
           {this.getBody(currentData, isAutoplay)}
+          <div
+            className="catalogue__button-wrapper"
+            style={{ top: this.getButtonTopPosition() }}
+          >
+            <button
+              className="catalogue__button catalogue__button--more"
+              onClick={increaseOffset}
+            >
+              ЕЩЕ
+            </button>
+          </div>
         </div>
-        <button className="app__more-button" onClick={increaseOffset}>
-          ЕЩЕ
-        </button>
       </section>
     );
   }

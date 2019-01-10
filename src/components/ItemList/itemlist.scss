@@ -8,10 +8,20 @@
   border: 1px solid green;
 }
 
-.catalogue__item-wrapper {
+.catalogue__wrapper {
   position: relative;
 
   width: 900px;
 
   border: 1px solid red;
+}
+
+.catalogue__button-wrapper {
+  position: absolute;
+  left: 45%;
+
+  padding: 20px;
+}
+
+.catalogue__button--more {
 }
