@@ -56,26 +56,30 @@ export const getAddressFromRequest = function(param) {
   const { itemType, actionType, offset, payload } = param;
   let addressForStorage;
   let addressForAPI;
+  let isRequestSingleItem;
 
   switch (actionType) {
     case TRENDING: {
+      isRequestSingleItem = false;
       addressForStorage = `${itemType}/${actionType}/${offset}`;
       addressForAPI = `${API_HOST}/${itemType}/${actionType}?&api_key=${API_KEY}&offset=${offset}`;
       break;
     }
     case SEARCH: {
+      isRequestSingleItem = false;
       addressForStorage = `${itemType}/${actionType}/${payload}/${offset}`;
       addressForAPI = `${API_HOST}/${itemType}/${actionType}?q=${payload}&api_key=${API_KEY}&offset=${offset}`;
       break;
     }
     case ID: {
-      addressForStorage = false;
+      isRequestSingleItem = true;
+      addressForStorage = `${itemType}/${actionType}/${payload}`;
       addressForAPI = `${API_HOST}/${itemType}/${payload}?q=&api_key=${API_KEY}`;
       break;
     }
   }
 
-  return { addressForStorage, addressForAPI, offset };
+  return { addressForStorage, addressForAPI, offset, isRequestSingleItem };
 };
 
 export const massToObj = function(arr) {

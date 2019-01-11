@@ -12,7 +12,12 @@ export default store => next => action => {
     console.log(`hello form middle-------`, payload);
     const requestedData = getAddressFromRequest(payload);
     console.log(`adressssss`, requestedData);
-    const { addressForAPI, addressForStorage, offset } = requestedData;
+    const {
+      addressForAPI,
+      addressForStorage,
+      offset,
+      isRequestSingleItem
+    } = requestedData;
 
     fetch(addressForAPI)
       .then(resp => {
@@ -24,7 +29,7 @@ export default store => next => action => {
           `дляинна загруженного массива`,
           requestedData.data.data.length
         );
-        if (requestedData.addressForStorage) {
+        if (!isRequestSingleItem) {
           requestedData.data.data.sort(sortOnHeight); //сортируем по высоте, в порядке возрастания
           requestedData.data.data = massToObj(requestedData.data.data); // преобразовываем массив объектов в объект для удобства
         } else {

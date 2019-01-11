@@ -26,7 +26,7 @@ export default (dataState = defaultState, action) => {
       };
 
       const getCurrentTotalCount = function() {
-        if (payload.addressForStorage) {
+        if (!payload.isRequestSingleItem) {
           return payload.data.pagination.total_count;
         } else {
           return 1;
