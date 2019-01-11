@@ -1,5 +1,5 @@
 import { LOAD_DATA, LOAD_START, LOAD_COMPLETE } from "../constant";
-import { getAddressFromRequest, massToObj } from "../utils/utils";
+import { getAddressFromRequest, massToObj, sortOnHeight } from "../utils/utils";
 
 export default store => next => action => {
   console.log(`hello form middle`, action);
@@ -25,7 +25,8 @@ export default store => next => action => {
           requestedData.data.data.length
         );
         if (requestedData.addressForStorage) {
-          requestedData.data.data = massToObj(requestedData.data.data); // преобразовываем массив картинок в объект для удобства
+          requestedData.data.data.sort(sortOnHeight); //сортируем по высоте, в порядке возрастания
+          requestedData.data.data = massToObj(requestedData.data.data); // преобразовываем массив объектов в объект для удобства
         } else {
           const id = requestedData.data.data.id;
           requestedData.data.data = { [id]: requestedData.data.data };
