@@ -1,4 +1,9 @@
-import { SET_AUTOPLAY, LOAD_DATA, CHANGE_GALLERY_ITEM } from "../constant";
+import {
+  SET_AUTOPLAY,
+  LOAD_DATA,
+  CHANGE_GALLERY_ITEM,
+  CLOSE_GALLERY
+} from "../constant";
 import { getRequestURL } from "../utils/utils";
 
 export const setAutoplay = function(isAutoplay) {
@@ -15,9 +20,15 @@ export const loadData = function(request) {
   };
 };
 
-export const change = function(itemUrl, itemData) {
+export const changeGalleryItem = function(itemUrl, itemData) {
   return {
     type: CHANGE_GALLERY_ITEM,
     payload: { itemUrl, itemData }
+  };
+};
+
+export const closeGallery = function() {
+  return {
+    type: CLOSE_GALLERY
   };
 };

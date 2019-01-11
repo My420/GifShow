@@ -3,8 +3,8 @@ import "./itemGallery.scss";
 import { connect } from "react-redux";
 import GalleryControls from "../GalleryControls/GalleryControls";
 import { createRequestFromURL } from "../../utils/utils";
-import { loadData, change } from "../../ActionCreator/index";
-import { ORIGINAL } from "../../constant";
+import { closeGallery } from "../../ActionCreator/index";
+import { ORIGINAL, SMALL } from "../../constant";
 
 class ItemGallery extends Component {
   state = {
@@ -18,21 +18,24 @@ class ItemGallery extends Component {
   getImageSrc = () => {
     const { data } = this.props;
     if (this.state.imageSize === ORIGINAL) {
-      return data.images.original.url;
+      return data.images.original_still.url;
     } else {
       return data.images.fixed_width.url;
     }
   };
 
   getBody = () => {
-    const { isOpen, data } = this.props;
+    const { isOpen, data, onCloseButtonClick } = this.props;
     let body;
 
     if (isOpen) {
       body = (
         <section className="app__gallery gallery">
           <h2 className="gallery__title">{data.title}</h2>
-          <button className="gallery__button gallery__button--close">
+          <button
+            className="gallery__button gallery__button--close"
+            onClick={onCloseButtonClick}
+          >
             Закрыть
           </button>
           <div className="gallery__screen">
@@ -55,7 +58,6 @@ class ItemGallery extends Component {
 
   render() {
     console.log(`render ----- ItemScreen`);
-
     return this.getBody();
   }
 }
@@ -68,7 +70,13 @@ const mapStateToProps = store => {
   };
 };
 
-const mapDispatchToProps = dispatch => {};
+const mapDispatchToProps = dispatch => {
+  return {
+    onCloseButtonClick: () => {
+      dispatch(closeGallery());
+    }
+  };
+};
 
 export default connect(
   mapStateToProps,

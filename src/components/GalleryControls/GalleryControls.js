@@ -29,9 +29,6 @@ class GalleryControls extends Component {
               Маленький
             </option>
           </select>
-          <button className="gallery__button gallery__button--download">
-            Скачать
-          </button>
         </section>
       </section>
     );

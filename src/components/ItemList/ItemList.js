@@ -3,7 +3,7 @@ import "./itemlist.scss";
 import Item from "../Item/Item";
 import { connect } from "react-redux";
 import { createRequestFromURL } from "../../utils/utils";
-import { loadData, change } from "../../ActionCreator/index";
+import { loadData, changeGalleryItem } from "../../ActionCreator/index";
 import {
   DEFAULT_OFFSET_VALUE,
   DISTANCE_BETWEEN_ITEM,
@@ -164,7 +164,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(loadData(request));
     },
     changeGalleryItem: (itemUrl, itemData) => {
-      dispatch(change(itemUrl, itemData));
+      dispatch(changeGalleryItem(itemUrl, itemData));
     }
   };
 };

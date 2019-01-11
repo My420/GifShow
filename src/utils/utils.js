@@ -88,7 +88,6 @@ export const massToObj = function(arr) {
 export const sortOnHeight = function(a, b) {
   const firstItemHeight = +a.images.fixed_width.height;
   const secondItemHeight = +b.images.fixed_width.height;
-  console.log(firstItemHeight, secondItemHeight);
 
   if (firstItemHeight > secondItemHeight) return 1;
 

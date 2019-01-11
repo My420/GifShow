@@ -1,4 +1,4 @@
-import { CHANGE_GALLERY_ITEM } from "../constant";
+import { CHANGE_GALLERY_ITEM, CLOSE_GALLERY } from "../constant";
 
 const defaultState = {
   itemData: {},
@@ -16,6 +16,12 @@ export default (screenState = defaultState, action) => {
         itemUrl: payload.itemUrl,
         itemData: payload.itemData,
         isGalleryOpen: true
+      };
+
+    case CLOSE_GALLERY:
+      return {
+        ...screenState,
+        isGalleryOpen: false
       };
 
     default:

@@ -24,6 +24,7 @@ export const LOAD_START = `LOAD_START`;
 export const LOAD_COMPLETE = `LOAD_COMPLETE`;
 
 export const CHANGE_GALLERY_ITEM = `CHANGE_GALLERY_ITEM`;
+export const CLOSE_GALLERY = `CLOSE_GALLERY`;
 
 export const ORIGINAL = `ORIGINAL`;
 export const SMALL = `SMALL`;

@@ -26,8 +26,12 @@ class Item extends Component {
         style={{ top: top, left: left }}
       >
         <h2 className="item__title visually-hidden">{title}</h2>
-        <div className="item__image-wrapper" onClick={this.onUserClick}>
-          <img className="item__image" src={src.url} alt="rfhnbyrf" />
+        <div
+          className="item__image-wrapper"
+          onClick={this.onUserClick}
+          onMouseEnter={null}
+        >
+          <img className="item__image" src={src.url} alt={title} />
         </div>
       </article>
     );
