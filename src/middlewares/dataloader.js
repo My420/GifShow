@@ -19,25 +19,30 @@ export default store => next => action => {
       isRequestSingleItem
     } = requestedData;
 
-    fetch(addressForAPI)
-      .then(resp => {
-        return resp.json();
-      })
-      .then(data => {
-        requestedData.data = data;
-        console.log(
-          `дляинна загруженного массива`,
-          requestedData.data.data.length
-        );
-        if (!isRequestSingleItem) {
-          requestedData.data.data.sort(sortOnHeight); //сортируем по высоте, в порядке возрастания
-          requestedData.data.data = massToObj(requestedData.data.data); // преобразовываем массив объектов в объект для удобства
-        } else {
-          const id = requestedData.data.data.id;
-          requestedData.data.data = { [id]: requestedData.data.data };
-        }
-        next({ ...action, type: LOAD_COMPLETE, payload: requestedData }); // отправляем все что пришло
-      });
+    const currentStore = store.getState();
+    const resultStore = currentStore.data.resultStore;
+    if (resultStore[addressForStorage]) {
+      console.log(`Загружаю из Хранилища`);
+      requestedData.data = { ...resultStore[addressForStorage] }; // клонируем из хранилища.
+      next({ ...action, type: LOAD_COMPLETE, payload: requestedData }); // отправляем все что пришло
+    } else {
+      console.log(`Загружаю из API`);
+      fetch(addressForAPI) // отправляем запрос к API
+        .then(resp => {
+          return resp.json();
+        })
+        .then(data => {
+          requestedData.data = data;
+          if (!isRequestSingleItem) {
+            requestedData.data.data.sort(sortOnHeight); //сортируем по высоте, в порядке возрастания
+            requestedData.data.data = massToObj(requestedData.data.data); // преобразовываем массив объектов в объект для удобства
+          } else {
+            const id = requestedData.data.data.id;
+            requestedData.data.data = { [id]: requestedData.data.data };
+          }
+          next({ ...action, type: LOAD_COMPLETE, payload: requestedData }); // отправляем все что пришло
+        });
+    }
 
     /*setTimeout(() => {
       console.log(`Загружено`, requestedData);
