@@ -8,7 +8,8 @@ import {
   DEFAULT_OFFSET_VALUE,
   DISTANCE_BETWEEN_ITEM,
   COLUMN_AMOUNT,
-  COLUMN_POSITION
+  COLUMN_POSITION,
+  RANDOM
 } from "../../constant";
 
 class ItemList extends Component {
@@ -114,6 +115,18 @@ class ItemList extends Component {
     return `${newArry[newArry.length - 1] + DISTANCE_BETWEEN_ITEM}px`;
   }
 
+  getItemsAmount = (data, itemTotalCount) => {
+    if (itemTotalCount === 1) {
+      let counter = 0;
+      for (var key in data) {
+        counter++;
+      }
+      return counter;
+    } else {
+      return itemTotalCount;
+    }
+  };
+
   render() {
     console.log(`render ----- ItemList`);
 
@@ -131,7 +144,9 @@ class ItemList extends Component {
         <h1>{isAutoplay ? `ON` : `OFF`}</h1>
         <h2>{isLoading ? `Загрузка.....` : `Отображение`}</h2>
         <h2>{isError ? `Возникла Ошибка: '${errorMassage}' ` : null}</h2>
-        <h2>Всего итемов: {itemTotalCount}</h2>
+        <h2>
+          Всего итемов: {this.getItemsAmount(currentData, itemTotalCount)}
+        </h2>
         <div className="catalogue__wrapper">
           {this.getBody(currentData, isAutoplay)}
           <div

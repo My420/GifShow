@@ -1,6 +1,7 @@
 import {
   TRENDING,
   SEARCH,
+  RANDOM,
   ID,
   GIFS,
   STICKERS,
@@ -11,7 +12,7 @@ import {
 export const calcNewURL = function(prevUrl, path, data = false) {
   let newURL;
 
-  if (path === TRENDING || path === SEARCH) {
+  if (path === TRENDING || path === SEARCH || path === RANDOM) {
     newURL = prevUrl.split(`/`, 3);
     newURL[2] = path;
     if (newURL[1] !== GIFS && newURL[1] !== STICKERS) {
@@ -75,6 +76,13 @@ export const getAddressFromRequest = function(param) {
       isRequestSingleItem = true;
       addressForStorage = `${itemType}/${actionType}/${payload}`;
       addressForAPI = `${API_HOST}/${itemType}/${payload}?q=&api_key=${API_KEY}`;
+      break;
+    }
+
+    case RANDOM: {
+      isRequestSingleItem = true;
+      addressForStorage = null;
+      addressForAPI = `${API_HOST}/${itemType}/${actionType}?q=&api_key=${API_KEY}`;
       break;
     }
   }

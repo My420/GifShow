@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./navigation.scss";
 import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import { calcNewURL } from "../../utils/utils";
-import { TRENDING } from "../../constant";
+import { TRENDING, RANDOM } from "../../constant";
 import { withRouter } from "react-router";
 
 class Navigation extends Component {
@@ -27,7 +27,7 @@ class Navigation extends Component {
         </button>
         <button
           className="navigation__button navigation__button--random"
-          data-path="random"
+          data-path={RANDOM}
           onClick={this.onNavButtonClick}
         >
           Random

@@ -1,6 +1,7 @@
 export const TRENDING = `trending`;
 export const SEARCH = `search`;
 export const ID = `id`;
+export const RANDOM = `random`;
 
 export const COLUMN_AMOUNT = {
   PC: 4,
