@@ -5,7 +5,7 @@ const defaultState = {
   currentData: [],
   isError: false,
   ErrorMassage: ``,
-  dataStore: {},
+  resultStore: {},
   itemTotalCount: null
 };
 
@@ -33,11 +33,25 @@ export default (dataState = defaultState, action) => {
         }
       };
 
+      const getResultStore = () => {
+        const addressForStorage = payload.addressForStorage;
+        const dataForStorage = { ...payload.data };
+        if (addressForStorage) {
+          return {
+            ...dataState.resultStore,
+            [addressForStorage]: dataForStorage
+          };
+        } else {
+          return dataState.resultStore;
+        }
+      };
+
       return {
         ...dataState,
         isLoading: false,
         currentData: getCurrentData(), // [1] // если оффсет = 0, то заменяем все текущие данные, в ином случае добавляем новые данные к уже имеющимся
-        itemTotalCount: getCurrentTotalCount() //[2]
+        itemTotalCount: getCurrentTotalCount(), //[2]
+        resultStore: getResultStore()
       };
 
     default:
