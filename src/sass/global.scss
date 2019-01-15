@@ -64,3 +64,11 @@ img {
     transform: scale(1);
   }
 }
+
+@media screen and (min-width: 960px) {
+  // исправляем прыгающий скролл
+  html {
+    margin-left: calc(100vw - 100%);
+    margin-right: 0;
+  }
+}

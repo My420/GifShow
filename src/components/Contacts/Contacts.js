@@ -5,9 +5,11 @@ class Contacts extends Component {
   render() {
     console.log(`render ----- Contacts`);
     return (
-      <article className="app__item item">
-        <h1>Contacts.....</h1>
-      </article>
+      <div className="app__contacts-wrapper">
+        <article className="app__contacts contacts">
+          <h1>Contacts.....</h1>
+        </article>
+      </div>
     );
   }
 }
