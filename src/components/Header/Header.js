@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./header.scss";
-import SerchBar from "../SerchBar/SerchBar";
+import SearchBar from "../SearchBar/SearchBar";
 
 class Header extends Component {
   render() {
@@ -8,7 +8,7 @@ class Header extends Component {
     return (
       <header className="app__header">
         <h2 className="app__logo">GifShow</h2>
-        <SerchBar />
+        <SearchBar />
       </header>
     );
   }

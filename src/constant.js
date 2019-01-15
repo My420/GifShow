@@ -15,6 +15,8 @@ export const COLUMN_POSITION = {
   MOBILE: [0]
 };
 
+export const HOME_PAGE = `/gifs/trending/`;
+
 export const GIFS = `gifs`;
 export const STICKERS = `stickers`;
 

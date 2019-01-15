@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./serchbar.scss";
+import "./searchbar.scss";
 import { withRouter } from "react-router";
 import { calcNewURL, convertUserInput } from "../../utils/utils";
 import { SEARCH } from "../../constant";

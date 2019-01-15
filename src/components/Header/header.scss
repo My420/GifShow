@@ -1,3 +1,26 @@
+.app__header {
+  position: fixed;
+  top: 0vh;
+  left: center;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+
+  width: 960px;
+  height: 60px;
+  padding: 12px 0;
+
+  background-color: #2c3e50;
+
+  border: 1px solid red;
+}
+
 .app__logo {
   display: inline-block;
+
+  padding: 3px 0;
+
+  font-size: 40px;
+  color: orange;
 }

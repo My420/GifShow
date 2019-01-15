@@ -28,7 +28,7 @@ class Option extends Component {
     return (
       <section className="app__option option">
         <h2 className="visually-hidden">Опции</h2>
-        <div className="option__wrapper">
+        <div className="option__wrapper option__wrapper--button">
           <button
             className="option__button option__button--sticker"
             data-path={STICKERS}
@@ -44,8 +44,9 @@ class Option extends Component {
             Gif
           </button>
         </div>
-        <div className="option__wrapper">
+        <div className="option__wrapper option__wrapper--radio">
           <input
+            className="option__radio visually-hidden"
             type="radio"
             name="autoplay"
             value="off"
@@ -54,12 +55,13 @@ class Option extends Component {
             onChange={this.onRadioButtonChange}
           />
           <label
-            className="option__button option__button--gif"
+            className="option__label option__label--off"
             htmlFor="autoplay-off"
           >
-            Off
+            <span className="visually-hidden">Off</span>
           </label>
           <input
+            className="option__radio visually-hidden"
             type="radio"
             name="autoplay"
             value="on"
@@ -68,10 +70,10 @@ class Option extends Component {
             onChange={this.onRadioButtonChange}
           />
           <label
-            className="option__button option__button--sticker"
+            className="option__label option__label--on"
             htmlFor="autoplay-on"
           >
-            On
+            <span className="visually-hidden">On</span>
           </label>
         </div>
       </section>

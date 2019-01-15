@@ -141,12 +141,10 @@ class ItemList extends Component {
 
     return (
       <section className="app__item-list catalogue">
-        <h1>{isAutoplay ? `ON` : `OFF`}</h1>
-        <h2>{isLoading ? `Загрузка.....` : `Отображение`}</h2>
-        <h2>{isError ? `Возникла Ошибка: '${errorMessage}' ` : null}</h2>
-        <h2>
+        <h2 className="visually-hidden">Каталог</h2>
+        <p className="catalogue__status">
           Всего итемов: {this.getItemsAmount(currentData, itemTotalCount)}
-        </h2>
+        </p>
         <div className="catalogue__wrapper">
           {this.getBody(currentData, isAutoplay)}
           <div

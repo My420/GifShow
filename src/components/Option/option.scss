@@ -3,9 +3,110 @@
   flex-direction: column;
 }
 
-.option__wrapper {
+.option__wrapper--button {
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   margin-bottom: 30px;
+}
+
+.option__button {
+  display: inline-block;
+
+  width: 120px;
+  height: 42px;
+  margin-bottom: 10px;
+
+  box-sizing: border-box;
+
+  padding: 5px;
+
+  background-color: transparent;
+
+  border: 1px solid orange;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  text-decoration: none;
+  text-align: center;
+  color: orange;
+}
+
+.option__wrapper--radio {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100px;
+
+  margin: 0 auto;
+
+  margin-bottom: 30px;
+}
+
+.option__label {
+  display: block;
+
+  position: relative;
+
+  width: 40px;
+  height: 40px;
+
+  border: 1px solid gray;
+}
+
+.option__label--on:after {
+  content: "";
+  display: block;
+
+  position: absolute;
+  top: 10px;
+  left: 15px;
+
+  width: 0px;
+  height: 0px;
+
+  border: 10px solid transparent;
+  border-left-color: gray;
+}
+
+.option__label--off:after,
+.option__label--off:before {
+  content: "";
+  display: block;
+
+  position: absolute;
+  top: 10px;
+  left: 15px;
+
+  width: 4px;
+  height: 20px;
+
+  background-color: gray;
+}
+
+.option__label--off:before {
+  top: 10px;
+  left: 22px;
+}
+
+.option__wrapper--radio .option__radio[checked] + .option__label--off:after,
+.option__wrapper--radio .option__radio[checked] + .option__label--off:before {
+  background-color: orange;
+}
+
+.option__wrapper--radio .option__radio[checked] + .option__label--off {
+  border-color: orange;
+}
+
+.option__wrapper--radio .option__radio[checked] + .option__label--on {
+  border-color: orange;
+}
+
+.option__wrapper--radio .option__radio[checked] + .option__label--on:after {
+  border-left-color: orange;
 }

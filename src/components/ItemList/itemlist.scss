@@ -11,7 +11,7 @@
 .catalogue__wrapper {
   position: relative;
 
-  width: 900px;
+  width: 820px;
 
   border: 1px solid red;
 }
@@ -21,6 +21,10 @@
   left: 45%;
 
   padding: 20px;
+}
+
+.catalogue__status {
+  padding: 10px;
 }
 
 .catalogue__button--more {

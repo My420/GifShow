@@ -1,8 +1,13 @@
 .app {
   width: 960px;
+
   margin: 0 auto;
+  padding: 0 8px;
+  padding-top: 86px;
 }
 
 .app__inner-wrapper {
   display: flex;
+
+  position: relative;
 }
