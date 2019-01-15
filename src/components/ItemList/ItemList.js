@@ -135,7 +135,7 @@ class ItemList extends Component {
       isLoading,
       isError,
       currentData,
-      errorMassage,
+      errorMessage,
       itemTotalCount
     } = data;
 
@@ -143,7 +143,7 @@ class ItemList extends Component {
       <section className="app__item-list catalogue">
         <h1>{isAutoplay ? `ON` : `OFF`}</h1>
         <h2>{isLoading ? `Загрузка.....` : `Отображение`}</h2>
-        <h2>{isError ? `Возникла Ошибка: '${errorMassage}' ` : null}</h2>
+        <h2>{isError ? `Возникла Ошибка: '${errorMessage}' ` : null}</h2>
         <h2>
           Всего итемов: {this.getItemsAmount(currentData, itemTotalCount)}
         </h2>

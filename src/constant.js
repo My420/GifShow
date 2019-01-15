@@ -23,6 +23,7 @@ export const SET_AUTOPLAY = `SET_AUTOPLAY`;
 export const LOAD_DATA = `LOAD_DATA`;
 export const LOAD_START = `LOAD_START`;
 export const LOAD_COMPLETE = `LOAD_COMPLETE`;
+export const LOAD_ERROR = `LOAD_ERROR`;
 
 export const CHANGE_GALLERY_ITEM = `CHANGE_GALLERY_ITEM`;
 export const CLOSE_GALLERY = `CLOSE_GALLERY`;

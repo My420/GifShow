@@ -1,5 +1,10 @@
-import { LOAD_DATA, LOAD_START, LOAD_COMPLETE } from "../constant";
-import { getAddressFromRequest, massToObj, sortOnHeight } from "../utils/utils";
+import { LOAD_DATA, LOAD_START, LOAD_COMPLETE, LOAD_ERROR } from "../constant";
+import {
+  getAddressFromRequest,
+  massToObj,
+  sortOnHeight,
+  checkStatus
+} from "../utils/utils";
 
 export default store => next => action => {
   console.log(`hello form middle`, action);
@@ -21,13 +26,16 @@ export default store => next => action => {
 
     const currentStore = store.getState();
     const resultStore = currentStore.data.resultStore;
+
     if (resultStore[addressForStorage]) {
       console.log(`Загружаю из Хранилища`);
       requestedData.data = { ...resultStore[addressForStorage] }; // клонируем из хранилища.
       next({ ...action, type: LOAD_COMPLETE, payload: requestedData }); // отправляем все что пришло
     } else {
       console.log(`Загружаю из API`);
-      fetch(addressForAPI) // отправляем запрос к API
+
+      fetch(addressForAPI)
+        .then(checkStatus) // отправляем запрос к API
         .then(resp => {
           return resp.json();
         })
@@ -41,13 +49,11 @@ export default store => next => action => {
             requestedData.data.data = { [id]: requestedData.data.data };
           }
           next({ ...action, type: LOAD_COMPLETE, payload: requestedData }); // отправляем все что пришло
+        })
+        .catch(error => {
+          next({ ...action, type: LOAD_ERROR, payload: error.message });
         });
     }
-
-    /*setTimeout(() => {
-      console.log(`Загружено`, requestedData);
-      next({ ...action, type: LOAD_COMPLETE });
-    }, 5000);*/
   } else {
     return next(action);
   }

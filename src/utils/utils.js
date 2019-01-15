@@ -107,3 +107,13 @@ export const sortOnHeight = function(a, b) {
 
   return 0;
 };
+
+export const checkStatus = function(response) {
+  const responseStatus = +response.status;
+  const responseMessage = response.statusText;
+  if (responseStatus >= 200 && responseStatus < 300) {
+    return Promise.resolve(response);
+  } else {
+    return Promise.reject(new Error(responseMessage));
+  }
+};
