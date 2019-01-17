@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import "./galleryControls.scss";
-import { connect } from "react-redux";
-import { createRequestFromURL } from "../../utils/utils";
-import { loadData, change } from "../../ActionCreator/index";
 import { ORIGINAL, SMALL } from "../../constant";
 
 class GalleryControls extends Component {

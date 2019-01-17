@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./itemlist.scss";
 import Item from "../Item/Item";
+import RequestStatusBar from "../RequestStatusBar/RequestStatusBar";
 import { connect } from "react-redux";
 import { createRequestFromURL } from "../../utils/utils";
 import { loadData, changeGalleryItem } from "../../ActionCreator/index";
@@ -8,8 +9,7 @@ import {
   DEFAULT_OFFSET_VALUE,
   DISTANCE_BETWEEN_ITEM,
   COLUMN_AMOUNT,
-  COLUMN_POSITION,
-  RANDOM
+  COLUMN_POSITION
 } from "../../constant";
 
 class ItemList extends Component {
@@ -38,7 +38,7 @@ class ItemList extends Component {
 
   getData = (url, offset) => {
     const request = createRequestFromURL(url, offset);
-    this.itemType = request.itemType;
+    this.userRequest = request;
     console.log(`**********`, request);
     this.props.loadData(request);
   };
@@ -70,7 +70,7 @@ class ItemList extends Component {
     for (const key in data) {
       body.push(
         <Item
-          itemType={this.itemType}
+          itemType={this.userRequest}
           itemData={data[key]}
           id={key}
           key={key}
@@ -139,12 +139,16 @@ class ItemList extends Component {
       itemTotalCount
     } = data;
 
+    const itemsAmount = this.getItemsAmount(currentData, itemTotalCount);
     return (
       <section className="app__item-list catalogue">
         <h2 className="visually-hidden">Каталог</h2>
-        <p className="catalogue__status">
-          Всего итемов: {this.getItemsAmount(currentData, itemTotalCount)}
-        </p>
+        <RequestStatusBar
+          request={this.userRequest}
+          itemsAmount={itemsAmount}
+          isError={isError}
+          errorMessage={errorMessage}
+        />
         <div className="catalogue__wrapper">
           {this.getBody(currentData, isAutoplay)}
           <div
@@ -155,7 +159,7 @@ class ItemList extends Component {
               className="catalogue__button catalogue__button--more"
               onClick={increaseOffset}
             >
-              ЕЩЕ
+              Еще
             </button>
           </div>
         </div>

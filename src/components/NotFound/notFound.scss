@@ -1,0 +1,39 @@
+.notFoundPage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  padding-left: 140px;
+  padding-top: 100px;
+}
+
+.notFoundPage__title {
+  display: inline-block;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.notFoundPage__button {
+  display: inline-block;
+
+  width: 120px;
+  height: 42px;
+
+  margin-bottom: 10px;
+  margin: 0 auto;
+  padding: 5px;
+
+  box-sizing: border-box;
+
+  background-color: transparent;
+
+  border: 1px solid orange;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  text-decoration: none;
+  text-align: center;
+  color: orange;
+}

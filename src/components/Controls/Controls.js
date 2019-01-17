@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./controls.scss";
 import Navigation from "../Navigation/Navigation";
 import Option from "../Option/Option";
+import LoadBar from "../LoadBar/LoadBar";
 
 class Controls extends Component {
   render() {
@@ -11,6 +12,7 @@ class Controls extends Component {
         <h2 className="visually-hidden">Управление</h2>
         <Navigation />
         <Option />
+        <LoadBar />
       </section>
     );
   }

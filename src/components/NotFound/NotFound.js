@@ -9,12 +9,9 @@ class NotFound extends Component {
     console.log(`render ----- NotFound`);
     return (
       <article className="app__404 notFoundPage">
-        <h2 className="notFoundPAge__title">Ошибка</h2>
+        <h2 className="notFoundPage__title">Ошибка</h2>
 
-        <NavLink
-          to={HOME_PAGE}
-          className="navigation__button navigation__button--about"
-        >
+        <NavLink to={HOME_PAGE} className="notFoundPage__button">
           Домой
         </NavLink>
       </article>

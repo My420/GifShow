@@ -1,4 +1,6 @@
 .app__item-list {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,4 +30,29 @@
 }
 
 .catalogue__button--more {
+  display: inline-block;
+
+  width: 120px;
+  height: 42px;
+
+  box-sizing: border-box;
+
+  padding: 5px;
+
+  background-color: transparent;
+
+  border: 1px solid orange;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  text-decoration: none;
+  text-align: center;
+  color: orange;
+}
+
+.catalogue__button--more:hover {
+  border-left-color: transparent;
+  border-right-color: transparent;
 }

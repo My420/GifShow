@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import "./itemGallery.scss";
 import { connect } from "react-redux";
 import GalleryControls from "../GalleryControls/GalleryControls";
-import { createRequestFromURL } from "../../utils/utils";
 import { closeGallery } from "../../ActionCreator/index";
-import { ORIGINAL, SMALL } from "../../constant";
+import { ORIGINAL } from "../../constant";
 
 class ItemGallery extends Component {
   state = {
