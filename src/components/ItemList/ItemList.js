@@ -180,8 +180,8 @@ const mapDispatchToProps = dispatch => {
     loadData: request => {
       dispatch(loadData(request));
     },
-    changeGalleryItem: (itemUrl, itemData) => {
-      dispatch(changeGalleryItem(itemUrl, itemData));
+    changeGalleryItem: (itemUrl, itemType, itemData) => {
+      dispatch(changeGalleryItem(itemUrl, itemType, itemData));
     }
   };
 };

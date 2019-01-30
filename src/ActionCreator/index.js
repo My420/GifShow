@@ -20,10 +20,10 @@ export const loadData = function(request) {
   };
 };
 
-export const changeGalleryItem = function(itemUrl, itemData) {
+export const changeGalleryItem = function(itemUrl, itemType, itemData) {
   return {
     type: CHANGE_GALLERY_ITEM,
-    payload: { itemUrl, itemData }
+    payload: { itemUrl, itemType, itemData }
   };
 };
 

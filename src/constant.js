@@ -40,3 +40,5 @@ export const DISTANCE_BETWEEN_ITEM = 10;
 export const API_HOST = `http://api.giphy.com/v1`;
 
 export const API_KEY = `ZWmPvfk5xK6wl6k7YSQShDqklkHlKgFv`;
+
+export const GIFSHOW_HOST = `http://localhost:3000/#`;

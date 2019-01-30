@@ -24,7 +24,7 @@ class ItemGallery extends Component {
   };
 
   getBody = () => {
-    const { isOpen, data, onCloseButtonClick } = this.props;
+    const { isOpen, itemType, url, data, onCloseButtonClick } = this.props;
     let body;
 
     if (isOpen) {
@@ -51,7 +51,11 @@ class ItemGallery extends Component {
               />
             </div>
           </div>
-          <GalleryControls changeImageSize={this.changeImageSize} />
+          <GalleryControls
+            changeImageSize={this.changeImageSize}
+            itemUrl={url}
+            itemType={itemType}
+          />
         </section>
       );
     } else {
@@ -70,7 +74,8 @@ const mapStateToProps = store => {
   return {
     url: store.gallery.itemUrl,
     data: store.gallery.itemData,
-    isOpen: store.gallery.isGalleryOpen
+    isOpen: store.gallery.isGalleryOpen,
+    itemType: store.gallery.itemType
   };
 };
 

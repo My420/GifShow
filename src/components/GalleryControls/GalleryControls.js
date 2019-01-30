@@ -1,15 +1,21 @@
 import React, { Component } from "react";
 import "./galleryControls.scss";
-import { ORIGINAL, SMALL } from "../../constant";
+import { ORIGINAL, SMALL, GIFS, GIFSHOW_HOST } from "../../constant";
 
 class GalleryControls extends Component {
   onSelectChange = event => {
     this.props.changeImageSize(event.target.value);
   };
 
+  onCopyButtonClick = event => {
+    const url = `${GIFSHOW_HOST + this.props.itemUrl}`;
+    document.execCommand(url);
+    console.log(url);
+  };
+
   render() {
     console.log(`render ----- GalleryControls`);
-    const { sizeValue } = this.props;
+    const { sizeValue, itemType, itemUrl } = this.props;
     return (
       <section className="gallery__controls">
         <section className="gallery__downloads">
@@ -29,7 +35,11 @@ class GalleryControls extends Component {
           <button className="gallery__button gallery__button--favorite">
             <span>{`${String.fromCharCode(10084)} Favorite`}</span>
           </button>
-          <button className="gallery__button gallery__button--copy">
+          <button
+            className="gallery__button gallery__button--copy"
+            disabled={itemType === GIFS ? false : true}
+            onClick={this.onCopyButtonClick}
+          >
             <span>{`${String.fromCharCode(9729)} Copy`}</span>
           </button>
         </section>

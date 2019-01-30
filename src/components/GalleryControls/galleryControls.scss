@@ -7,6 +7,11 @@
   color: orange;
 }
 
+.gallery__button:disabled {
+  border-color: gray;
+  color: gray;
+}
+
 .gallery__button--favorite,
 .gallery__button--copy {
   position: static;

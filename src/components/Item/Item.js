@@ -9,9 +9,10 @@ class Item extends Component {
 
   onUserClick = () => {
     const { itemData, id, itemType } = this.props;
-    const itemUrl = `/${itemType}/${ID}/${id}`;
+    const currentItemType = itemType.itemType;
+    const itemUrl = `/${currentItemType}/${ID}/${id}`;
     const dataForGallery = { ...itemData }; // клонируем объект (иммутабельность данных)
-    this.props.onUserClick(itemUrl, dataForGallery);
+    this.props.onUserClick(itemUrl, currentItemType, dataForGallery);
   };
 
   onMouseEnter = () => {
