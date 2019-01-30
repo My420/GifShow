@@ -28,6 +28,8 @@ class ItemGallery extends Component {
     let body;
 
     if (isOpen) {
+      let imageWrapperWidth = data.images.original.width + `px`;
+      let imageWrapperHeight = data.images.original.height + `px`;
       body = (
         <section className="app__gallery gallery">
           <h2 className="gallery__title">{data.title}</h2>
@@ -35,10 +37,13 @@ class ItemGallery extends Component {
             className="gallery__button gallery__button--close"
             onClick={onCloseButtonClick}
           >
-            Закрыть
+            <span className="visually-hidden">Закрыть</span>
           </button>
           <div className="gallery__screen">
-            <div className="gallery__image-wrapper">
+            <div
+              className="gallery__image-wrapper"
+              style={{ width: imageWrapperWidth, height: imageWrapperHeight }}
+            >
               <img
                 className="gallery__image"
                 src={this.getImageSrc()}

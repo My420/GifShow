@@ -26,6 +26,12 @@ class GalleryControls extends Component {
               Маленький
             </option>
           </select>
+          <button className="gallery__button gallery__button--favorite">
+            <span>{`${String.fromCharCode(10084)} Favorite`}</span>
+          </button>
+          <button className="gallery__button gallery__button--copy">
+            <span>{`${String.fromCharCode(9729)} Copy`}</span>
+          </button>
         </section>
       </section>
     );
