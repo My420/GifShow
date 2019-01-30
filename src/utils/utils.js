@@ -11,6 +11,7 @@ import {
   GALLERY_CONTROLS_WIDTH,
   GALLERY_CONTROLS_BOTTOM_MARGIN,
   GALLERY_IMAGE_BOTTOM_MARGIN,
+  GALLERY_PADDING,
   SIZE_REDUCE_RATE,
   HEIGHT_MARGIN
 } from "../constant";
@@ -143,43 +144,47 @@ const auditImageSize = function(
 };
 
 export const calcTagsSize = function(
-  imageWidth,
-  imageHeight,
+  imageOriginalWidth,
+  imageOriginalHeight,
   clientWidth,
   clientHeight
 ) {
   let size = {
-    image: {},
+    wrapper: {},
     controls: {},
     gallery: {},
     margin: {
       image: GALLERY_IMAGE_BOTTOM_MARGIN,
       controls: GALLERY_CONTROLS_BOTTOM_MARGIN
+    },
+    padding: {
+      gallery: GALLERY_PADDING
     }
   };
 
-  const newImageSize = auditImageSize(
-    imageWidth,
-    imageHeight,
+  const newImageWrapperSize = auditImageSize(
+    imageOriginalWidth,
+    imageOriginalHeight,
     clientWidth,
     clientHeight
   );
-  size.image.width = newImageSize.width;
-  size.image.height = newImageSize.height;
+  size.wrapper.width = newImageWrapperSize.width;
+  size.wrapper.height = newImageWrapperSize.height;
 
   size.controls.width = GALLERY_CONTROLS_WIDTH;
   size.controls.height = GALLERY_CONTROLS_HEIGHT;
 
   size.gallery.width =
-    size.image.width > size.controls.width
-      ? size.image.width
-      : size.controls.width;
+    size.wrapper.width > size.controls.width
+      ? size.wrapper.width + size.padding.gallery * 2
+      : size.controls.width + size.padding.gallery * 2;
 
   size.gallery.height =
-    size.image.height +
+    size.wrapper.height +
     size.controls.height +
     size.margin.image +
-    size.margin.controls;
+    size.margin.controls +
+    size.padding.gallery * 2;
 
   size.gallery.top = (clientHeight - size.gallery.height) / 2;
   size.gallery.left = (clientWidth - size.gallery.width) / 2;

@@ -29,22 +29,25 @@ class ItemGallery extends Component {
     let body;
 
     if (isOpen) {
-      let imageWidth = +data.images.original.width;
-      let imageHeight = +data.images.original.height;
+      const imageOriginalWidth = +data.images.original.width;
+      const imageOriginalHeight = +data.images.original.height;
+      const imageSmallWidth = +data.images.fixed_width.width;
+      const imageSmallHeight = +data.images.fixed_width.height;
+      const imageSizeType = this.state.imageSize;
 
       const clientWidth = document.documentElement.clientWidth;
       const clientHeight = document.documentElement.clientHeight;
 
       const galleryComponentsSize = calcTagsSize(
-        imageWidth,
-        imageHeight,
+        imageOriginalWidth,
+        imageOriginalHeight,
         clientWidth,
         clientHeight
       );
 
       const imageWrapperStyle = {
-        width: galleryComponentsSize.image.width + `px`,
-        height: galleryComponentsSize.image.height + `px`,
+        width: galleryComponentsSize.wrapper.width + `px`,
+        height: galleryComponentsSize.wrapper.height + `px`,
         margin: `0 0 ${galleryComponentsSize.margin.image + `px`} 0`
       };
 
@@ -52,22 +55,27 @@ class ItemGallery extends Component {
         width: galleryComponentsSize.gallery.width + `px`,
         height: galleryComponentsSize.gallery.height + `px`,
         top: galleryComponentsSize.gallery.top + `px`,
-        left: galleryComponentsSize.gallery.left + `px`
+        left: galleryComponentsSize.gallery.left + `px`,
+        padding: `${galleryComponentsSize.padding.gallery + `px`}`
       };
       const imageStyle = {
-        width: galleryComponentsSize.image.width + `px`,
-        height: galleryComponentsSize.image.height + `px`
+        width:
+          `${
+            imageSizeType === ORIGINAL
+              ? galleryComponentsSize.wrapper.width
+              : imageSmallWidth
+          }` + `px`,
+        height:
+          `${
+            imageSizeType === ORIGINAL
+              ? galleryComponentsSize.wrapper.height
+              : imageSmallHeight
+          }` + `px`
       };
 
       body = (
         <section className="app__gallery gallery" style={galleryStyle}>
           <h2 className="gallery__title visually-hidden">{data.title}</h2>
-          <button
-            className="gallery__button gallery__button--close"
-            onClick={onCloseButtonClick}
-          >
-            <span className="visually-hidden">Закрыть</span>
-          </button>
           <div className="gallery__screen">
             <div className="gallery__image-wrapper" style={imageWrapperStyle}>
               <img
@@ -82,6 +90,7 @@ class ItemGallery extends Component {
             changeImageSize={this.changeImageSize}
             itemUrl={url}
             itemType={itemType}
+            onCloseButtonClick={onCloseButtonClick}
           />
         </section>
       );

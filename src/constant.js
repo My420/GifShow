@@ -43,11 +43,12 @@ export const API_KEY = `ZWmPvfk5xK6wl6k7YSQShDqklkHlKgFv`;
 
 export const GIFSHOW_HOST = `http://localhost:3000/#`;
 
-export const GALLERY_CONTROLS_WIDTH = 470;
+export const GALLERY_CONTROLS_WIDTH = 500;
 export const GALLERY_CONTROLS_HEIGHT = 30;
 
-export const GALLERY_IMAGE_BOTTOM_MARGIN = 20;
+export const GALLERY_IMAGE_BOTTOM_MARGIN = 30;
 export const GALLERY_CONTROLS_BOTTOM_MARGIN = 20;
+export const GALLERY_PADDING = 20;
 
 export const SIZE_REDUCE_RATE = 0.7;
 export const HEIGHT_MARGIN = 40;

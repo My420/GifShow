@@ -22,7 +22,7 @@ class GalleryControls extends Component {
 
   render() {
     console.log(`render ----- GalleryControls`);
-    const { sizeValue, itemType, itemUrl } = this.props;
+    const { sizeValue, itemType, itemUrl, onCloseButtonClick } = this.props;
     return (
       <section
         className="gallery__controls"
@@ -31,7 +31,7 @@ class GalleryControls extends Component {
           height: GALLERY_CONTROLS_HEIGHT + `px`
         }}
       >
-        <section className="gallery__downloads">
+        <div className="gallery__controls-wrapper">
           <select
             className="gallery__size-select"
             name="size"
@@ -45,17 +45,25 @@ class GalleryControls extends Component {
               Маленький
             </option>
           </select>
-          <button className="gallery__button gallery__button--favorite">
-            <span>{`${String.fromCharCode(10084)} Favorite`}</span>
-          </button>
+          <div className="gallery__controls-inner">
+            <button className="gallery__button gallery__button--favorite">
+              <span>{`${String.fromCharCode(10084)} Favorite`}</span>
+            </button>
+            <button
+              className="gallery__button gallery__button--copy"
+              disabled={itemType === GIFS ? false : true}
+              onClick={this.onCopyButtonClick}
+            >
+              <span>{`${String.fromCharCode(9729)} Copy`}</span>
+            </button>
+          </div>
           <button
-            className="gallery__button gallery__button--copy"
-            disabled={itemType === GIFS ? false : true}
-            onClick={this.onCopyButtonClick}
+            className="gallery__button gallery__button--close"
+            onClick={onCloseButtonClick}
           >
-            <span>{`${String.fromCharCode(9729)} Copy`}</span>
+            <span>{`${String.fromCharCode(10060)} Close`}</span>
           </button>
-        </section>
+        </div>
       </section>
     );
   }
