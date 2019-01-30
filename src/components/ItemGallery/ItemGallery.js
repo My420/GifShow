@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import GalleryControls from "../GalleryControls/GalleryControls";
 import { closeGallery } from "../../ActionCreator/index";
 import { ORIGINAL } from "../../constant";
+import { calcTagsSize } from "../../utils/utils";
 
 class ItemGallery extends Component {
   state = {
@@ -28,11 +29,39 @@ class ItemGallery extends Component {
     let body;
 
     if (isOpen) {
-      let imageWrapperWidth = data.images.original.width + `px`;
-      let imageWrapperHeight = data.images.original.height + `px`;
+      let imageWidth = +data.images.original.width;
+      let imageHeight = +data.images.original.height;
+
+      const clientWidth = document.documentElement.clientWidth;
+      const clientHeight = document.documentElement.clientHeight;
+
+      const galleryComponentsSize = calcTagsSize(
+        imageWidth,
+        imageHeight,
+        clientWidth,
+        clientHeight
+      );
+
+      const imageWrapperStyle = {
+        width: galleryComponentsSize.image.width + `px`,
+        height: galleryComponentsSize.image.height + `px`,
+        margin: `0 0 ${galleryComponentsSize.margin.image + `px`} 0`
+      };
+
+      const galleryStyle = {
+        width: galleryComponentsSize.gallery.width + `px`,
+        height: galleryComponentsSize.gallery.height + `px`,
+        top: galleryComponentsSize.gallery.top + `px`,
+        left: galleryComponentsSize.gallery.left + `px`
+      };
+      const imageStyle = {
+        width: galleryComponentsSize.image.width + `px`,
+        height: galleryComponentsSize.image.height + `px`
+      };
+
       body = (
-        <section className="app__gallery gallery">
-          <h2 className="gallery__title">{data.title}</h2>
+        <section className="app__gallery gallery" style={galleryStyle}>
+          <h2 className="gallery__title visually-hidden">{data.title}</h2>
           <button
             className="gallery__button gallery__button--close"
             onClick={onCloseButtonClick}
@@ -40,14 +69,12 @@ class ItemGallery extends Component {
             <span className="visually-hidden">Закрыть</span>
           </button>
           <div className="gallery__screen">
-            <div
-              className="gallery__image-wrapper"
-              style={{ width: imageWrapperWidth, height: imageWrapperHeight }}
-            >
+            <div className="gallery__image-wrapper" style={imageWrapperStyle}>
               <img
                 className="gallery__image"
                 src={this.getImageSrc()}
                 alt={data.title}
+                style={imageStyle}
               />
             </div>
           </div>

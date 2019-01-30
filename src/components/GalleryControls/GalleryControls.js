@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import "./galleryControls.scss";
-import { ORIGINAL, SMALL, GIFS, GIFSHOW_HOST } from "../../constant";
+import {
+  ORIGINAL,
+  SMALL,
+  GIFS,
+  GIFSHOW_HOST,
+  GALLERY_CONTROLS_HEIGHT,
+  GALLERY_CONTROLS_WIDTH
+} from "../../constant";
 
 class GalleryControls extends Component {
   onSelectChange = event => {
@@ -17,7 +24,13 @@ class GalleryControls extends Component {
     console.log(`render ----- GalleryControls`);
     const { sizeValue, itemType, itemUrl } = this.props;
     return (
-      <section className="gallery__controls">
+      <section
+        className="gallery__controls"
+        style={{
+          width: GALLERY_CONTROLS_WIDTH + `px`,
+          height: GALLERY_CONTROLS_HEIGHT + `px`
+        }}
+      >
         <section className="gallery__downloads">
           <select
             className="gallery__size-select"

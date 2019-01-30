@@ -1,18 +1,20 @@
 .app__gallery {
   position: fixed;
-  top: center;
-  left: center;
-  z-index: 1;
-
-  display: inline-block;
-  min-width: 820px;
-  padding: 20px;
+  z-index: 5;
 
   box-sizing: border-box;
 
   background-color: #2c3e50;
 
   border: 1px solid blueviolet;
+}
+
+.gallery__screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
 }
 
 .gallery__title {
@@ -28,8 +30,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  margin-bottom: 15px;
 }
 
 .gallery__button--close {

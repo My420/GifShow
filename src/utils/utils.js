@@ -6,7 +6,13 @@ import {
   GIFS,
   STICKERS,
   API_HOST,
-  API_KEY
+  API_KEY,
+  GALLERY_CONTROLS_HEIGHT,
+  GALLERY_CONTROLS_WIDTH,
+  GALLERY_CONTROLS_BOTTOM_MARGIN,
+  GALLERY_IMAGE_BOTTOM_MARGIN,
+  SIZE_REDUCE_RATE,
+  HEIGHT_MARGIN
 } from "../constant";
 
 export const calcNewURL = function(prevUrl, path, data = false) {
@@ -116,4 +122,67 @@ export const checkStatus = function(response) {
   } else {
     return Promise.reject(new Error(responseMessage));
   }
+};
+
+const auditImageSize = function(
+  imageWidth,
+  imageHeight,
+  clientWidth,
+  clientHeight
+) {
+  let size = {};
+  if (imageWidth > clientWidth || imageHeight > clientHeight - HEIGHT_MARGIN) {
+    size.width = imageWidth * SIZE_REDUCE_RATE;
+    size.height = imageHeight * SIZE_REDUCE_RATE;
+    alert(`уменьшил`);
+  } else {
+    size.width = imageWidth;
+    size.height = imageHeight;
+  }
+  return size;
+};
+
+export const calcTagsSize = function(
+  imageWidth,
+  imageHeight,
+  clientWidth,
+  clientHeight
+) {
+  let size = {
+    image: {},
+    controls: {},
+    gallery: {},
+    margin: {
+      image: GALLERY_IMAGE_BOTTOM_MARGIN,
+      controls: GALLERY_CONTROLS_BOTTOM_MARGIN
+    }
+  };
+
+  const newImageSize = auditImageSize(
+    imageWidth,
+    imageHeight,
+    clientWidth,
+    clientHeight
+  );
+  size.image.width = newImageSize.width;
+  size.image.height = newImageSize.height;
+
+  size.controls.width = GALLERY_CONTROLS_WIDTH;
+  size.controls.height = GALLERY_CONTROLS_HEIGHT;
+
+  size.gallery.width =
+    size.image.width > size.controls.width
+      ? size.image.width
+      : size.controls.width;
+
+  size.gallery.height =
+    size.image.height +
+    size.controls.height +
+    size.margin.image +
+    size.margin.controls;
+
+  size.gallery.top = (clientHeight - size.gallery.height) / 2;
+  size.gallery.left = (clientWidth - size.gallery.width) / 2;
+
+  return size;
 };
