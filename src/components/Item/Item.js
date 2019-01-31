@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./item.scss";
-import { ID } from "../../constant";
+import { ID, ENTER_KEY_NAME } from "../../constant";
 
 class Item extends Component {
   state = {
@@ -18,8 +18,15 @@ class Item extends Component {
   onMouseEnter = () => {
     this.setState({ isMouseOnItem: true });
   };
+
   onMouseLeave = () => {
     this.setState({ isMouseOnItem: false });
+  };
+
+  onKeyPress = event => {
+    if (event.key === ENTER_KEY_NAME) {
+      this.onUserClick();
+    }
   };
 
   render() {
@@ -37,13 +44,13 @@ class Item extends Component {
         ? itemData.images.fixed_width
         : itemData.images.fixed_width_still;
     }
-    /*isAutoplay
-      ? itemData.images.fixed_width
-      : itemData.images.fixed_width_still;*/
+
     return (
       <article
         className={`app__item app__item--${id} item`}
         style={{ top: top, left: left }}
+        tabIndex="0"
+        onKeyPress={this.onKeyPress}
       >
         <h2 className="item__title visually-hidden">{title}</h2>
         <div

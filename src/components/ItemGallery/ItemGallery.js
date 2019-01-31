@@ -3,7 +3,7 @@ import "./itemGallery.scss";
 import { connect } from "react-redux";
 import GalleryControls from "../GalleryControls/GalleryControls";
 import { closeGallery } from "../../ActionCreator/index";
-import { ORIGINAL } from "../../constant";
+import { ORIGINAL, ESC_KEY_NAME } from "../../constant";
 import { calcTagsSize } from "../../utils/utils";
 
 class ItemGallery extends Component {
@@ -21,6 +21,12 @@ class ItemGallery extends Component {
       return data.images.original_still.url;
     } else {
       return data.images.fixed_width.url;
+    }
+  };
+
+  onKeyDown = evt => {
+    if (evt.key === ESC_KEY_NAME) {
+      this.props.onCloseButtonClick();
     }
   };
 
@@ -74,7 +80,15 @@ class ItemGallery extends Component {
       };
 
       body = (
-        <section className="app__gallery gallery" style={galleryStyle}>
+        <section
+          className="app__gallery gallery"
+          style={galleryStyle}
+          tabIndex="0"
+          ref={gallery => {
+            gallery && gallery.focus();
+          }}
+          onKeyDown={this.onKeyDown}
+        >
           <h2 className="gallery__title visually-hidden">{data.title}</h2>
           <div className="gallery__screen">
             <div className="gallery__image-wrapper" style={imageWrapperStyle}>
@@ -90,6 +104,7 @@ class ItemGallery extends Component {
             changeImageSize={this.changeImageSize}
             itemUrl={url}
             itemType={itemType}
+            sizeValue={this.state.imageSize}
             onCloseButtonClick={onCloseButtonClick}
           />
         </section>
@@ -102,6 +117,7 @@ class ItemGallery extends Component {
 
   render() {
     console.log(`render ----- ItemScreen`);
+    console.log(this.state.imageSize);
     return this.getBody();
   }
 }

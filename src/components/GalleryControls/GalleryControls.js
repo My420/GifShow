@@ -23,6 +23,7 @@ class GalleryControls extends Component {
   render() {
     console.log(`render ----- GalleryControls`);
     const { sizeValue, itemType, itemUrl, onCloseButtonClick } = this.props;
+
     return (
       <section
         className="gallery__controls"

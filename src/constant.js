@@ -52,3 +52,6 @@ export const GALLERY_PADDING = 20;
 
 export const SIZE_REDUCE_RATE = 0.7;
 export const HEIGHT_MARGIN = 40;
+
+export const ESC_KEY_NAME = `Escape`;
+export const ENTER_KEY_NAME = `Enter`;
