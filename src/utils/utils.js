@@ -2,6 +2,7 @@ import {
   TRENDING,
   SEARCH,
   RANDOM,
+  ORIGINAL,
   ID,
   GIFS,
   STICKERS,
@@ -190,4 +191,55 @@ export const calcTagsSize = function(
   size.gallery.left = (clientWidth - size.gallery.width) / 2;
 
   return size;
+};
+
+export const calcGalleryTagStyle = function(data, imageSizeType) {
+  const imageOriginalWidth = +data.images.original.width;
+  const imageOriginalHeight = +data.images.original.height;
+  const imageSmallWidth = +data.images.fixed_width.width;
+  const imageSmallHeight = +data.images.fixed_width.height;
+
+  const clientWidth = document.documentElement.clientWidth;
+  const clientHeight = document.documentElement.clientHeight;
+
+  const galleryComponentsSize = calcTagsSize(
+    imageOriginalWidth,
+    imageOriginalHeight,
+    clientWidth,
+    clientHeight
+  );
+
+  const imageWrapperStyle = {
+    width: galleryComponentsSize.wrapper.width + `px`,
+    height: galleryComponentsSize.wrapper.height + `px`,
+    margin: `0 0 ${galleryComponentsSize.margin.image + `px`} 0`
+  };
+
+  const galleryStyle = {
+    width: galleryComponentsSize.gallery.width + `px`,
+    height: galleryComponentsSize.gallery.height + `px`,
+    top: galleryComponentsSize.gallery.top + `px`,
+    left: galleryComponentsSize.gallery.left + `px`,
+    padding: `${galleryComponentsSize.padding.gallery + `px`}`
+  };
+  const imageStyle = {
+    width:
+      `${
+        imageSizeType === ORIGINAL
+          ? galleryComponentsSize.wrapper.width
+          : imageSmallWidth
+      }` + `px`,
+    height:
+      `${
+        imageSizeType === ORIGINAL
+          ? galleryComponentsSize.wrapper.height
+          : imageSmallHeight
+      }` + `px`
+  };
+
+  return {
+    imageWrapper: imageWrapperStyle,
+    gallery: galleryStyle,
+    image: imageStyle
+  };
 };
