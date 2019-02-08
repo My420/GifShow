@@ -15,14 +15,18 @@ class GalleryControls extends Component {
   };
 
   onCopyButtonClick = event => {
-    const url = `${GIFSHOW_HOST + this.props.itemUrl}`;
-    document.execCommand(url);
-    console.log(url);
+    this.props.onCopyButtonClick();
   };
 
   render() {
     console.log(`render ----- GalleryControls`);
-    const { sizeValue, itemType, itemUrl, onCloseButtonClick } = this.props;
+    const {
+      sizeValue,
+      itemType,
+      itemUrl,
+      onCloseButtonClick,
+      isCopyBarOpen
+    } = this.props;
 
     return (
       <section
@@ -54,6 +58,7 @@ class GalleryControls extends Component {
               className="gallery__button gallery__button--copy"
               disabled={itemType === GIFS ? false : true}
               onClick={this.onCopyButtonClick}
+              disabled={isCopyBarOpen}
             >
               <span>{`${String.fromCharCode(9729)} Copy`}</span>
             </button>

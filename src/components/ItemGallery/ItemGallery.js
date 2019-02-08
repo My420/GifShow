@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import "./itemGallery.scss";
 import { connect } from "react-redux";
 import GalleryControls from "../GalleryControls/GalleryControls";
+import GalleryCopyBar from "../GalleryCopyBar/GalleryCopyBar";
 import { closeGallery } from "../../ActionCreator/index";
-import { ORIGINAL, ESC_KEY_NAME } from "../../constant";
+import { ORIGINAL, ESC_KEY_NAME, GIFSHOW_HOST } from "../../constant";
 import { calcTagsSize } from "../../utils/utils";
 
 class ItemGallery extends Component {
   state = {
-    imageSize: ORIGINAL
+    imageSize: ORIGINAL,
+    isCopyBarOpen: false
   };
 
   changeImageSize = size => {
@@ -30,11 +32,21 @@ class ItemGallery extends Component {
     }
   };
 
+  showCopyBar = () => {
+    this.setState({ isCopyBarOpen: true });
+  };
+
+  hideCopyBar = () => {
+    this.setState({ isCopyBarOpen: false });
+  };
+
   getBody = () => {
     const { isOpen, itemType, url, data, onCloseButtonClick } = this.props;
     let body;
 
     if (isOpen) {
+      const itemLink = `${GIFSHOW_HOST + url}`;
+
       const imageOriginalWidth = +data.images.original.width;
       const imageOriginalHeight = +data.images.original.height;
       const imageSmallWidth = +data.images.fixed_width.width;
@@ -91,6 +103,11 @@ class ItemGallery extends Component {
         >
           <h2 className="gallery__title visually-hidden">{data.title}</h2>
           <div className="gallery__screen">
+            <GalleryCopyBar
+              itemLink={itemLink}
+              isCopyBarOpen={this.state.isCopyBarOpen}
+              onCloseButtonClick={this.hideCopyBar}
+            />
             <div className="gallery__image-wrapper" style={imageWrapperStyle}>
               <img
                 className="gallery__image"
@@ -106,6 +123,8 @@ class ItemGallery extends Component {
             itemType={itemType}
             sizeValue={this.state.imageSize}
             onCloseButtonClick={onCloseButtonClick}
+            onCopyButtonClick={this.showCopyBar}
+            isCopyBarOpen={this.state.isCopyBarOpen}
           />
         </section>
       );
