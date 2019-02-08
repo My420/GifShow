@@ -11,10 +11,10 @@ class RequestStatusBar extends Component {
         return `${actionType} ${itemsAmount} ${itemType} `;
       }
       case SEARCH: {
-        return `${actionType} ${payload.replace(
+        return `${actionType} "${payload.replace(
           `+`,
           ` `
-        )} ${itemsAmount} ${itemType} `;
+        )}" ${itemsAmount} ${itemType} `;
       }
       case RANDOM: {
         return `${RANDOM} ${itemsAmount} ${

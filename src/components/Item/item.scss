@@ -3,5 +3,11 @@
 
   display: inline-block;
 
-  border: 1px solid green;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(119, 119, 119, 0.4),
+    rgba(119, 119, 119, 0.4) 10px,
+    transparent 10px,
+    transparent 20px
+  );
 }

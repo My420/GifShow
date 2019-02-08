@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./searchbar.scss";
 import { withRouter } from "react-router";
 import { calcNewURL, convertUserInput } from "../../utils/utils";
-import { SEARCH } from "../../constant";
+import { SEARCH, ENTER_KEY_NAME } from "../../constant";
 
 class SerchBar extends Component {
   state = {
@@ -21,10 +21,17 @@ class SerchBar extends Component {
   onSerchButtonClick = evt => {
     const serchText = convertUserInput(this.state.userInputValue);
 
-    const path = evt.target.dataset.path;
+    /*const path = evt.target.dataset.path;*/
+    const path = SEARCH;
     const currentUrl = this.props.history.location.pathname;
     const newURL = calcNewURL(currentUrl, path, serchText);
     if (newURL && newURL !== currentUrl) this.props.history.push(newURL);
+  };
+
+  onKeyDown = evt => {
+    if (evt.key === ENTER_KEY_NAME) {
+      this.onSerchButtonClick();
+    }
   };
 
   render() {
@@ -37,10 +44,11 @@ class SerchBar extends Component {
           placeholder="Поиск"
           value={this.state.userInputValue}
           onChange={this.onInputChange}
+          onKeyDown={this.onKeyDown}
         />
         <button
           className="app__search-button"
-          data-path={SEARCH}
+          /*data-path={SEARCH}*/
           onClick={this.onSerchButtonClick}
           disabled={this.state.isInputEmpty}
         >
