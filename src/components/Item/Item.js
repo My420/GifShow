@@ -36,7 +36,10 @@ class Item extends Component {
     const top = position.top + `px`;
     const left = position.left + `px`;
     const title = itemData.title;
+    const imageWidth = itemData.images.fixed_width.width + `px`;
+    const imageHeight = itemData.images.fixed_width.height + `px`;
     let src;
+
     if (isAutoplay) {
       src = itemData.images.fixed_width;
     } else {
@@ -59,7 +62,12 @@ class Item extends Component {
           onMouseEnter={isAutoplay ? null : this.onMouseEnter}
           onMouseLeave={isAutoplay ? null : this.onMouseLeave}
         >
-          <img className="item__image" src={src.url} alt={title} />
+          <img
+            className="item__image"
+            src={src.url}
+            alt={title}
+            style={{ width: imageWidth, height: imageHeight }}
+          />
         </div>
       </article>
     );
