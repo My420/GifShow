@@ -3,10 +3,9 @@ import "./galleryControls.scss";
 import {
   ORIGINAL,
   SMALL,
-  GIFS,
-  GIFSHOW_HOST,
   GALLERY_CONTROLS_HEIGHT,
-  GALLERY_CONTROLS_WIDTH
+  GALLERY_CONTROLS_WIDTH,
+  STICKERS
 } from "../../constant";
 
 class GalleryControls extends Component {
@@ -18,15 +17,18 @@ class GalleryControls extends Component {
     this.props.onCopyButtonClick();
   };
 
+  isCopyButtonDisabled = () => {
+    const { itemType, isCopyBarOpen } = this.props;
+    if (itemType === STICKERS || isCopyBarOpen) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   render() {
     console.log(`render ----- GalleryControls`);
-    const {
-      sizeValue,
-      itemType,
-      itemUrl,
-      onCloseButtonClick,
-      isCopyBarOpen
-    } = this.props;
+    const { sizeValue, onCloseButtonClick } = this.props;
 
     return (
       <section
@@ -56,9 +58,8 @@ class GalleryControls extends Component {
             </button>
             <button
               className="gallery__button gallery__button--copy"
-              disabled={itemType === GIFS ? false : true}
+              disabled={this.isCopyButtonDisabled()}
               onClick={this.onCopyButtonClick}
-              disabled={isCopyBarOpen}
             >
               <span>{`${String.fromCharCode(9729)} Copy`}</span>
             </button>
