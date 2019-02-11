@@ -4,12 +4,17 @@ import Item from "../Item/Item";
 import RequestStatusBar from "../RequestStatusBar/RequestStatusBar";
 import { connect } from "react-redux";
 import { createRequestFromURL } from "../../utils/utils";
-import { loadData, changeGalleryItem } from "../../ActionCreator/index";
+import {
+  loadData,
+  changeGalleryItem,
+  getFavorite
+} from "../../ActionCreator/index";
 import {
   DEFAULT_OFFSET_VALUE,
   DISTANCE_BETWEEN_ITEM,
   COLUMN_AMOUNT,
-  COLUMN_POSITION
+  COLUMN_POSITION,
+  FAVORITE
 } from "../../constant";
 
 class ItemList extends Component {
@@ -40,7 +45,11 @@ class ItemList extends Component {
     const request = createRequestFromURL(url, offset);
     this.userRequest = request;
     console.log(`**********`, request);
-    this.props.loadData(request);
+    if (request.actionType !== FAVORITE) {
+      this.props.loadData(request);
+    } else {
+      this.props.getFavorite(request);
+    }
   };
 
   calcPosition = (columnHeight, columnPosition, row, col) => {
@@ -182,6 +191,9 @@ const mapDispatchToProps = dispatch => {
     },
     changeGalleryItem: (itemUrl, itemType, itemData) => {
       dispatch(changeGalleryItem(itemUrl, itemType, itemData));
+    },
+    getFavorite: request => {
+      dispatch(getFavorite(request));
     }
   };
 };

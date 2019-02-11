@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./navigation.scss";
 import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import { calcNewURL } from "../../utils/utils";
-import { TRENDING, RANDOM } from "../../constant";
+import { TRENDING, RANDOM, FAVORITE } from "../../constant";
 import { withRouter } from "react-router";
 
 class Navigation extends Component {
@@ -31,6 +31,13 @@ class Navigation extends Component {
           onClick={this.onNavButtonClick}
         >
           Random
+        </button>
+        <button
+          className="navigation__button navigation__button--favorite"
+          data-path={FAVORITE}
+          onClick={this.onNavButtonClick}
+        >
+          Favorite
         </button>
         <NavLink
           to="/about/"

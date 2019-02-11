@@ -2,6 +2,8 @@ export const TRENDING = `trending`;
 export const SEARCH = `search`;
 export const ID = `id`;
 export const RANDOM = `random`;
+export const FAVORITE = `favorite`;
+export const GIF_SHOW = `GifShow`;
 
 export const COLUMN_AMOUNT = {
   PC: 4,
@@ -26,6 +28,11 @@ export const LOAD_DATA = `LOAD_DATA`;
 export const LOAD_START = `LOAD_START`;
 export const LOAD_COMPLETE = `LOAD_COMPLETE`;
 export const LOAD_ERROR = `LOAD_ERROR`;
+export const LOAD_FAVORITE = `LOAD_FAVORITE`;
+
+export const DELETE_FROM_FAVORITE = `DELETE_FROM_FAVORITE`;
+export const ADD_TO_FAVORITE = `ADD_TO_FAVORITE`;
+export const REFRESH_FAVORITE = `REFRESH_FAVORITE`;
 
 export const CHANGE_GALLERY_ITEM = `CHANGE_GALLERY_ITEM`;
 export const CLOSE_GALLERY = `CLOSE_GALLERY`;

@@ -3,9 +3,13 @@ import "./itemGallery.scss";
 import { connect } from "react-redux";
 import GalleryControls from "../GalleryControls/GalleryControls";
 import GalleryCopyBar from "../GalleryCopyBar/GalleryCopyBar";
-import { closeGallery } from "../../ActionCreator/index";
+import {
+  closeGallery,
+  deleteItemFromFavorite,
+  addItemToFavorite
+} from "../../ActionCreator/index";
 import { ORIGINAL, ESC_KEY_NAME, GIFSHOW_HOST } from "../../constant";
-import { calcGalleryTagStyle } from "../../utils/utils";
+import { calcGalleryTagStyle, includeFavoriteItemId } from "../../utils/utils";
 
 class ItemGallery extends Component {
   state = {
@@ -32,12 +36,23 @@ class ItemGallery extends Component {
     }
   };
 
+  changeItemStatus = isItemFavorite => {
+    const data = this.props.data;
+    const itemType = this.props.itemType;
+    this.props.changeItemStatus(isItemFavorite, data, itemType);
+  };
+
   showCopyBar = () => {
     this.setState({ isCopyBarOpen: true });
   };
 
   hideCopyBar = () => {
     this.setState({ isCopyBarOpen: false });
+  };
+
+  learnIsItemFavorite = () => {
+    const { data, favorite, itemType } = this.props;
+    return includeFavoriteItemId(data.id, itemType, favorite);
   };
 
   getBody = () => {
@@ -86,7 +101,9 @@ class ItemGallery extends Component {
             sizeValue={this.state.imageSize}
             onCloseButtonClick={onCloseButtonClick}
             onCopyButtonClick={this.showCopyBar}
+            onFavoriteButtonClick={this.changeItemStatus}
             isCopyBarOpen={this.state.isCopyBarOpen}
+            isItemFavorite={this.learnIsItemFavorite()}
           />
         </section>
       );
@@ -108,7 +125,8 @@ const mapStateToProps = store => {
     url: store.gallery.itemUrl,
     data: store.gallery.itemData,
     isOpen: store.gallery.isGalleryOpen,
-    itemType: store.gallery.itemType
+    itemType: store.gallery.itemType,
+    favorite: store.favorite
   };
 };
 
@@ -116,6 +134,13 @@ const mapDispatchToProps = dispatch => {
   return {
     onCloseButtonClick: () => {
       dispatch(closeGallery());
+    },
+    changeItemStatus: (isItemFavorite, data, itemType) => {
+      if (isItemFavorite) {
+        dispatch(deleteItemFromFavorite(data, itemType));
+      } else {
+        dispatch(addItemToFavorite(data, itemType));
+      }
     }
   };
 };

@@ -17,6 +17,11 @@ class GalleryControls extends Component {
     this.props.onCopyButtonClick();
   };
 
+  onFavoriteButtonClick = event => {
+    const { isItemFavorite } = this.props;
+    this.props.onFavoriteButtonClick(isItemFavorite);
+  };
+
   isCopyButtonDisabled = () => {
     const { itemType, isCopyBarOpen } = this.props;
     if (itemType === STICKERS || isCopyBarOpen) {
@@ -28,7 +33,7 @@ class GalleryControls extends Component {
 
   render() {
     console.log(`render ----- GalleryControls`);
-    const { sizeValue, onCloseButtonClick } = this.props;
+    const { sizeValue, onCloseButtonClick, isItemFavorite } = this.props;
 
     return (
       <section
@@ -46,15 +51,26 @@ class GalleryControls extends Component {
             onChange={this.onSelectChange}
           >
             <option className="gallery__size-option" value={ORIGINAL}>
-              Большой
+              Original
             </option>
             <option className="gallery__size-option" value={SMALL}>
-              Маленький
+              Small
             </option>
           </select>
           <div className="gallery__controls-inner">
-            <button className="gallery__button gallery__button--favorite">
-              <span>{`${String.fromCharCode(10084)} Favorite`}</span>
+            <button
+              className="gallery__button gallery__button--favorite"
+              onClick={this.onFavoriteButtonClick}
+            >
+              <span
+                className={`gallery__icon gallery__icon--heart ${
+                  isItemFavorite ? "gallery__icon--favorite" : null
+                }`}
+              />
+              <span>Favorite</span>
+              {/*<span
+                className={isItemFavorite ? "favorite" : null}
+              >{`${String.fromCharCode(10084)} Favorite`}</span>*/}
             </button>
             <button
               className="gallery__button gallery__button--copy"

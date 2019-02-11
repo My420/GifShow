@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./requestStatusBar.scss";
 import { calcNewURL, convertUserInput } from "../../utils/utils";
-import { TRENDING, RANDOM, SEARCH, ID } from "../../constant";
+import { TRENDING, RANDOM, SEARCH, ID, FAVORITE } from "../../constant";
 
 class RequestStatusBar extends Component {
   getStatus = (request, itemsAmount) => {
@@ -24,13 +24,16 @@ class RequestStatusBar extends Component {
       case ID: {
         return `${itemType.slice(0, -1)}`;
       }
+      case FAVORITE: {
+        return `${actionType} ${itemsAmount} ${itemType} `;
+      }
     }
   };
 
   getStatusBody = () => {
     const { request, itemsAmount, isError, errorMessage } = this.props;
     if (isError) {
-      return `произошла ошибка. попробуйте ещераз ОшибкаЖ ${errorMessage}`;
+      return `произошла ошибка. попробуйте ещераз Ошибка:  ${errorMessage}`;
     } else {
       return request ? this.getStatus(request, itemsAmount) : null;
     }

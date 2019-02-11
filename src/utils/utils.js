@@ -14,13 +14,20 @@ import {
   GALLERY_IMAGE_BOTTOM_MARGIN,
   GALLERY_PADDING,
   SIZE_REDUCE_RATE,
-  HEIGHT_MARGIN
+  HEIGHT_MARGIN,
+  FAVORITE,
+  INCREASE_OFFSET_VALUE
 } from "../constant";
 
 export const calcNewURL = function(prevUrl, path, data = false) {
   let newURL;
 
-  if (path === TRENDING || path === SEARCH || path === RANDOM) {
+  if (
+    path === TRENDING ||
+    path === SEARCH ||
+    path === RANDOM ||
+    path === FAVORITE
+  ) {
     newURL = prevUrl.split(`/`, 3);
     newURL[2] = path;
     if (newURL[1] !== GIFS && newURL[1] !== STICKERS) {
@@ -242,4 +249,29 @@ export const calcGalleryTagStyle = function(data, imageSizeType) {
     gallery: galleryStyle,
     image: imageStyle
   };
+};
+
+export const includeFavoriteItemId = function(id, itemType, favoriteItems) {
+  let isInclude = false;
+  for (const key in favoriteItems[itemType]) {
+    if (id === key) isInclude = true;
+  }
+
+  return isInclude;
+};
+
+export const getDataWithOffset = function(fullData, offset) {
+  let data = {};
+  let start = offset + 1;
+  let end = offset + INCREASE_OFFSET_VALUE;
+  let i = 1;
+  for (const key in fullData) {
+    if (i >= start && i <= end) {
+      data[key] = fullData[key];
+    }
+    i++;
+    if (i > end) return data;
+  }
+
+  return data;
 };
