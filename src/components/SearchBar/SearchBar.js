@@ -41,7 +41,7 @@ class SerchBar extends Component {
         <input
           className="app__search-field"
           type="text"
-          placeholder="Поиск"
+          placeholder="Search all the GIFs and Stickers"
           value={this.state.userInputValue}
           onChange={this.onInputChange}
           onKeyDown={this.onKeyDown}
@@ -52,7 +52,7 @@ class SerchBar extends Component {
           onClick={this.onSerchButtonClick}
           disabled={this.state.isInputEmpty}
         >
-          <span className="visually-hidden">Начать поиск</span>
+          <span className="visually-hidden">Find</span>
         </button>
       </React.Fragment>
     );

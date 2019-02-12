@@ -168,7 +168,7 @@ class ItemList extends Component {
               className="catalogue__button catalogue__button--more"
               onClick={increaseOffset}
             >
-              Еще
+              More
             </button>
           </div>
         </div>

@@ -110,3 +110,56 @@
 .option__wrapper--radio .option__radio[checked] + .option__label--on:after {
   border-left-color: orange;
 }
+
+.option__button:hover {
+  animation: pulse-orange 1s;
+  box-shadow: 0 0 0 10px rgba(#fff, 0);
+}
+.option__label:focus,
+.option__label:hover {
+  animation: pulse-gray 1s;
+  box-shadow: 0 0 0 10px rgba(#fff, 0);
+}
+
+.option__button:focus {
+  outline: 1px solid rgb(41, 146, 231);
+  border-color: rgb(41, 146, 231);
+}
+
+.option__button:active {
+  opacity: 0.3;
+  outline-color: orange;
+  border-color: orange;
+}
+
+.option__wrapper--radio .option__radio[checked] + .option__label:hover {
+  animation: pulse-orange 1s;
+  box-shadow: 0 0 0 10px rgba(#fff, 0);
+}
+
+.option__label:active {
+  opacity: 0.3;
+  outline-color: gray;
+}
+
+.option__wrapper--radio .option__radio[checked] + .option__label:active {
+  opacity: 0.3;
+  outline-color: orange;
+}
+
+.option__wrapper--radio .option__radio:focus + .option__label {
+  outline: 1px solid rgb(41, 146, 231);
+  border-color: rgb(41, 146, 231);
+}
+
+@keyframes pulse-orange {
+  0% {
+    box-shadow: 0 0 0 0 orange;
+  }
+}
+
+@keyframes pulse-gray {
+  0% {
+    box-shadow: 0 0 0 0 gray;
+  }
+}

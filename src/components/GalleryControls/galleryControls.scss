@@ -84,3 +84,27 @@ $heart-color: Gray;
 .gallery__icon--favorite:before {
   background-color: orange;
 }
+
+.gallery__button:hover,
+.gallery__size-select:hover {
+  animation: pulse-orange 1s;
+  box-shadow: 0 0 0 10px rgba(#fff, 0);
+}
+
+.gallery__button:focus,
+.gallery__size-select:focus {
+  outline: 1px solid rgb(41, 146, 231);
+  border-color: rgb(41, 146, 231);
+}
+
+.gallery__button:active,
+.gallery__size-select:active {
+  opacity: 0.3;
+  outline-color: orange;
+  border-color: orange;
+}
+
+.gallery__button:disabled:hover {
+  animation: none;
+  box-shadow: none;
+}

@@ -44,6 +44,11 @@
   background-color: transparent;
 }
 
+.app__search-button:disabled,
+.app__search-button:disabled:after {
+  border-color: gray;
+}
+
 .app__search-button:before {
   content: "";
   position: absolute;
@@ -56,4 +61,38 @@
   background-color: orange;
 
   transform: rotate(55deg);
+}
+
+.app__search-button:disabled:before {
+  background-color: gray;
+}
+
+.app__search-button:hover,
+.app__search-field:hover {
+  animation: pulse-orange 1s;
+  box-shadow: 0 0 0 10px rgba(#fff, 0);
+}
+
+.app__search-button:disabled:hover {
+  animation: none;
+  box-shadow: none;
+}
+
+.app__search-button:focus,
+.app__search-field:focus {
+  outline: 1px solid rgb(41, 146, 231);
+  border-color: rgb(41, 146, 231);
+}
+
+.app__search-button:active,
+.app__search-field:active {
+  opacity: 0.3;
+  outline-color: orange;
+  border-color: orange;
+}
+
+@keyframes pulse-orange {
+  0% {
+    box-shadow: 0 0 0 0 orange;
+  }
 }

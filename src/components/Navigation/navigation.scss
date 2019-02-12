@@ -29,3 +29,26 @@
   text-align: center;
   color: orange;
 }
+
+.navigation__button:hover {
+  animation: pulse-orange 1s;
+  box-shadow: 0 0 0 10px rgba(#fff, 0);
+}
+
+.navigation__button--about:focus,
+.navigation__button:focus {
+  outline: 1px solid rgb(41, 146, 231);
+  border-color: rgb(41, 146, 231);
+}
+
+.navigation__button:active {
+  opacity: 0.3;
+  outline-color: orange;
+  border-color: orange;
+}
+
+@keyframes pulse-orange {
+  0% {
+    box-shadow: 0 0 0 0 orange;
+  }
+}

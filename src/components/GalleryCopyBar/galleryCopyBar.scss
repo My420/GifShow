@@ -44,3 +44,25 @@
   border: 2px solid orange;
   background-color: transparent;
 }
+
+.copyBar__button:hover {
+  animation: pulse-orange 1s;
+  box-shadow: 0 0 0 10px rgba(#fff, 0);
+}
+
+.copyBar__button:focus {
+  outline: 1px solid rgb(41, 146, 231);
+  border-color: rgb(41, 146, 231);
+}
+
+.copyBar__button:active {
+  opacity: 0.3;
+  outline-color: orange;
+  border-color: orange;
+}
+
+@keyframes pulse-orange {
+  0% {
+    box-shadow: 0 0 0 0 orange;
+  }
+}
