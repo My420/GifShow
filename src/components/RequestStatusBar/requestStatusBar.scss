@@ -1,2 +1,20 @@
 .catalogue__status-wrapper {
 }
+
+.catalogue__message--request,
+.catalogue__message--amount {
+  color: orange;
+}
+
+.catalogue__message--request {
+  margin-right: 20px;
+  text-transform: uppercase;
+}
+
+.catalogue__message--amount {
+  text-transform: uppercase;
+}
+
+.catalogue__message--error {
+  color: #ff5400;
+}

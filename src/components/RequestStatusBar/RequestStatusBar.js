@@ -8,34 +8,64 @@ class RequestStatusBar extends Component {
     const { itemType, actionType, payload } = request;
     switch (actionType) {
       case TRENDING: {
-        return `${actionType} ${itemsAmount} ${itemType} `;
+        return {
+          request: `${actionType} ${itemType}`,
+          amount: `${itemsAmount}`
+        };
       }
       case SEARCH: {
-        return `${actionType} "${payload.replace(
-          `+`,
-          ` `
-        )}" ${itemsAmount} ${itemType} `;
+        return {
+          request: `${actionType} "${payload.replace(/\+/g, ` `)}" ${itemType}`,
+          amount: `${itemsAmount}`
+        };
       }
       case RANDOM: {
-        return `${RANDOM} ${itemsAmount} ${
-          itemsAmount > 1 ? itemType : itemType.slice(0, -1)
-        }`;
+        return {
+          request: `${actionType} ${
+            itemsAmount > 1 ? itemType : itemType.slice(0, -1)
+          }`,
+          amount: `${itemsAmount}`
+        };
       }
       case ID: {
-        return `${itemType.slice(0, -1)}`;
+        return {
+          request: `${itemType.slice(0, -1)} by ${actionType}`,
+          amount: `${itemsAmount}`
+        };
       }
       case FAVORITE: {
-        return `${actionType} ${itemsAmount} ${itemType} `;
+        return {
+          request: `${actionType} ${itemType}`,
+          amount: `${itemsAmount}`
+        };
       }
+      default:
+        return null;
     }
   };
 
   getStatusBody = () => {
     const { request, itemsAmount, isError, errorMessage } = this.props;
     if (isError) {
-      return `произошла ошибка. попробуйте ещераз Ошибка:  ${errorMessage}`;
+      return (
+        <span className="catalogue__message--error">{`An error has occurred. Try again later. Error:  ${errorMessage}`}</span>
+      );
     } else {
-      return request ? this.getStatus(request, itemsAmount) : null;
+      if (request) {
+        const status = this.getStatus(request, itemsAmount);
+        return (
+          <React.Fragment>
+            <span className="catalogue__message--request">
+              {status.request}
+            </span>
+            <span className="catalogue__message--amount">{`Amount: ${
+              status.amount
+            }`}</span>
+          </React.Fragment>
+        );
+      } else {
+        return null;
+      }
     }
   };
 

@@ -10,7 +10,7 @@ import {
   REFRESH_FAVORITE,
   DELETE_FROM_FAVORITE
 } from "../constant";
-import { getDataWithOffset } from "../utils/utils";
+import { getDataWithOffset, getItemsAmount } from "../utils/utils";
 
 export default store => next => action => {
   console.log(`hello form middle --- FAVORITE`, action);
@@ -23,14 +23,18 @@ export default store => next => action => {
 
     const { itemType, offset } = payload;
     const fullData = store.getState()[FAVORITE][itemType];
+    const total_count = getItemsAmount(fullData);
     const data = getDataWithOffset(fullData, offset);
 
     const requestedData = {
       data: {
-        data: data
+        data: data,
+        pagination: {
+          total_count: total_count
+        }
       },
       offset: offset,
-      isRequestSingleItem: true, // при значении true будет сам считать компонент
+      isRequestSingleItem: false,
       addressForStorage: null
     };
     next({ ...action, type: LOAD_COMPLETE, payload: requestedData });

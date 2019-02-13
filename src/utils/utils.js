@@ -275,3 +275,13 @@ export const getDataWithOffset = function(fullData, offset) {
 
   return data;
 };
+
+export const getItemsAmount = function(fullData) {
+  let counter = 0;
+
+  for (const key in fullData) {
+    counter++;
+  }
+
+  return counter;
+};
