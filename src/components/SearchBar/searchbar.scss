@@ -11,6 +11,7 @@
   border: 2px solid orange;
 
   background-color: transparent;
+  cursor: pointer;
 }
 
 .app__search-field {
@@ -27,6 +28,7 @@
   background-color: transparent;
 
   color: #ffffff;
+  cursor: pointer;
 }
 
 .app__search-button:after {
@@ -47,6 +49,7 @@
 .app__search-button:disabled,
 .app__search-button:disabled:after {
   border-color: gray;
+  cursor: auto;
 }
 
 .app__search-button:before {

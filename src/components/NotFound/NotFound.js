@@ -16,7 +16,7 @@ class NotFound extends Component {
           <span className="page404__text">Page Not Found</span>
         </p>
         <NavLink to={HOME_PAGE} className="page404__button">
-          Домой
+          Home
         </NavLink>
       </section>
     );

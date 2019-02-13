@@ -42,7 +42,7 @@ class GalleryCopyBar extends Component {
             className="copyBar__button copyBar__button--close"
             onClick={this.onCloseButtonClick}
           >
-            {`${String.fromCharCode(10060)}`}
+            {`X`}
             <span className="visually-hidden">Close Copy Bar</span>
           </button>
         </section>

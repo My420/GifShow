@@ -68,9 +68,6 @@ class GalleryControls extends Component {
                 }`}
               />
               <span>Favorite</span>
-              {/*<span
-                className={isItemFavorite ? "favorite" : null}
-              >{`${String.fromCharCode(10084)} Favorite`}</span>*/}
             </button>
             <button
               className="gallery__button gallery__button--copy"
@@ -84,7 +81,7 @@ class GalleryControls extends Component {
             className="gallery__button gallery__button--close"
             onClick={onCloseButtonClick}
           >
-            <span>{`${String.fromCharCode(10060)} Close`}</span>
+            <span>{`X Close`}</span>
           </button>
         </div>
       </section>

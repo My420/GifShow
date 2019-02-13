@@ -17,11 +17,15 @@
   background-color: #2c3e50;
 
   color: orange;
+
+  cursor: pointer;
 }
 
 .gallery__button:disabled {
   border-color: gray;
   color: gray;
+
+  cursor: auto;
 }
 
 .gallery__button--favorite,
@@ -40,6 +44,8 @@
 
   border: 2px solid orange;
   background-color: transparent;
+
+  cursor: pointer;
 }
 
 .gallery__button--copy {
