@@ -8,13 +8,17 @@ class NotFound extends Component {
   render() {
     console.log(`render ----- NotFound`);
     return (
-      <article className="app__404 notFoundPage">
-        <h2 className="notFoundPage__title">Ошибка</h2>
-
-        <NavLink to={HOME_PAGE} className="notFoundPage__button">
+      <section className="app__404 page404">
+        <h2 className="visually-hidden">Page not found</h2>
+        <p className="page404__message">
+          <span className="page404__number">404</span>
+          <br />
+          <span className="page404__text">Page Not Found</span>
+        </p>
+        <NavLink to={HOME_PAGE} className="page404__button">
           Домой
         </NavLink>
-      </article>
+      </section>
     );
   }
 }

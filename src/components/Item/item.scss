@@ -11,3 +11,8 @@
     transparent 20px
   );
 }
+
+.item:focus {
+  outline: 2px solid rgb(41, 146, 231);
+  border-color: rgb(41, 146, 231);
+}

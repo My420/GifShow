@@ -1,19 +1,32 @@
-.notFoundPage {
+.page404 {
   display: flex;
   flex-direction: column;
   width: 100%;
 
   padding-left: 140px;
-  padding-top: 100px;
+  padding-top: 70px;
 }
 
-.notFoundPage__title {
+.page404__message {
+  text-align: center;
+  color: orange;
+}
+.page404__number {
   display: inline-block;
-  margin: 0 auto;
+  margin-bottom: 20px;
+
+  font-size: 120px;
+  line-height: 140px;
+}
+.page404__text {
+  display: inline-block;
   margin-bottom: 40px;
+
+  font-size: 40px;
+  line-height: 60px;
 }
 
-.notFoundPage__button {
+.page404__button {
   display: inline-block;
 
   width: 120px;
@@ -36,4 +49,26 @@
   text-decoration: none;
   text-align: center;
   color: orange;
+}
+
+.page404__button:hover {
+  animation: pulse-orange 1s;
+  box-shadow: 0 0 0 10px rgba(#fff, 0);
+}
+
+.page404__button:focus {
+  outline: 1px solid rgb(41, 146, 231);
+  border-color: rgb(41, 146, 231);
+}
+
+.page404__button:active {
+  opacity: 0.3;
+  outline-color: orange;
+  border-color: orange;
+}
+
+@keyframes pulse-orange {
+  0% {
+    box-shadow: 0 0 0 0 orange;
+  }
 }
