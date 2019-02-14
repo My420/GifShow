@@ -21,10 +21,29 @@
 
 .copyBar__label {
   margin-right: 10px;
+  color: #bac5d0;
 }
 
 .copyBar__input {
   flex-grow: 1;
+
+  color: #bac5d0;
+
+  border: 2px solid #bac5d0;
+
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.copyBar__input:hover {
+  animation: pulse-blue 1s;
+  box-shadow: 0 0 0 10px rgba(#fff, 0);
+}
+
+.copyBar__input:active {
+  outline: 1px solid rgb(41, 146, 231);
+  border-color: #bac5d0;
+  opacity: 0.3;
 }
 
 .copyBar__button {
@@ -66,5 +85,11 @@
 @keyframes pulse-orange {
   0% {
     box-shadow: 0 0 0 0 orange;
+  }
+}
+
+@keyframes pulse-blue {
+  0% {
+    box-shadow: 0 0 0 0 #bac5d0;
   }
 }

@@ -1,0 +1,21 @@
+.about__author {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contacts__list {
+  display: flex;
+  justify-content: space-between;
+
+  list-style: none;
+}
+
+.contacts__link:focus {
+  outline: none;
+}
+
+.contacts__link:focus svg path {
+  fill: rgb(41, 146, 231);
+}

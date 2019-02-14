@@ -1,7 +1,8 @@
-.mail__path {
-  fill: gray;
+.contacts__icon--mail:hover .mail__path {
+  fill: orange;
 }
 
-.icon__wrapper--mail:hover .mail__path {
+.contacts__icon--mail:active .mail__path {
   fill: orange;
+  opacity: 0.3;
 }

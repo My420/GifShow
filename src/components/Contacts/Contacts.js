@@ -6,11 +6,17 @@ import AuthorContacts from "../AuthorContacts/AuthorContacts";
 class Contacts extends Component {
   render() {
     console.log(`render ----- Contacts`);
+    const giphyLogoStyle = {
+      width: 100,
+      height: 27,
+      display: `inline-block`
+    };
     return (
       <div className="app__contacts-wrapper">
         <article className="app__about about">
           <h2 className="visually-hidden">About app</h2>
           <section className="about__description">
+            <h3 className="visually-hidden">App description</h3>
             <p className="about__app-description">
               GifShow is web application that allows users to search for and
               share short looping videos with no sound, that resemble animated
@@ -33,12 +39,14 @@ class Contacts extends Component {
                 className="about__image about__image--giphy"
                 src={giphyLogo}
                 alt="GIPHY API"
+                style={giphyLogoStyle}
               />
             </a>
           </section>
           <section className="about__author">
+            <h3 className="visually-hidden">About developer</h3>
             <p className="about__author-info">
-              Developed by Joe Doe.{" "}
+              Developed by Klinovitsky Aleksey.{" "}
               <span className="about__year">{`\u00A9 2019.`}</span>
             </p>
             <AuthorContacts />

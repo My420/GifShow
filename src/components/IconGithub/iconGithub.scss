@@ -1,3 +1,8 @@
-.github__path {
+.contacts__icon--github:hover .github__path {
   fill: orange;
+}
+
+.contacts__icon--github:active .github__path {
+  fill: orange;
+  opacity: 0.3;
 }

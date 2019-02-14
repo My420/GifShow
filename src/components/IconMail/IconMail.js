@@ -4,14 +4,14 @@ import "./iconMail.scss";
 class IconMail extends Component {
   render() {
     console.log(`render ----- icon-mail`);
-    const { iconWidth, iconHeight } = this.props;
+    const { iconWidth, iconHeight, iconColor } = this.props;
     const iconStyle = {
       width: iconWidth,
       height: iconHeight
     };
 
     return (
-      <div className="icon__wrapper icon__wrapper--mail" style={iconStyle}>
+      <div className="contacts__icon contacts__icon--mail" style={iconStyle}>
         <svg
           className="mail"
           version="1.1"
@@ -26,7 +26,7 @@ class IconMail extends Component {
         >
           <path
             className="mail__path"
-            fill="#FBE8D3"
+            fill={iconColor}
             d="M444.556,85.218H48.942C21.954,85.218,0,107.171,0,134.16v225.177c0,26.988,21.954,48.942,48.942,48.942h395.613
 	c26.988,0,48.941-21.954,48.941-48.942V134.16C493.497,107.171,471.544,85.218,444.556,85.218z M460.87,134.16v225.177
 	c0,2.574-0.725,4.924-1.793,7.09L343.74,251.081l117.097-117.097C460.837,134.049,460.87,134.096,460.87,134.16z M32.628,359.336
