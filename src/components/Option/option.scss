@@ -167,3 +167,23 @@
     box-shadow: 0 0 0 0 gray;
   }
 }
+
+@media (max-width: 1018px) {
+  .option {
+    flex-direction: row;
+  }
+
+  .option__wrapper--button {
+    flex-direction: row-reverse;
+    margin: 0 44px 0 0;
+  }
+
+  .option__wrapper--radio {
+    margin: 0;
+  }
+
+  .option__button {
+    width: 100px;
+    margin: 0 10px 0 0;
+  }
+}

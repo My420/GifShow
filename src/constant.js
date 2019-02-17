@@ -5,6 +5,25 @@ export const RANDOM = `random`;
 export const FAVORITE = `favorite`;
 export const GIF_SHOW = `GifShow`;
 
+export const NUMBER_OF_COLUMNS = {
+  ONE: 1,
+  TWO: 2,
+  THREE: 3,
+  FOUR: 4
+};
+
+export const MIN_WIDTH_FOR_COLUMNS = {
+  ONE: 210,
+  TWO: 420,
+  THREE: 630,
+  FOUR: 840
+};
+
+export const PC_MIN_WIDTH = 976;
+export const TABLET_1_MIN_WIDTH = 640;
+export const TABLET_2_MIN_WIDTH = 430;
+export const MOBILE_MIN_WIDTH = 220;
+
 export const COLUMN_AMOUNT = {
   PC: 4,
   TABLET: 3,

@@ -4,12 +4,7 @@ import Header from "../Header/Header";
 import Controls from "../Controls/Controls";
 import ContainerType from "../routes/ContainerType";
 import Contacts from "../Contacts/Contacts";
-import {
-  HashRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 class App extends Component {
   render() {

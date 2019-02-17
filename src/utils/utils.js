@@ -16,7 +16,9 @@ import {
   SIZE_REDUCE_RATE,
   HEIGHT_MARGIN,
   FAVORITE,
-  INCREASE_OFFSET_VALUE
+  INCREASE_OFFSET_VALUE,
+  MIN_WIDTH_FOR_COLUMNS,
+  NUMBER_OF_COLUMNS
 } from "../constant";
 
 export const calcNewURL = function(prevUrl, path, data = false) {
@@ -284,4 +286,14 @@ export const getItemsAmount = function(fullData) {
   }
 
   return counter;
+};
+
+export const defineNumberOfColumns = function(width) {
+  if (width >= MIN_WIDTH_FOR_COLUMNS.FOUR) {
+    return NUMBER_OF_COLUMNS.FOUR;
+  } else if (width >= MIN_WIDTH_FOR_COLUMNS.THREE) {
+    return NUMBER_OF_COLUMNS.THREE;
+  } else if (width >= MIN_WIDTH_FOR_COLUMNS.TWO) {
+    return NUMBER_OF_COLUMNS.TWO;
+  } else return NUMBER_OF_COLUMNS.ONE;
 };

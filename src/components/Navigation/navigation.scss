@@ -54,3 +54,15 @@
     box-shadow: 0 0 0 0 orange;
   }
 }
+
+@media (max-width: 1018px) {
+  .app__navigation {
+    flex-direction: row;
+    margin: 0 45px 0 0;
+  }
+
+  .navigation__button {
+    width: 100px;
+    margin: 0 10px 0 0;
+  }
+}

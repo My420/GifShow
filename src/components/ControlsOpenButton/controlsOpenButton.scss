@@ -1,0 +1,82 @@
+.opener__label {
+  display: none;
+}
+
+@media (max-width: 1018px) {
+  .opener__label {
+    position: absolute;
+    top: 24px;
+    right: 0px;
+    z-index: 3;
+
+    display: inline-block;
+    width: 40px;
+    height: 32px;
+    border: 2px solid orange;
+  }
+
+  .opener__checkbox + .opener__label:after,
+  .opener__checkbox + .opener__label:before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 5px;
+
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: orange;
+
+    transform: rotate(45deg);
+  }
+  .opener__checkbox + .opener__label:before {
+    transform: rotate(-45deg);
+  }
+
+  .opener__checkbox:checked + .opener__label:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 5px;
+
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: orange;
+
+    box-shadow: 0 7px 0px 0 orange, 0 -7px 0px 0 orange;
+
+    transform: none;
+  }
+
+  .opener__checkbox:checked + .opener__label:before {
+    display: none;
+  }
+
+  .opener__checkbox:checked ~ .app__inner-wrapper .app__controls {
+    display: none;
+  }
+
+  .opener__label:hover {
+    animation: pulse-orange 1s;
+    box-shadow: 0 0 0 10px rgba(#fff, 0);
+  }
+
+  .opener__label:focus,
+  .opener__checkbox:focus + .opener__label {
+    outline: 1px solid rgb(41, 146, 231);
+    border-color: rgb(41, 146, 231);
+  }
+
+  .opener__label:active {
+    opacity: 0.3;
+    outline-color: orange;
+    border-color: orange;
+  }
+
+  @keyframes pulse-orange {
+    0% {
+      box-shadow: 0 0 0 0 orange;
+    }
+  }
+}

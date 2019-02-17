@@ -42,3 +42,12 @@
 .about__link--giphy:hover {
   outline: 2px solid rgb(41, 146, 231);
 }
+
+@media (max-width: 1018px) {
+  .app__contacts-wrapper {
+    width: 100%;
+    padding: 80px 20px 0 20px;
+
+    color: #bac5d0;
+  }
+}

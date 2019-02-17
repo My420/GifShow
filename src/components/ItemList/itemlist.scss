@@ -13,7 +13,7 @@
 .catalogue__wrapper {
   position: relative;
 
-  width: 820px;
+  width: 840px;
 
   border: 1px solid red;
 }
@@ -72,5 +72,18 @@
 @keyframes pulse-orange {
   0% {
     box-shadow: 0 0 0 0 orange;
+  }
+}
+
+@media (max-width: 1018px) {
+  .app__item-list {
+    align-items: flex-start;
+  }
+  .catalogue__status-wrapper {
+    margin: 0 auto;
+  }
+
+  .catalogue__status {
+    padding: 6px;
   }
 }

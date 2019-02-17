@@ -1,5 +1,12 @@
 .app__item-wrapper {
   position: relative;
-  width: 820px;
+  width: 840px;
   padding-left: 140px;
+}
+
+@media (max-width: 1018px) {
+  .app__item-wrapper {
+    width: 850px;
+    padding: 54px 0px 0 0;
+  }
 }

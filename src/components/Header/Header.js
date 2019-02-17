@@ -7,7 +7,9 @@ class Header extends Component {
     console.log(`render ----- Header`);
     return (
       <header className="app__header">
-        <h2 className="app__logo">GifShow</h2>
+        <a className="app__logo-link" href="/#/gifs/trending/">
+          <h2 className="app__logo">GifShow</h2>
+        </a>
         <SearchBar />
       </header>
     );

@@ -1,8 +1,9 @@
 .app {
-  width: 960px;
+  position: relative;
+  width: 980px;
 
   margin: 0 auto;
-  padding: 0 8px;
+  /* padding: 0 8px;*/
   padding-top: 86px;
 }
 
@@ -10,4 +11,33 @@
   display: flex;
 
   position: relative;
+}
+
+.app__logo-link:hover {
+  animation: pulse-orange 1s;
+  box-shadow: 0 0 0 10px rgba(#fff, 0);
+}
+
+.app__logo-link:focus {
+  outline: 1px solid rgb(41, 146, 231);
+  border-color: rgb(41, 146, 231);
+}
+
+.app__logo-link:active {
+  opacity: 0.3;
+  outline: none;
+  border-color: none;
+}
+
+@keyframes pulse-orange {
+  0% {
+    box-shadow: 0 0 0 0 orange;
+  }
+}
+
+@media (max-width: 1018px) {
+  .app {
+    width: 850px;
+    padding-top: 76px;
+  }
 }

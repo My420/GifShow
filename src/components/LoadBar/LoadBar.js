@@ -17,8 +17,17 @@ class LoadBar extends Component {
 
   render() {
     console.log(`render ----- Load-Bar`);
+    const { isLoading } = this.props;
 
-    return <div className="catalogue__loader-wrapper">{this.getBody()}</div>;
+    return (
+      <div
+        className={`catalogue__loader-wrapper ${
+          !isLoading ? `catalogue__loader--closed` : ``
+        }`}
+      >
+        {this.getBody()}
+      </div>
+    );
   }
 }
 
