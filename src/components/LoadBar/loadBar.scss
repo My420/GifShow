@@ -95,3 +95,10 @@
     display: none;
   }
 }
+
+@media (max-width: 918px) {
+  .catalogue__loader-wrapper {
+    top: 150px;
+    left: 287px;
+  }
+}

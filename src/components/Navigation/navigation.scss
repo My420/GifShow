@@ -66,3 +66,37 @@
     margin: 0 10px 0 0;
   }
 }
+
+@media (max-width: 918px) {
+  .app__navigation {
+    position: absolute;
+    top: 46px;
+    right: 0;
+
+    width: 100%;
+    justify-content: center;
+
+    margin: 0px;
+    padding: 1px 0;
+
+    background-color: #2c3e50;
+  }
+
+  .navigation__button {
+    width: 80px;
+    height: 36px;
+
+    padding: 0px;
+    margin: 0 10px 0 0;
+
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .navigation__button--about {
+    margin: 0 0 0 0;
+  }
+  .navigation__button--about {
+    padding-top: 6px;
+  }
+}

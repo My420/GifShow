@@ -18,3 +18,10 @@
 .catalogue__message--error {
   color: #ff5400;
 }
+
+@media (max-width: 918px) {
+  .catalogue__status-wrapper {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
