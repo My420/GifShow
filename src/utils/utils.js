@@ -18,7 +18,8 @@ import {
   FAVORITE,
   INCREASE_OFFSET_VALUE,
   MIN_WIDTH_FOR_COLUMNS,
-  NUMBER_OF_COLUMNS
+  NUMBER_OF_COLUMNS,
+  DISTANCE_BETWEEN_ITEM
 } from "../constant";
 
 export const calcNewURL = function(prevUrl, path, data = false) {
@@ -296,4 +297,25 @@ export const defineNumberOfColumns = function(width) {
   } else if (width >= MIN_WIDTH_FOR_COLUMNS.TWO) {
     return NUMBER_OF_COLUMNS.TWO;
   } else return NUMBER_OF_COLUMNS.ONE;
+};
+
+export const calcItemPosition = function(
+  columnHeight,
+  columnPosition,
+  row,
+  col
+) {
+  const topSpace =
+    row === 0
+      ? DISTANCE_BETWEEN_ITEM
+      : row * DISTANCE_BETWEEN_ITEM + DISTANCE_BETWEEN_ITEM;
+  const leftSpace =
+    col === 0
+      ? DISTANCE_BETWEEN_ITEM
+      : col * DISTANCE_BETWEEN_ITEM + DISTANCE_BETWEEN_ITEM;
+
+  return {
+    top: columnHeight + topSpace,
+    left: columnPosition + leftSpace
+  };
 };

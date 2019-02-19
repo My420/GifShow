@@ -19,22 +19,19 @@ export const MIN_WIDTH_FOR_COLUMNS = {
   FOUR: 918
 };
 
+export const COLUMN_POSITION = {
+  "4": [0, 200, 400, 600],
+  "3": [0, 200, 400],
+  "2": [0, 200],
+  "1": [0]
+};
+
+export const MAX_COLUMNS_NUMBER = 4;
+
 export const PC_MIN_WIDTH = 976;
 export const TABLET_1_MIN_WIDTH = 640;
 export const TABLET_2_MIN_WIDTH = 430;
 export const MOBILE_MIN_WIDTH = 220;
-
-export const COLUMN_AMOUNT = {
-  PC: 4,
-  TABLET: 3,
-  MOBILE: 1
-};
-
-export const COLUMN_POSITION = {
-  PC: [0, 200, 400, 600],
-  TABLET: [0, 200, 400],
-  MOBILE: [0]
-};
 
 export const HOME_PAGE = `/gifs/trending/`;
 

@@ -3,7 +3,7 @@ import "./itemlist.scss";
 import Item from "../Item/Item";
 import RequestStatusBar from "../RequestStatusBar/RequestStatusBar";
 import { connect } from "react-redux";
-import { createRequestFromURL } from "../../utils/utils";
+import { createRequestFromURL, calcItemPosition } from "../../utils/utils";
 import {
   loadData,
   changeGalleryItem,
@@ -12,15 +12,15 @@ import {
 import {
   DEFAULT_OFFSET_VALUE,
   DISTANCE_BETWEEN_ITEM,
-  COLUMN_AMOUNT,
   COLUMN_POSITION,
-  FAVORITE
+  FAVORITE,
+  MAX_COLUMNS_NUMBER
 } from "../../constant";
 
 class ItemList extends Component {
   constructor(props) {
     super(props);
-    this.fullColumnHeight = new Array(COLUMN_AMOUNT["PC"]).fill(0);
+    this.fullColumnHeight = new Array(MAX_COLUMNS_NUMBER).fill(0);
   }
   componentDidMount() {
     console.log(`********** willmount`);
@@ -30,7 +30,6 @@ class ItemList extends Component {
   componentWillReceiveProps(nextProps) {
     console.log(`********** resiveprops`);
     if (nextProps.url !== this.props.url) {
-      // зарефакторить?
       if (nextProps.offset !== DEFAULT_OFFSET_VALUE) {
         this.props.resetOffset();
       } else {
@@ -52,31 +51,17 @@ class ItemList extends Component {
     }
   };
 
-  calcPosition = (columnHeight, columnPosition, row, col) => {
-    const topSpace =
-      row === 0
-        ? DISTANCE_BETWEEN_ITEM
-        : row * DISTANCE_BETWEEN_ITEM + DISTANCE_BETWEEN_ITEM;
-    const leftSpace =
-      col === 0
-        ? DISTANCE_BETWEEN_ITEM
-        : col * DISTANCE_BETWEEN_ITEM + DISTANCE_BETWEEN_ITEM;
-
-    return {
-      top: columnHeight + topSpace,
-      left: columnPosition + leftSpace
-    };
-  };
-
   getBody = (data, isAutoplay) => {
+    const { numberOfColumns } = this.props;
     let body = [];
-    let columnHeight = new Array(COLUMN_AMOUNT["PC"]).fill(0);
-    let columnPosition = COLUMN_POSITION["PC"].slice(); // клонируем
+    let columnHeight = new Array(numberOfColumns).fill(0);
+    let columnPosition = COLUMN_POSITION[`${numberOfColumns}`].slice(); // клонируем
     let col = 0;
     let row = 0;
     this.fullColumnHeight = this.fullColumnHeight.fill(0); // обнуляем счетчик длины
 
     for (const key in data) {
+      debugger;
       body.push(
         <Item
           itemType={this.userRequest}
@@ -85,7 +70,7 @@ class ItemList extends Component {
           key={key}
           onUserClick={this.props.changeGalleryItem}
           isAutoplay={isAutoplay}
-          position={this.calcPosition(
+          position={calcItemPosition(
             columnHeight[col],
             columnPosition[col],
             row,
@@ -102,7 +87,7 @@ class ItemList extends Component {
       columnHeight[col] =
         columnHeight[col] + +data[key].images.fixed_width.height;
 
-      if (col === COLUMN_AMOUNT["PC"] - 1) {
+      if (col === numberOfColumns - 1) {
         col = 0;
         row++;
       } else {

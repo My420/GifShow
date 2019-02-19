@@ -44,7 +44,7 @@ class Content extends Component {
 
   render() {
     const url = this.props.match.url;
-    const offset = this.state.offset;
+    const { offset, numberOfColumns } = this.state;
 
     console.log(`render ----- Content`, this.state.numberOfColumns);
     return (
@@ -55,6 +55,7 @@ class Content extends Component {
           offset={offset}
           increaseOffset={this.increaseOffset}
           resetOffset={this.resetOffset}
+          numberOfColumns={numberOfColumns ? numberOfColumns : 1}
         />
       </div>
     );
