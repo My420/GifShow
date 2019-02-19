@@ -28,7 +28,7 @@ class Content extends Component {
     const newNumber = defineNumberOfColumns(width);
     const prewNumber = this.state.numberOfColumns;
     if (newNumber !== prewNumber) {
-      this.setState({ userDevice: newNumber });
+      this.setState({ numberOfColumns: newNumber });
     }
   };
 
@@ -46,7 +46,7 @@ class Content extends Component {
     const url = this.props.match.url;
     const offset = this.state.offset;
 
-    console.log(`render ----- Content`, this.state.userDevice);
+    console.log(`render ----- Content`, this.state.numberOfColumns);
     return (
       <div className="app__item-wrapper">
         <ItemGallery />

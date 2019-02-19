@@ -6,7 +6,7 @@ import LoadBar from "../LoadBar/LoadBar";
 
 class Controls extends Component {
   state = {
-    isMenuOpen: false
+    isMenuOpen: true
   };
 
   changeMenuStatus = () => {

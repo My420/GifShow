@@ -16,7 +16,7 @@ export const MIN_WIDTH_FOR_COLUMNS = {
   ONE: 210,
   TWO: 420,
   THREE: 630,
-  FOUR: 840
+  FOUR: 918
 };
 
 export const PC_MIN_WIDTH = 976;
