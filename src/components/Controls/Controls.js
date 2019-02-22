@@ -3,6 +3,7 @@ import "./controls.scss";
 import Navigation from "../Navigation/Navigation";
 import Option from "../Option/Option";
 import LoadBar from "../LoadBar/LoadBar";
+import { NUMBER_OF_COLUMNS } from "../../constant";
 
 class Controls extends Component {
   state = {
@@ -12,6 +13,15 @@ class Controls extends Component {
   changeMenuStatus = () => {
     this.setState({ isMenuOpen: !this.state.isMenuOpen });
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.numberOfColumns < NUMBER_OF_COLUMNS.FOUR) {
+      this.setState({ isMenuOpen: false });
+    } else {
+      this.setState({ isMenuOpen: true });
+    }
+  }
+
   render() {
     console.log(`render ----- Controls`);
     const { isMenuOpen } = this.state;

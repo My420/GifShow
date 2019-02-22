@@ -61,7 +61,6 @@ class ItemList extends Component {
     this.fullColumnHeight = this.fullColumnHeight.fill(0); // обнуляем счетчик длины
 
     for (const key in data) {
-      debugger;
       body.push(
         <Item
           itemType={this.userRequest}
