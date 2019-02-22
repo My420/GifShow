@@ -17,32 +17,10 @@ class Content extends Component {
     this.setState({ offset: DEFAULT_OFFSET_VALUE });
   };
 
-  /*onBrowserSizeChange = evt => {
-    const currentBrowserWidth = evt.target.innerWidth;
-    this.changeNumberOfColumns(currentBrowserWidth);
-  };*/
-
-  /*changeNumberOfColumns = width => {
-    const newNumber = defineNumberOfColumns(width);
-    const prewNumber = this.state.numberOfColumns;
-    if (newNumber !== prewNumber) {
-      this.setState({ numberOfColumns: newNumber });
-    }
-  };*/
-
-  /*componentDidMount() {
-    const browserWidth = document.documentElement.clientWidth;
-    this.changeNumberOfColumns(browserWidth);
-    window.addEventListener("resize", this.onBrowserSizeChange);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.onBrowserSizeChange);
-  }*/
-
   render() {
     const url = this.props.match.url;
     const { offset } = this.state;
+    const numberOfColumns = this.props.numberOfColumns;
 
     console.log(`render ----- Content`);
     return (
@@ -53,7 +31,7 @@ class Content extends Component {
           offset={offset}
           increaseOffset={this.increaseOffset}
           resetOffset={this.resetOffset}
-          numberOfColumns={1}
+          numberOfColumns={numberOfColumns}
         />
       </div>
     );

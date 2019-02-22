@@ -10,13 +10,19 @@ class Container extends Component {
 
     const { path } = this.props.match;
 
+    const { numberOfColumns } = this.props;
+
+    const WrappedContent = function(props) {
+      return <Content {...props} numberOfColumns={numberOfColumns} />;
+    };
+
     return (
       <Switch>
-        <Route path={`${path + TRENDING}/`} component={Content} />
-        <Route path={`${path + SEARCH}/:type`} component={Content} />
-        <Route path={`${path + ID}/:id`} component={Content} />
-        <Route path={`${path + RANDOM}/`} component={Content} />
-        <Route path={`${path + FAVORITE}/`} component={Content} />
+        <Route path={`${path + TRENDING}/`} component={WrappedContent} />
+        <Route path={`${path + SEARCH}/:type`} component={WrappedContent} />
+        <Route path={`${path + ID}/:id`} component={WrappedContent} />
+        <Route path={`${path + RANDOM}/`} component={WrappedContent} />
+        <Route path={`${path + FAVORITE}/`} component={WrappedContent} />
         <Route path="/" component={NotFound} />
       </Switch>
     );

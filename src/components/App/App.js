@@ -49,7 +49,12 @@ class App extends Component {
             <Controls numberOfColumns={numberOfColumns} />
             <Switch>
               <Route path="/about" component={Contacts} />
-              <Route path="/" component={ContainerType} />
+              <Route
+                path="/"
+                component={props => (
+                  <ContainerType {...props} numberOfColumns={numberOfColumns} />
+                )}
+              />
             </Switch>
           </div>
         </section>
