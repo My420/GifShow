@@ -17,3 +17,10 @@
     padding: 44px 0px 0 0;
   }
 }
+
+@media (max-width: 680px) {
+  .app__item-wrapper {
+    width: 430px;
+    padding: 34px 0px 0 0;
+  }
+}

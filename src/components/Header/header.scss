@@ -37,3 +37,15 @@
     padding: 1px 0 0 0;
   }
 }
+
+@media (max-width: 680px) {
+  .app__header {
+    width: 430px;
+    height: 40px;
+  }
+}
+
+.app__logo {
+  font-size: 25px;
+  line-height: 30px;
+}

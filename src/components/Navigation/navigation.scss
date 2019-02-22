@@ -100,3 +100,9 @@
     padding-top: 6px;
   }
 }
+
+@media (max-width: 680px) {
+  .app__navigation {
+    top: 34px;
+  }
+}

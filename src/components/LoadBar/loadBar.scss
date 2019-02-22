@@ -102,3 +102,13 @@
     left: 287px;
   }
 }
+
+@media (max-width: 680px) {
+  .catalogue__loader-wrapper {
+    top: 120px;
+    left: 188px;
+
+    width: 45px;
+    height: 45px;
+  }
+}

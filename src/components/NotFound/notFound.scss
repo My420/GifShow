@@ -84,3 +84,25 @@
     padding: 150px 20px 0px 20px;
   }
 }
+
+@media (max-width: 680px) {
+  .page404 {
+    padding: 40px 20px 0px 20px;
+  }
+
+  .page404__number {
+    display: inline-block;
+    margin-bottom: 20px;
+
+    font-size: 100px;
+    line-height: 120px;
+  }
+
+  .page404__text {
+    display: inline-block;
+    margin-bottom: 20px;
+
+    font-size: 30px;
+    line-height: 50px;
+  }
+}

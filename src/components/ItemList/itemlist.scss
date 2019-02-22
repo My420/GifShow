@@ -20,7 +20,7 @@
 
 .catalogue__button-wrapper {
   position: absolute;
-  left: 45%;
+  left: 366px;
 
   padding: 20px;
 }
@@ -91,5 +91,32 @@
 @media (max-width: 918px) {
   .catalogue__wrapper {
     width: 630px;
+  }
+  .catalogue__button-wrapper {
+    left: 260px;
+
+    padding: 10px;
+  }
+}
+
+@media (max-width: 680px) {
+  .catalogue__wrapper {
+    width: 420px;
+  }
+
+  .catalogue__button-wrapper {
+    left: 176px;
+
+    padding: 10px;
+  }
+
+  .catalogue__button--more {
+    width: 80px;
+    height: 30px;
+
+    padding: 5px;
+
+    font-size: 14px;
+    line-height: 20px;
   }
 }

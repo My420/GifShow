@@ -99,3 +99,30 @@
     box-shadow: 0 0 0 0 orange;
   }
 }
+
+@media (max-width: 680px) {
+  .app__search-field {
+    height: 26px;
+  }
+
+  .app__search-button {
+    width: 50px;
+    height: 26px;
+  }
+
+  .app__search-button:after {
+    top: 2px;
+    left: 13px;
+
+    width: 10px;
+    height: 10px;
+  }
+
+  .app__search-button:before {
+    top: 9px;
+    left: 9px;
+
+    width: 2px;
+    height: 12px;
+  }
+}

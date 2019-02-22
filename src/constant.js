@@ -15,7 +15,7 @@ export const NUMBER_OF_COLUMNS = {
 export const MIN_WIDTH_FOR_COLUMNS = {
   ONE: 210,
   TWO: 420,
-  THREE: 630,
+  THREE: 680,
   FOUR: 918
 };
 

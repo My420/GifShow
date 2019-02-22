@@ -119,3 +119,37 @@
     }
   }
 }
+
+@media (max-width: 680px) {
+  .app__controls {
+    width: 430px;
+    height: 34px;
+  }
+
+  .controls__toggle {
+    width: 30px;
+    height: 26px;
+  }
+
+  .controls__toggle--close:after,
+  .controls__toggle--close:before {
+    top: 10px;
+    left: 3px;
+
+    width: 20px;
+    height: 3px;
+  }
+
+  .controls__toggle--open:after {
+    top: 10px;
+    left: 3px;
+
+    width: 20px;
+    height: 3px;
+  }
+
+  .controls__text {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
