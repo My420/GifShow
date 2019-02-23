@@ -120,3 +120,25 @@
     line-height: 20px;
   }
 }
+
+@media (max-width: 470px) {
+  .catalogue__wrapper {
+    width: 220px;
+    margin: 0 auto;
+  }
+
+  .catalogue__button-wrapper {
+    left: 70px;
+  }
+
+  .catalogue__status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: center;
+  }
+  .catalogue__message--request {
+    margin-right: 0px;
+  }
+}

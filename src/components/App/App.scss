@@ -55,3 +55,9 @@
     padding-top: 40px;
   }
 }
+
+@media (max-width: 470px) {
+  .app {
+    width: 320px;
+  }
+}

@@ -49,3 +49,9 @@
   font-size: 25px;
   line-height: 30px;
 }
+
+@media (max-width: 470px) {
+  .app__header {
+    width: 320px;
+  }
+}

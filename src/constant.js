@@ -13,8 +13,8 @@ export const NUMBER_OF_COLUMNS = {
 };
 
 export const MIN_WIDTH_FOR_COLUMNS = {
-  ONE: 210,
-  TWO: 420,
+  ONE: 230,
+  TWO: 470,
   THREE: 680,
   FOUR: 918
 };

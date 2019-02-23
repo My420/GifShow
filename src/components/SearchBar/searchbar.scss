@@ -126,3 +126,21 @@
     height: 12px;
   }
 }
+
+@media (max-width: 470px) {
+  .app__search-button:after {
+    top: 3px;
+    left: 9px;
+
+    width: 8px;
+    height: 8px;
+  }
+
+  .app__search-button:before {
+    top: 9px;
+    left: 6px;
+
+    width: 2px;
+    height: 11px;
+  }
+}

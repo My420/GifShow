@@ -24,3 +24,9 @@
     padding: 34px 0px 0 0;
   }
 }
+
+@media (max-width: 470px) {
+  .app__item-wrapper {
+    width: 320px;
+  }
+}
