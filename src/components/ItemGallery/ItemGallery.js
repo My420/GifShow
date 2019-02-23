@@ -56,14 +56,25 @@ class ItemGallery extends Component {
   };
 
   getBody = () => {
-    const { isOpen, itemType, url, data, onCloseButtonClick } = this.props;
+    const {
+      isOpen,
+      itemType,
+      url,
+      data,
+      onCloseButtonClick,
+      numberOfColumns
+    } = this.props;
     let body;
 
     if (isOpen) {
       const itemLink = `${GIFSHOW_HOST + url}`;
       const imageSizeType = this.state.imageSize;
 
-      const tagStyle = calcGalleryTagStyle(data, imageSizeType);
+      const tagStyle = calcGalleryTagStyle(
+        data,
+        imageSizeType,
+        numberOfColumns
+      );
 
       body = (
         <section
@@ -76,35 +87,35 @@ class ItemGallery extends Component {
           onKeyDown={this.onKeyDown}
         >
           <h2 className="gallery__title visually-hidden">{data.title}</h2>
-          <div className="gallery__screen">
-            <GalleryCopyBar
-              itemLink={itemLink}
-              isCopyBarOpen={this.state.isCopyBarOpen}
-              onCloseButtonClick={this.hideCopyBar}
-            />
-            <div
-              className="gallery__image-wrapper"
-              style={tagStyle.imageWrapper}
-            >
-              <img
-                className="gallery__image"
-                src={this.getImageSrc()}
-                alt={data.title}
-                style={tagStyle.image}
+          <div className="gallery__inner" style={tagStyle.inner}>
+            <div className="gallery__screen" style={tagStyle.screen}>
+              <GalleryCopyBar
+                itemLink={itemLink}
+                isCopyBarOpen={this.state.isCopyBarOpen}
+                onCloseButtonClick={this.hideCopyBar}
               />
+              <div className="gallery__image-wrapper" style={tagStyle.image}>
+                <img
+                  className="gallery__image"
+                  src={this.getImageSrc()}
+                  alt={data.title}
+                  style={tagStyle.image}
+                />
+              </div>
             </div>
+            <GalleryControls
+              changeImageSize={this.changeImageSize}
+              itemUrl={url}
+              itemType={itemType}
+              sizeValue={this.state.imageSize}
+              onCloseButtonClick={onCloseButtonClick}
+              onCopyButtonClick={this.showCopyBar}
+              onFavoriteButtonClick={this.changeItemStatus}
+              isCopyBarOpen={this.state.isCopyBarOpen}
+              isItemFavorite={this.learnIsItemFavorite()}
+              style={tagStyle.controls}
+            />
           </div>
-          <GalleryControls
-            changeImageSize={this.changeImageSize}
-            itemUrl={url}
-            itemType={itemType}
-            sizeValue={this.state.imageSize}
-            onCloseButtonClick={onCloseButtonClick}
-            onCopyButtonClick={this.showCopyBar}
-            onFavoriteButtonClick={this.changeItemStatus}
-            isCopyBarOpen={this.state.isCopyBarOpen}
-            isItemFavorite={this.learnIsItemFavorite()}
-          />
         </section>
       );
     } else {

@@ -26,6 +26,30 @@ export const COLUMN_POSITION = {
   "1": [0]
 };
 
+export const CONTROLS_WIDTH = {
+  "4": 500,
+  "3": 500,
+  "2": 430,
+  "1": 280
+};
+
+export const CONTROLS_HEIGHT = {
+  // ??????????
+  "4": 60,
+  "3": 60,
+  "2": 60,
+  "1": 60
+};
+
+export const GALLERY_PADDING = {
+  "4": 40,
+  "3": 40,
+  "2": 20,
+  "1": 20
+};
+
+export const SCREEN_PADDING = 20;
+
 export const MAX_COLUMNS_NUMBER = 4;
 
 export const PC_MIN_WIDTH = 976;
@@ -71,10 +95,6 @@ export const GALLERY_CONTROLS_HEIGHT = 30;
 
 export const GALLERY_IMAGE_BOTTOM_MARGIN = 30;
 export const GALLERY_CONTROLS_BOTTOM_MARGIN = 20;
-export const GALLERY_PADDING = 20;
-
-export const SIZE_REDUCE_RATE = 0.7;
-export const HEIGHT_MARGIN = 40;
 
 export const ESC_KEY_NAME = `Escape`;
 export const ENTER_KEY_NAME = `Enter`;

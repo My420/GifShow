@@ -33,16 +33,10 @@ class GalleryControls extends Component {
 
   render() {
     console.log(`render ----- GalleryControls`);
-    const { sizeValue, onCloseButtonClick, isItemFavorite } = this.props;
+    const { sizeValue, onCloseButtonClick, isItemFavorite, style } = this.props;
 
     return (
-      <section
-        className="gallery__controls"
-        style={{
-          width: GALLERY_CONTROLS_WIDTH + `px`,
-          height: GALLERY_CONTROLS_HEIGHT + `px`
-        }}
-      >
+      <section className="gallery__controls" style={style}>
         <div className="gallery__controls-wrapper">
           <select
             className="gallery__size-select"
@@ -67,7 +61,9 @@ class GalleryControls extends Component {
                   isItemFavorite ? "gallery__icon--favorite" : null
                 }`}
               />
-              <span>Favorite</span>
+              <span className="gallery__name gallery__name--favorite">
+                Favorite
+              </span>
             </button>
             <button
               className="gallery__button gallery__button--copy"
@@ -81,7 +77,8 @@ class GalleryControls extends Component {
             className="gallery__button gallery__button--close"
             onClick={onCloseButtonClick}
           >
-            <span>{`X Close`}</span>
+            <span>{`X `}</span>
+            <span className="gallery__name gallery__name--close">{`Close`}</span>
           </button>
         </div>
       </section>

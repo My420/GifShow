@@ -25,7 +25,7 @@ class Content extends Component {
     console.log(`render ----- Content`);
     return (
       <div className="app__item-wrapper">
-        <ItemGallery />
+        <ItemGallery numberOfColumns={numberOfColumns} />
         <ItemList
           url={url}
           offset={offset}

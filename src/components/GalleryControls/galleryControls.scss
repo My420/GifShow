@@ -114,3 +114,29 @@ $heart-color: Gray;
   animation: none;
   box-shadow: none;
 }
+
+@media (max-width: 430px) {
+  .gallery__controls {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .gallery__name--favorite,
+  .gallery__name--close {
+    display: none;
+  }
+
+  .gallery__icon--heart {
+    top: 0;
+    left: 2px;
+
+    height: 8px;
+    width: 10px;
+  }
+
+  .gallery__icon--heart:before,
+  .gallery__icon--heart:after {
+    height: 8px;
+    width: 8px;
+  }
+}

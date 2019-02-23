@@ -8,18 +8,15 @@ import {
   STICKERS,
   API_HOST,
   API_KEY,
-  GALLERY_CONTROLS_HEIGHT,
-  GALLERY_CONTROLS_WIDTH,
-  GALLERY_CONTROLS_BOTTOM_MARGIN,
-  GALLERY_IMAGE_BOTTOM_MARGIN,
   GALLERY_PADDING,
-  SIZE_REDUCE_RATE,
-  HEIGHT_MARGIN,
+  CONTROLS_WIDTH,
   FAVORITE,
   INCREASE_OFFSET_VALUE,
   MIN_WIDTH_FOR_COLUMNS,
   NUMBER_OF_COLUMNS,
-  DISTANCE_BETWEEN_ITEM
+  DISTANCE_BETWEEN_ITEM,
+  CONTROLS_HEIGHT,
+  SCREEN_PADDING
 } from "../constant";
 
 export const calcNewURL = function(prevUrl, path, data = false) {
@@ -136,121 +133,148 @@ export const checkStatus = function(response) {
   }
 };
 
-const auditImageSize = function(
-  imageWidth,
-  imageHeight,
-  clientWidth,
-  clientHeight
-) {
-  let size = {};
-  if (imageWidth > clientWidth || imageHeight > clientHeight - HEIGHT_MARGIN) {
-    size.width = imageWidth * SIZE_REDUCE_RATE;
-    size.height = imageHeight * SIZE_REDUCE_RATE;
-    alert(`уменьшил`);
-  } else {
-    size.width = imageWidth;
-    size.height = imageHeight;
-  }
-  return size;
-};
-
 export const calcTagsSize = function(
   imageOriginalWidth,
   imageOriginalHeight,
-  clientWidth,
-  clientHeight
+  numberOfColumns
 ) {
   let size = {
-    wrapper: {},
-    controls: {},
     gallery: {},
-    margin: {
-      image: GALLERY_IMAGE_BOTTOM_MARGIN,
-      controls: GALLERY_CONTROLS_BOTTOM_MARGIN
-    },
-    padding: {
-      gallery: GALLERY_PADDING
-    }
+    inner: {},
+    image: {},
+    controls: {},
+    screen: {}
   };
 
-  const newImageWrapperSize = auditImageSize(
-    imageOriginalWidth,
-    imageOriginalHeight,
-    clientWidth,
-    clientHeight
-  );
-  size.wrapper.width = newImageWrapperSize.width;
-  size.wrapper.height = newImageWrapperSize.height;
+  size.image.width = imageOriginalWidth;
+  size.image.height = imageOriginalHeight;
 
-  size.controls.width = GALLERY_CONTROLS_WIDTH;
-  size.controls.height = GALLERY_CONTROLS_HEIGHT;
+  size.controls.width =
+    size.image.width > CONTROLS_WIDTH[`${numberOfColumns}`]
+      ? size.image.width
+      : CONTROLS_WIDTH[`${numberOfColumns}`];
+  size.controls.height = CONTROLS_HEIGHT[`${numberOfColumns}`];
 
-  size.gallery.width =
-    size.wrapper.width > size.controls.width
-      ? size.wrapper.width + size.padding.gallery * 2
-      : size.controls.width + size.padding.gallery * 2;
+  size.screen.width = size.controls.width;
+  size.screen.height = size.image.height;
 
+  size.inner.width = size.controls.width;
+  size.inner.height = size.image.height + size.controls.height;
+
+  size.gallery.width = size.inner.width + GALLERY_PADDING[`${numberOfColumns}`];
   size.gallery.height =
-    size.wrapper.height +
-    size.controls.height +
-    size.margin.image +
-    size.margin.controls +
-    size.padding.gallery * 2;
-
-  size.gallery.top = (clientHeight - size.gallery.height) / 2;
-  size.gallery.left = (clientWidth - size.gallery.width) / 2;
+    size.inner.height + GALLERY_PADDING[`${numberOfColumns}`];
 
   return size;
 };
 
-export const calcGalleryTagStyle = function(data, imageSizeType) {
+export const resizeTags = function(
+  tagSize,
+  clientWidth,
+  clientHeight,
+  numberOfColumns
+) {
+  const widthDifference = tagSize.gallery.width - clientWidth;
+  const heightDifference = tagSize.gallery.height - clientHeight;
+
+  if (widthDifference > heightDifference) {
+    const newImageWidth = clientWidth - GALLERY_PADDING[`${numberOfColumns}`];
+    const widthRate = newImageWidth / tagSize.image.width;
+    const newImageHeight = tagSize.image.height * widthRate;
+
+    return calcTagsSize(newImageWidth, newImageHeight, numberOfColumns);
+  }
+  const newImageHeight =
+    clientHeight -
+    GALLERY_PADDING[`${numberOfColumns}`] -
+    CONTROLS_HEIGHT[`${numberOfColumns}`];
+  const heightRate = newImageHeight / tagSize.image.height;
+  const newImageWidth = tagSize.image.width * heightRate;
+
+  return calcTagsSize(newImageWidth, newImageHeight, numberOfColumns);
+};
+
+export const calcGalleryTagStyle = function(
+  data,
+  imageSizeType,
+  numberOfColumns
+) {
   const imageOriginalWidth = +data.images.original.width;
   const imageOriginalHeight = +data.images.original.height;
   const imageSmallWidth = +data.images.fixed_width.width;
   const imageSmallHeight = +data.images.fixed_width.height;
 
-  const clientWidth = document.documentElement.clientWidth;
-  const clientHeight = document.documentElement.clientHeight;
+  const clientWidth = document.documentElement.clientWidth - SCREEN_PADDING;
+  const clientHeight = document.documentElement.clientHeight - SCREEN_PADDING;
 
-  const galleryComponentsSize = calcTagsSize(
+  const tagSize = calcTagsSize(
     imageOriginalWidth,
     imageOriginalHeight,
-    clientWidth,
-    clientHeight
+    numberOfColumns
   );
+  let galleryComponentsSize = { ...tagSize };
 
-  const imageWrapperStyle = {
-    width: galleryComponentsSize.wrapper.width + `px`,
-    height: galleryComponentsSize.wrapper.height + `px`,
-    margin: `0 0 ${galleryComponentsSize.margin.image + `px`} 0`
-  };
+  if (
+    clientWidth < tagSize.gallery.width ||
+    clientHeight < tagSize.gallery.height
+  ) {
+    galleryComponentsSize = resizeTags(
+      tagSize,
+      clientWidth,
+      clientHeight,
+      numberOfColumns
+    );
+  }
 
   const galleryStyle = {
     width: galleryComponentsSize.gallery.width + `px`,
     height: galleryComponentsSize.gallery.height + `px`,
-    top: galleryComponentsSize.gallery.top + `px`,
-    left: galleryComponentsSize.gallery.left + `px`,
-    padding: `${galleryComponentsSize.padding.gallery + `px`}`
+    top: `${(clientHeight +
+      SCREEN_PADDING -
+      galleryComponentsSize.gallery.height) /
+      2}px`,
+    left: `${(clientWidth +
+      SCREEN_PADDING -
+      galleryComponentsSize.gallery.width) /
+      2}px`
   };
+
+  const innerStyle = {
+    width: galleryComponentsSize.inner.width + `px`,
+    height: galleryComponentsSize.inner.height + `px`
+  };
+
+  const screenStyle = {
+    width: galleryComponentsSize.screen.width + `px`,
+    height: galleryComponentsSize.screen.height + `px`
+  };
+
   const imageStyle = {
     width:
       `${
         imageSizeType === ORIGINAL
-          ? galleryComponentsSize.wrapper.width
+          ? galleryComponentsSize.image.width
           : imageSmallWidth
       }` + `px`,
     height:
       `${
         imageSizeType === ORIGINAL
-          ? galleryComponentsSize.wrapper.height
+          ? galleryComponentsSize.image.height
           : imageSmallHeight
       }` + `px`
   };
 
+  const controlsStyle = {
+    width: galleryComponentsSize.controls.width + `px`,
+    height: galleryComponentsSize.controls.height + `px`
+  };
+
   return {
-    imageWrapper: imageWrapperStyle,
     gallery: galleryStyle,
-    image: imageStyle
+    inner: innerStyle,
+    image: imageStyle,
+    controls: controlsStyle,
+    screen: screenStyle
   };
 };
 
