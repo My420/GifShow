@@ -53,6 +53,10 @@
   cursor: pointer;
 }
 
+.catalogue__button--hidden {
+  opacity: 0;
+}
+
 .catalogue__button--more:hover {
   animation: pulse-orange 1s;
   box-shadow: 0 0 0 10px rgba(#fff, 0);
