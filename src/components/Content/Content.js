@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./content.scss";
 import ItemList from "../ItemList/ItemList";
 import ItemGallery from "../ItemGallery/ItemGallery";
@@ -39,3 +40,12 @@ class Content extends Component {
 }
 
 export default Content;
+
+Content.propTypes = {
+  // from React-Router 4
+  match: PropTypes.object,
+  history: PropTypes.object,
+  location: PropTypes.object,
+  // from App
+  numberOfColumns: PropTypes.oneOf([1, 2, 3, 4])
+};

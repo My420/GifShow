@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./controls.scss";
 import Navigation from "../Navigation/Navigation";
 import Option from "../Option/Option";
@@ -48,3 +49,7 @@ class Controls extends Component {
 }
 
 export default Controls;
+
+Controls.propTypes = {
+  numberOfColumns: PropTypes.oneOf([1, 2, 3, 4])
+};

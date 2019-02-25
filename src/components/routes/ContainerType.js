@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-
+import PropTypes from "prop-types";
 import Container from "../routes/Container";
 import {
-  HashRouter as Router,
+  /* HashRouter as Router,*/
   Route,
-  NavLink,
+  /*NavLink,*/
   Switch,
   Redirect
 } from "react-router-dom";
@@ -31,3 +31,12 @@ class ContainerType extends Component {
 }
 
 export default ContainerType;
+
+ContainerType.propTypes = {
+  // from React-Router 4
+  match: PropTypes.object,
+  history: PropTypes.object,
+  location: PropTypes.object,
+  // from App
+  numberOfColumns: PropTypes.oneOf([1, 2, 3, 4])
+};

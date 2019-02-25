@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./notFound.scss";
-import { HashRouter as Router, Route, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { HOME_PAGE } from "../../constant";
 import { withRouter } from "react-router";
 
@@ -24,3 +25,10 @@ class NotFound extends Component {
 }
 
 export default withRouter(NotFound);
+
+NotFound.propTypes = {
+  // from React-Router 4
+  match: PropTypes.object,
+  history: PropTypes.object,
+  location: PropTypes.object
+};

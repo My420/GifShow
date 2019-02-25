@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./searchbar.scss";
 import { withRouter } from "react-router";
 import { calcNewURL, convertUserInput } from "../../utils/utils";
@@ -20,8 +21,6 @@ class SerchBar extends Component {
 
   onSerchButtonClick = evt => {
     const serchText = convertUserInput(this.state.userInputValue);
-
-    /*const path = evt.target.dataset.path;*/
     const path = SEARCH;
     const currentUrl = this.props.history.location.pathname;
     const newURL = calcNewURL(currentUrl, path, serchText);
@@ -48,7 +47,6 @@ class SerchBar extends Component {
         />
         <button
           className="app__search-button"
-          /*data-path={SEARCH}*/
           onClick={this.onSerchButtonClick}
           disabled={this.state.isInputEmpty}
         >
@@ -60,3 +58,10 @@ class SerchBar extends Component {
 }
 
 export default withRouter(SerchBar);
+
+SerchBar.propTypes = {
+  // from React-Router 4
+  match: PropTypes.object,
+  history: PropTypes.object,
+  location: PropTypes.object
+};

@@ -34,7 +34,6 @@ export const CONTROLS_WIDTH = {
 };
 
 export const CONTROLS_HEIGHT = {
-  // ??????????
   "4": 60,
   "3": 60,
   "2": 60,

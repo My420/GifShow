@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import Content from "../Content/Content";
 import NotFound from "../NotFound/NotFound";
-import { HashRouter as Router, Route, NavLink, Switch } from "react-router-dom";
+import PropTypes from "prop-types";
+import {
+  /*HashRouter as Router,*/ Route,
+  /*NavLink,*/ Switch
+} from "react-router-dom";
 import { TRENDING, SEARCH, ID, FAVORITE, RANDOM } from "../../constant";
 
 class Container extends Component {
@@ -30,3 +34,12 @@ class Container extends Component {
 }
 
 export default Container;
+
+Container.propTypes = {
+  // from React-Router 4
+  match: PropTypes.object,
+  history: PropTypes.object,
+  location: PropTypes.object,
+  // from App
+  numberOfColumns: PropTypes.oneOf([1, 2, 3, 4])
+};

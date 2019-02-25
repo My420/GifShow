@@ -37,7 +37,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(`render ----- App`, this.state.numberOfColumns);
+    console.log(`render ----- App`);
 
     const numberOfColumns = this.state.numberOfColumns;
 

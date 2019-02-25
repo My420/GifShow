@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./itemlist.scss";
 import Item from "../Item/Item";
 import RequestStatusBar from "../RequestStatusBar/RequestStatusBar";
@@ -186,3 +187,18 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ItemList);
+
+ItemList.propTypes = {
+  // from Connect
+  isAutoplay: PropTypes.bool,
+  data: PropTypes.object,
+  loadData: PropTypes.func,
+  changeGalleryItem: PropTypes.func,
+  getFavorite: PropTypes.func,
+  // from Content
+  url: PropTypes.string,
+  offset: PropTypes.number,
+  increaseOffset: PropTypes.func,
+  resetOffset: PropTypes.func,
+  numberOfColumns: PropTypes.oneOf([1, 2, 3, 4])
+};

@@ -1,12 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./galleryControls.scss";
-import {
-  ORIGINAL,
-  SMALL,
-  GALLERY_CONTROLS_HEIGHT,
-  GALLERY_CONTROLS_WIDTH,
-  STICKERS
-} from "../../constant";
+import { ORIGINAL, SMALL, STICKERS } from "../../constant";
 
 class GalleryControls extends Component {
   onSelectChange = event => {
@@ -87,3 +82,17 @@ class GalleryControls extends Component {
 }
 
 export default GalleryControls;
+
+GalleryControls.propTypes = {
+  // from ItemGallery
+  changeImageSize: PropTypes.func,
+  itemUrl: PropTypes.string,
+  itemType: PropTypes.string,
+  sizeValue: PropTypes.string,
+  onCloseButtonClick: PropTypes.func,
+  onCopyButtonClick: PropTypes.func,
+  onFavoriteButtonClick: PropTypes.func,
+  isCopyBarOpen: PropTypes.bool,
+  isItemFavorite: PropTypes.bool,
+  style: PropTypes.object
+};

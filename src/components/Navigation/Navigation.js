@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./navigation.scss";
-import { HashRouter as Router, Route, NavLink } from "react-router-dom";
+import { /*HashRouter as Router, Route,*/ NavLink } from "react-router-dom";
 import { calcNewURL } from "../../utils/utils";
 import { TRENDING, RANDOM, FAVORITE } from "../../constant";
 import { withRouter } from "react-router";
@@ -51,3 +52,10 @@ class Navigation extends Component {
 }
 
 export default withRouter(Navigation);
+
+Navigation.propTypes = {
+  // from React-Router 4
+  match: PropTypes.object,
+  history: PropTypes.object,
+  location: PropTypes.object
+};

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./requestStatusBar.scss";
-import { calcNewURL, convertUserInput } from "../../utils/utils";
 import { TRENDING, RANDOM, SEARCH, ID, FAVORITE } from "../../constant";
 
 class RequestStatusBar extends Component {
@@ -81,3 +81,11 @@ class RequestStatusBar extends Component {
 }
 
 export default RequestStatusBar;
+
+RequestStatusBar.propTypes = {
+  // from ItemList
+  request: PropTypes.object,
+  itemsAmount: PropTypes.number,
+  isError: PropTypes.bool,
+  errorMessage: PropTypes.string
+};

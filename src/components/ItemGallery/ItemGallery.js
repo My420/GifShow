@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./itemGallery.scss";
 import { connect } from "react-redux";
 import GalleryControls from "../GalleryControls/GalleryControls";
@@ -160,3 +161,16 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ItemGallery);
+
+ItemGallery.propTypes = {
+  // from Connect
+  url: PropTypes.string,
+  data: PropTypes.object,
+  isOpen: PropTypes.bool,
+  itemType: PropTypes.string,
+  favorite: PropTypes.object,
+  onCloseButtonClick: PropTypes.func,
+  changeItemStatus: PropTypes.func,
+  //from Contant
+  numberOfColumns: PropTypes.oneOf([1, 2, 3, 4])
+};

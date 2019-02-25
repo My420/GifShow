@@ -1,13 +1,6 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./galleryCopyBar.scss";
-import {
-  ORIGINAL,
-  SMALL,
-  GIFS,
-  GIFSHOW_HOST,
-  GALLERY_CONTROLS_HEIGHT,
-  GALLERY_CONTROLS_WIDTH
-} from "../../constant";
 
 class GalleryCopyBar extends Component {
   onInputClick = event => {
@@ -19,7 +12,7 @@ class GalleryCopyBar extends Component {
   };
 
   render() {
-    console.log(`render ----- GalleryCopyBar`);
+    console.log(`render ----- GalleryCopyBar`, this.props);
 
     const { isCopyBarOpen, itemLink } = this.props;
     if (isCopyBarOpen) {
@@ -54,3 +47,10 @@ class GalleryCopyBar extends Component {
 }
 
 export default GalleryCopyBar;
+
+GalleryCopyBar.propTypes = {
+  //from ItemGallery
+  isCopyBarOpen: PropTypes.bool,
+  itemLink: PropTypes.string,
+  onCloseButtonClick: PropTypes.func
+};

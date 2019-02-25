@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./contacts.scss";
 import giphyLogo from "./img/giphy-logo.png";
 import AuthorContacts from "../AuthorContacts/AuthorContacts";
@@ -58,3 +59,10 @@ class Contacts extends Component {
 }
 
 export default Contacts;
+
+Contacts.propTypes = {
+  // from React-Router 4
+  match: PropTypes.object,
+  history: PropTypes.object,
+  location: PropTypes.object
+};

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./option.scss";
-import { HashRouter as Router, Route, NavLink } from "react-router-dom";
+/*import { HashRouter as Router, Route, NavLink } from "react-router-dom";*/
 import { GIFS, STICKERS } from "../../constant";
 import { withRouter } from "react-router";
 import { calcNewURL } from "../../utils/utils";
 import { connect } from "react-redux";
-import { isAbsolute } from "path";
+/*import { isAbsolute } from "path";*/
 import { setAutoplay } from "../../ActionCreator/index.js";
 
 class Option extends Component {
@@ -89,3 +90,13 @@ export default connect(
   mapStateToProps,
   { setAutoplay }
 )(withRouter(Option));
+
+Option.propTypes = {
+  // from React-Router 4
+  match: PropTypes.object,
+  history: PropTypes.object,
+  location: PropTypes.object,
+  // from Connect
+  isAutoplay: PropTypes.bool,
+  setAutoplay: PropTypes.func
+};

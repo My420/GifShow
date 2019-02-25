@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./item.scss";
 import { ID, ENTER_KEY_NAME } from "../../constant";
 
@@ -11,7 +12,7 @@ class Item extends Component {
     const { itemData, id, itemType } = this.props;
     const currentItemType = itemType.itemType;
     const itemUrl = `/${currentItemType}/${ID}/${id}`;
-    const dataForGallery = { ...itemData }; // клонируем объект (иммутабельность данных)
+    const dataForGallery = { ...itemData };
     this.props.onUserClick(itemUrl, currentItemType, dataForGallery);
   };
 
@@ -74,4 +75,14 @@ class Item extends Component {
   }
 }
 
-export default Item; /*<Link to={`/${itemType}/${ID}/${id}`}>*/
+export default Item;
+
+Item.propTypes = {
+  // from ItemList
+  itemType: PropTypes.object,
+  itemData: PropTypes.object,
+  id: PropTypes.string,
+  onUserClick: PropTypes.func,
+  isAutoplay: PropTypes.bool,
+  position: PropTypes.object
+};

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./loadBar.scss";
 import { connect } from "react-redux";
 
@@ -38,3 +39,7 @@ const mapStateToProps = store => {
 };
 
 export default connect(mapStateToProps)(LoadBar);
+
+LoadBar.propTypes = {
+  isLoading: PropTypes.bool
+};
