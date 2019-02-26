@@ -11,34 +11,22 @@ import {
   getFavorite
 } from "../../ActionCreator/index";
 import {
-  DEFAULT_OFFSET_VALUE,
   DISTANCE_BETWEEN_ITEM,
   COLUMN_POSITION,
   FAVORITE,
-  MAX_COLUMNS_NUMBER
+  MAX_COLUMNS_NUMBER,
+  INCREASE_OFFSET_VALUE
 } from "../../constant";
 
 class ItemList extends Component {
   constructor(props) {
     super(props);
     this.fullColumnHeight = new Array(MAX_COLUMNS_NUMBER).fill(0);
+    this.offset = this.props.offset;
   }
   componentDidMount() {
     console.log(`********** willmount`);
     this.getData(this.props.url, this.props.offset);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log(`********** resiveprops`);
-    if (nextProps.url !== this.props.url) {
-      if (nextProps.offset !== DEFAULT_OFFSET_VALUE) {
-        this.props.resetOffset();
-      } else {
-        this.getData(nextProps.url, nextProps.offset);
-      }
-    } else if (nextProps.offset !== this.props.offset) {
-      this.getData(nextProps.url, nextProps.offset);
-    }
   }
 
   getData = (url, offset) => {
@@ -56,10 +44,10 @@ class ItemList extends Component {
     const { numberOfColumns } = this.props;
     let body = [];
     let columnHeight = new Array(numberOfColumns).fill(0);
-    let columnPosition = COLUMN_POSITION[`${numberOfColumns}`].slice(); // клонируем
+    let columnPosition = COLUMN_POSITION[`${numberOfColumns}`].slice();
     let col = 0;
     let row = 0;
-    this.fullColumnHeight = this.fullColumnHeight.fill(0); // обнуляем счетчик длины
+    this.fullColumnHeight = this.fullColumnHeight.fill(0);
 
     for (const key in data) {
       body.push(
@@ -99,7 +87,7 @@ class ItemList extends Component {
   };
 
   getButtonTopPosition() {
-    let newArry = this.fullColumnHeight.slice(); // клонируем массив
+    let newArry = this.fullColumnHeight.slice();
     newArry.sort((a, b) => {
       if (a > b) return 1;
       if (a < b) return -1;
@@ -121,10 +109,15 @@ class ItemList extends Component {
     }
   };
 
-  render() {
-    console.log(`render ----- ItemList`, this.props);
+  increaseOffset = () => {
+    this.offset += INCREASE_OFFSET_VALUE;
+    this.getData(this.props.url, this.offset);
+  };
 
-    const { isAutoplay, data, increaseOffset } = this.props;
+  render() {
+    console.log(`render ----- ItemList`);
+
+    const { isAutoplay, data } = this.props;
     const { currentData, itemTotalCount } = data;
 
     const itemsAmount = this.getItemsAmount(currentData, itemTotalCount);
@@ -144,7 +137,7 @@ class ItemList extends Component {
             <button
               className={`catalogue__button catalogue__button--more 
               `}
-              onClick={increaseOffset}
+              onClick={this.increaseOffset}
             >
               More
             </button>
@@ -191,7 +184,5 @@ ItemList.propTypes = {
   // from Content
   url: PropTypes.string,
   offset: PropTypes.number,
-  increaseOffset: PropTypes.func,
-  resetOffset: PropTypes.func,
   numberOfColumns: PropTypes.oneOf([1, 2, 3, 4])
 };

@@ -7,15 +7,7 @@ import { DEFAULT_OFFSET_VALUE, INCREASE_OFFSET_VALUE } from "../../constant";
 
 class Content extends Component {
   state = {
-    offset: 0
-  };
-
-  increaseOffset = () => {
-    this.setState({ offset: this.state.offset + INCREASE_OFFSET_VALUE });
-  };
-
-  resetOffset = () => {
-    this.setState({ offset: DEFAULT_OFFSET_VALUE });
+    offset: DEFAULT_OFFSET_VALUE
   };
 
   render() {
@@ -27,13 +19,7 @@ class Content extends Component {
     return (
       <div className="app__item-wrapper">
         <ItemGallery numberOfColumns={numberOfColumns} />
-        <ItemList
-          url={url}
-          offset={offset}
-          increaseOffset={this.increaseOffset}
-          resetOffset={this.resetOffset}
-          numberOfColumns={numberOfColumns}
-        />
+        <ItemList url={url} offset={offset} numberOfColumns={numberOfColumns} />
       </div>
     );
   }
