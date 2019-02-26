@@ -135,8 +135,7 @@ class ItemList extends Component {
             style={{ top: this.getButtonTopPosition() }}
           >
             <button
-              className={`catalogue__button catalogue__button--more 
-              `}
+              className="catalogue__button catalogue__button--more"
               onClick={this.increaseOffset}
             >
               More

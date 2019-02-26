@@ -6,20 +6,24 @@ import ItemGallery from "../ItemGallery/ItemGallery";
 import { DEFAULT_OFFSET_VALUE, INCREASE_OFFSET_VALUE } from "../../constant";
 
 class Content extends Component {
-  state = {
-    offset: DEFAULT_OFFSET_VALUE
-  };
+  constructor(props) {
+    super(props);
+    this.offset = DEFAULT_OFFSET_VALUE;
+  }
 
   render() {
     const url = this.props.match.url;
-    const { offset } = this.state;
     const numberOfColumns = this.props.numberOfColumns;
 
     console.log(`render ----- Content`);
     return (
       <div className="app__item-wrapper">
         <ItemGallery numberOfColumns={numberOfColumns} />
-        <ItemList url={url} offset={offset} numberOfColumns={numberOfColumns} />
+        <ItemList
+          url={url}
+          offset={this.offset}
+          numberOfColumns={numberOfColumns}
+        />
       </div>
     );
   }

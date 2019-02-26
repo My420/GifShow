@@ -30,6 +30,17 @@ class Item extends Component {
     }
   };
 
+  shouldComponentUpdate(nextProps, nextState, nextContent) {
+    if (this.props.id === nextProps.id) {
+      if (this.props.isAutoplay === nextProps.isAutoplay) {
+        if (this.state.isMouseOnItem === nextState.isMouseOnItem) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
   render() {
     console.log(`render ----- Item`);
 
