@@ -34,7 +34,7 @@ class LoadBar extends Component {
 
 const mapStateToProps = store => {
   return {
-    isLoading: store.data.isLoading
+    isLoading: store.loadStatus.isLoading
   };
 };
 

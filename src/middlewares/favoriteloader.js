@@ -1,11 +1,9 @@
 import {
-  LOAD_DATA,
   LOAD_START,
   LOAD_COMPLETE,
-  LOAD_ERROR,
   LOAD_FAVORITE,
   FAVORITE,
-  GIF_SHOW,
+  CHANGE_CURRENT_DATA,
   ADD_TO_FAVORITE,
   REFRESH_FAVORITE,
   DELETE_FROM_FAVORITE
@@ -37,7 +35,12 @@ export default store => next => action => {
       isRequestSingleItem: false,
       addressForStorage: null
     };
-    next({ ...action, type: LOAD_COMPLETE, payload: requestedData });
+    next({
+      ...action,
+      type: CHANGE_CURRENT_DATA,
+      payload: requestedData
+    });
+    next({ type: LOAD_COMPLETE });
   }
 
   if (type === ADD_TO_FAVORITE || type === DELETE_FROM_FAVORITE) {
@@ -55,30 +58,5 @@ export default store => next => action => {
 
     next({ ...action, type: REFRESH_FAVORITE, payload: { newFavorite } });
   }
-
-  /* if (type === ADD_TO_FAVORITE) {
-    const { data, itemType } = payload;
-    const id = data.id;
-
-    const favorite = store.getState()[FAVORITE];
-    let newFavorite = { ...favorite };
-
-    newFavorite[itemType][id] = data;
-
-    next({ ...action, type: REFRESH_FAVORITE, payload: { newFavorite } });
-  }
-
-  if (type === DELETE_FROM_FAVORITE) {
-    const { data, itemType } = payload;
-    const id = data.id;
-
-    const favorite = store.getState()[FAVORITE];
-    let newFavorite = { ...favorite };
-
-    delete newFavorite[itemType][id];
-
-    next({ ...action, type: REFRESH_FAVORITE, payload: { newFavorite } });
-  }*/
-
   return next(action);
 };

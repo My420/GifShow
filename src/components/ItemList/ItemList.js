@@ -122,16 +122,10 @@ class ItemList extends Component {
   };
 
   render() {
-    console.log(`render ----- ItemList`);
+    console.log(`render ----- ItemList`, this.props);
 
     const { isAutoplay, data, increaseOffset } = this.props;
-    const {
-      isLoading,
-      isError,
-      currentData,
-      errorMessage,
-      itemTotalCount
-    } = data;
+    const { currentData, itemTotalCount } = data;
 
     const itemsAmount = this.getItemsAmount(currentData, itemTotalCount);
     return (
@@ -140,8 +134,6 @@ class ItemList extends Component {
         <RequestStatusBar
           request={this.userRequest}
           itemsAmount={itemsAmount}
-          isError={isError}
-          errorMessage={errorMessage}
         />
         <div className="catalogue__wrapper">
           {this.getBody(currentData, isAutoplay)}
@@ -150,9 +142,8 @@ class ItemList extends Component {
             style={{ top: this.getButtonTopPosition() }}
           >
             <button
-              className={`catalogue__button catalogue__button--more ${
-                isLoading ? `catalogue__button--hidden` : null
-              }`}
+              className={`catalogue__button catalogue__button--more 
+              `}
               onClick={increaseOffset}
             >
               More

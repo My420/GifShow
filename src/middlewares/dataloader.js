@@ -1,4 +1,10 @@
-import { LOAD_DATA, LOAD_START, LOAD_COMPLETE, LOAD_ERROR } from "../constant";
+import {
+  LOAD_DATA,
+  LOAD_START,
+  LOAD_COMPLETE,
+  LOAD_ERROR,
+  CHANGE_CURRENT_DATA
+} from "../constant";
 import {
   getAddressFromRequest,
   massToObj,
@@ -20,7 +26,6 @@ export default store => next => action => {
     const {
       addressForAPI,
       addressForStorage,
-      offset,
       isRequestSingleItem
     } = requestedData;
 
@@ -29,8 +34,9 @@ export default store => next => action => {
 
     if (resultStore[addressForStorage]) {
       console.log(`Загружаю из Хранилища`);
-      requestedData.data = { ...resultStore[addressForStorage] }; // клонируем из хранилища.
-      next({ ...action, type: LOAD_COMPLETE, payload: requestedData }); // отправляем все что пришло
+      requestedData.data = { ...resultStore[addressForStorage] };
+      next({ ...action, type: CHANGE_CURRENT_DATA, payload: requestedData });
+      next({ type: LOAD_COMPLETE });
     } else {
       console.log(`Загружаю из API`);
 
@@ -48,13 +54,17 @@ export default store => next => action => {
             const id = requestedData.data.data.id;
             requestedData.data.data = { [id]: requestedData.data.data };
           }
-          next({ ...action, type: LOAD_COMPLETE, payload: requestedData }); // отправляем все что пришло
+          next({
+            ...action,
+            type: CHANGE_CURRENT_DATA,
+            payload: requestedData
+          });
+          next({ type: LOAD_COMPLETE });
         })
         .catch(error => {
           next({ ...action, type: LOAD_ERROR, payload: error.message });
         });
     }
-  } else {
-    return next(action);
   }
+  return next(action);
 };

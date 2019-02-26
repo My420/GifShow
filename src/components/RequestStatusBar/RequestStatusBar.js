@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import "./requestStatusBar.scss";
 import { TRENDING, RANDOM, SEARCH, ID, FAVORITE } from "../../constant";
@@ -64,7 +65,9 @@ class RequestStatusBar extends Component {
           </React.Fragment>
         );
       } else {
-        return null;
+        return (
+          <span className="catalogue__message--request">Processing.......</span>
+        );
       }
     }
   };
@@ -80,12 +83,20 @@ class RequestStatusBar extends Component {
   }
 }
 
-export default RequestStatusBar;
+const mapStateToProps = store => {
+  return {
+    isError: store.loadStatus.isError,
+    errorMessage: store.loadStatus.errorMessage
+  };
+};
+
+export default connect(mapStateToProps)(RequestStatusBar);
 
 RequestStatusBar.propTypes = {
   // from ItemList
   request: PropTypes.object,
   itemsAmount: PropTypes.number,
+  // from Connect
   isError: PropTypes.bool,
   errorMessage: PropTypes.string
 };
