@@ -7,7 +7,6 @@ import {
   DELETE_FROM_FAVORITE,
   ADD_TO_FAVORITE
 } from "../constant";
-import { getRequestURL } from "../utils/utils";
 
 export const setAutoplay = function(isAutoplay) {
   return {

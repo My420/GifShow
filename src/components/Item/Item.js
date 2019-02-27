@@ -31,19 +31,21 @@ class Item extends Component {
   };
 
   shouldComponentUpdate(nextProps, nextState, nextContent) {
-    if (this.props.id === nextProps.id) {
-      if (this.props.isAutoplay === nextProps.isAutoplay) {
-        if (this.state.isMouseOnItem === nextState.isMouseOnItem) {
-          return false;
+    if (this.props.itemType) {
+      if (this.props.id === nextProps.id) {
+        if (this.props.isAutoplay === nextProps.isAutoplay) {
+          if (this.state.isMouseOnItem === nextState.isMouseOnItem) {
+            return false;
+          }
         }
       }
+    } else {
+      return true;
     }
     return true;
   }
 
   render() {
-    console.log(`render ----- Item`);
-
     const { itemData, id, position, isAutoplay } = this.props;
     const top = position.top + `px`;
     const left = position.left + `px`;

@@ -34,7 +34,6 @@ class SerchBar extends Component {
   };
 
   render() {
-    console.log(`render ----- SerchBar`);
     return (
       <React.Fragment>
         <input

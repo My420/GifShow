@@ -4,7 +4,6 @@ import SearchBar from "../SearchBar/SearchBar";
 
 class Header extends Component {
   render() {
-    console.log(`render ----- Header`);
     return (
       <header className="app__header">
         <a className="app__logo-link" href="/#/gifs/trending/">

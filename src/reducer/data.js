@@ -44,8 +44,8 @@ export default (dataState = defaultState, action) => {
       return {
         ...dataState,
 
-        currentData: getCurrentData(), // [1] // если оффсет = 0, то заменяем все текущие данные, в ином случае добавляем новые данные к уже имеющимся
-        itemTotalCount: getCurrentTotalCount(), //[2]
+        currentData: getCurrentData(),
+        itemTotalCount: getCurrentTotalCount(),
         resultStore: getResultStore()
       };
 

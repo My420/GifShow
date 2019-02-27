@@ -2,16 +2,11 @@ import React, { Component } from "react";
 import Content from "../Content/Content";
 import NotFound from "../NotFound/NotFound";
 import PropTypes from "prop-types";
-import {
-  /*HashRouter as Router,*/ Route,
-  /*NavLink,*/ Switch
-} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { TRENDING, SEARCH, ID, FAVORITE, RANDOM } from "../../constant";
 
 class Container extends Component {
   render() {
-    console.log(`render ----- Container`);
-
     const { path } = this.props.match;
 
     const { numberOfColumns } = this.props;

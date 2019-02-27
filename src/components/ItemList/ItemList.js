@@ -23,16 +23,16 @@ class ItemList extends Component {
     super(props);
     this.fullColumnHeight = new Array(MAX_COLUMNS_NUMBER).fill(0);
     this.offset = this.props.offset;
+    this.isEmpty = true;
   }
   componentDidMount() {
-    console.log(`********** willmount`);
     this.getData(this.props.url, this.props.offset);
+    this.isEmpty = false;
   }
 
   getData = (url, offset) => {
     const request = createRequestFromURL(url, offset);
     this.userRequest = request;
-    console.log(`**********`, request);
     if (request.actionType !== FAVORITE) {
       this.props.loadData(request);
     } else {
@@ -41,6 +41,9 @@ class ItemList extends Component {
   };
 
   getBody = (data, isAutoplay) => {
+    if (this.isEmpty) {
+      return null;
+    }
     const { numberOfColumns } = this.props;
     let body = [];
     let columnHeight = new Array(numberOfColumns).fill(0);
@@ -100,7 +103,7 @@ class ItemList extends Component {
   getItemsAmount = (data, itemTotalCount) => {
     if (itemTotalCount === 1) {
       let counter = 0;
-      for (var key in data) {
+      for (let key in data) {
         counter++;
       }
       return counter;
@@ -115,12 +118,10 @@ class ItemList extends Component {
   };
 
   render() {
-    console.log(`render ----- ItemList`);
-
     const { isAutoplay, data } = this.props;
     const { currentData, itemTotalCount } = data;
-
     const itemsAmount = this.getItemsAmount(currentData, itemTotalCount);
+
     return (
       <section className="app__item-list catalogue">
         <h2 className="visually-hidden">Каталог</h2>

@@ -12,8 +12,6 @@ class GalleryCopyBar extends Component {
   };
 
   render() {
-    console.log(`render ----- GalleryCopyBar`, this.props);
-
     const { isCopyBarOpen, itemLink } = this.props;
     if (isCopyBarOpen) {
       return (

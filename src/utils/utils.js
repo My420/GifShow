@@ -52,7 +52,7 @@ export const calcNewURL = function(prevUrl, path, data = false) {
 };
 
 export const convertUserInput = function(text) {
-  let convertText = text.trim().replace(/ /g, `+`); // регуляркой разбить на массив слов/ .join(`+`)
+  let convertText = text.trim().replace(/ /g, `+`);
   return convertText;
 };
 
@@ -67,8 +67,6 @@ export const createRequestFromURL = function(url, offset) {
 };
 
 export const getAddressFromRequest = function(param) {
-  console.log(param);
-
   const { itemType, actionType, offset, payload } = param;
   let addressForStorage;
   let addressForAPI;

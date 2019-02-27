@@ -3,7 +3,6 @@ import "./iconGithub.scss";
 
 class IconGithub extends Component {
   render() {
-    console.log(`render ----- icon-github`);
     const { iconWidth, iconHeight, iconColor } = this.props;
     const iconStyle = {
       width: iconWidth,

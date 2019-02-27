@@ -1,4 +1,4 @@
-import { GIFS, STICKERS, GIF_SHOW, REFRESH_FAVORITE } from "../constant";
+import { REFRESH_FAVORITE } from "../constant";
 import {
   createGifShowStorage,
   getGifShowStorage,

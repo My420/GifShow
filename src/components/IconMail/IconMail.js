@@ -3,7 +3,6 @@ import "./iconMail.scss";
 
 class IconMail extends Component {
   render() {
-    console.log(`render ----- icon-mail`);
     const { iconWidth, iconHeight, iconColor } = this.props;
     const iconStyle = {
       width: iconWidth,

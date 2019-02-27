@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./navigation.scss";
-import { /*HashRouter as Router, Route,*/ NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { calcNewURL } from "../../utils/utils";
 import { TRENDING, RANDOM, FAVORITE } from "../../constant";
 import { withRouter } from "react-router";
@@ -15,7 +15,6 @@ class Navigation extends Component {
   };
 
   render() {
-    console.log(`render ----- Navigation`);
     return (
       <nav className="app__navigation navigation">
         <h2 className="visually-hidden">Навигация</h2>

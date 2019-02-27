@@ -73,8 +73,6 @@ class RequestStatusBar extends Component {
   };
 
   render() {
-    console.log(`render ----- RequestStatusBar`);
-
     return (
       <div className="catalogue__status-wrapper">
         <p className="catalogue__status">{this.getStatusBody()}</p>

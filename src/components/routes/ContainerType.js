@@ -1,19 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Container from "../routes/Container";
-import {
-  /* HashRouter as Router,*/
-  Route,
-  /*NavLink,*/
-  Switch,
-  Redirect
-} from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import { GIFS, STICKERS, TRENDING } from "../../constant";
 
 class ContainerType extends Component {
   render() {
-    console.log(`render ----- ContainerType`);
     const { numberOfColumns } = this.props;
 
     const WrappedContainer = function(props) {

@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./option.scss";
-/*import { HashRouter as Router, Route, NavLink } from "react-router-dom";*/
 import { GIFS, STICKERS } from "../../constant";
 import { withRouter } from "react-router";
 import { calcNewURL } from "../../utils/utils";
 import { connect } from "react-redux";
-/*import { isAbsolute } from "path";*/
 import { setAutoplay } from "../../ActionCreator/index.js";
 
 class Option extends Component {
@@ -24,7 +22,6 @@ class Option extends Component {
   };
 
   render() {
-    console.log(`render ----- Option`);
     const { isAutoplay } = this.props;
     return (
       <section className="app__option option">

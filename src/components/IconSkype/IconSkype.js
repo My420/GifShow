@@ -3,7 +3,6 @@ import "./iconSkype.scss";
 
 class IconSkype extends Component {
   render() {
-    console.log(`render ----- icon-skype`);
     const { iconWidth, iconHeight, iconColor } = this.props;
     const iconStyle = {
       width: iconWidth,

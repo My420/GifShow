@@ -7,7 +7,6 @@ import { withRouter } from "react-router";
 
 class NotFound extends Component {
   render() {
-    console.log(`render ----- NotFound`);
     return (
       <section className="app__404 page404">
         <h2 className="visually-hidden">Page not found</h2>

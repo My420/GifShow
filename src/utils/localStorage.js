@@ -1,4 +1,4 @@
-import { GIFS, STICKERS, FAVORITE, GIF_SHOW } from "../constant";
+import { GIFS, STICKERS, GIF_SHOW } from "../constant";
 
 let localStorage = window.localStorage;
 

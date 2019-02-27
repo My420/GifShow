@@ -6,7 +6,6 @@ import AuthorContacts from "../AuthorContacts/AuthorContacts";
 
 class Contacts extends Component {
   render() {
-    console.log(`render ----- Contacts`);
     const giphyLogoStyle = {
       width: 100,
       height: 27,

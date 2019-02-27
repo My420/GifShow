@@ -24,7 +24,6 @@ class Controls extends Component {
   }
 
   render() {
-    console.log(`render ----- Controls`);
     const { isMenuOpen } = this.state;
     return (
       <section className="app__controls controls">

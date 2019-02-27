@@ -17,7 +17,6 @@ class AuthorContacts extends Component {
   }
   render() {
     const listStyle = { width: this.contactsListWidth };
-    console.log(`render ----- author-Contacts`);
     return (
       <div className="contacts">
         <ul className="contacts__list" style={listStyle}>

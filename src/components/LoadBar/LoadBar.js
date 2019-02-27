@@ -17,7 +17,6 @@ class LoadBar extends Component {
   };
 
   render() {
-    console.log(`render ----- Load-Bar`);
     const { isLoading } = this.props;
 
     return (

@@ -25,7 +25,7 @@ class ItemGallery extends Component {
   getImageSrc = () => {
     const { data } = this.props;
     if (this.state.imageSize === ORIGINAL) {
-      return data.images.original_still.url;
+      return data.images.original.url;
     } else {
       return data.images.fixed_width.url;
     }
@@ -126,8 +126,6 @@ class ItemGallery extends Component {
   };
 
   render() {
-    console.log(`render ----- ItemScreen`);
-    console.log(this.state.imageSize);
     return this.getBody();
   }
 }

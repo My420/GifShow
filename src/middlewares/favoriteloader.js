@@ -11,7 +11,6 @@ import {
 import { getDataWithOffset, getItemsAmount } from "../utils/utils";
 
 export default store => next => action => {
-  console.log(`hello form middle --- FAVORITE`, action);
   const { type, payload } = action;
 
   if (type === LOAD_FAVORITE) {

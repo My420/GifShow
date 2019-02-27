@@ -13,16 +13,14 @@ import {
 } from "../utils/utils";
 
 export default store => next => action => {
-  console.log(`hello form middle`, action);
   const { type, payload } = action;
   if (type === LOAD_DATA) {
     next({
       type: LOAD_START
     });
 
-    console.log(`hello form middle-------`, payload);
     const requestedData = getAddressFromRequest(payload);
-    console.log(`adressssss`, requestedData);
+
     const {
       addressForAPI,
       addressForStorage,
@@ -33,23 +31,20 @@ export default store => next => action => {
     const resultStore = currentStore.data.resultStore;
 
     if (resultStore[addressForStorage]) {
-      console.log(`Загружаю из Хранилища`);
       requestedData.data = { ...resultStore[addressForStorage] };
       next({ ...action, type: CHANGE_CURRENT_DATA, payload: requestedData });
       next({ type: LOAD_COMPLETE });
     } else {
-      console.log(`Загружаю из API`);
-
       fetch(addressForAPI)
-        .then(checkStatus) // отправляем запрос к API
+        .then(checkStatus)
         .then(resp => {
           return resp.json();
         })
         .then(data => {
           requestedData.data = data;
           if (!isRequestSingleItem) {
-            requestedData.data.data.sort(sortOnHeight); //сортируем по высоте, в порядке возрастания
-            requestedData.data.data = massToObj(requestedData.data.data); // преобразовываем массив объектов в объект для удобства
+            requestedData.data.data.sort(sortOnHeight);
+            requestedData.data.data = massToObj(requestedData.data.data);
           } else {
             const id = requestedData.data.data.id;
             requestedData.data.data = { [id]: requestedData.data.data };

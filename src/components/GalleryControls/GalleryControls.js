@@ -27,7 +27,6 @@ class GalleryControls extends Component {
   };
 
   render() {
-    console.log(`render ----- GalleryControls`);
     const { sizeValue, onCloseButtonClick, isItemFavorite, style } = this.props;
 
     return (

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./content.scss";
 import ItemList from "../ItemList/ItemList";
 import ItemGallery from "../ItemGallery/ItemGallery";
-import { DEFAULT_OFFSET_VALUE, INCREASE_OFFSET_VALUE } from "../../constant";
+import { DEFAULT_OFFSET_VALUE } from "../../constant";
 
 class Content extends Component {
   constructor(props) {
@@ -15,7 +15,6 @@ class Content extends Component {
     const url = this.props.match.url;
     const numberOfColumns = this.props.numberOfColumns;
 
-    console.log(`render ----- Content`);
     return (
       <div className="app__item-wrapper">
         <ItemGallery numberOfColumns={numberOfColumns} />
