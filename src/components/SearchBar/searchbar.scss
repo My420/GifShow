@@ -1,6 +1,6 @@
 .app__search-button {
   position: relative;
-  width: 60px;
+  width: 50px;
   height: 36px;
 
   box-sizing: border-box;
@@ -15,7 +15,7 @@
 }
 
 .app__search-field {
-  width: 100%;
+  width: 740px;
   height: 36px;
 
   box-sizing: border-box;
@@ -100,13 +100,26 @@
   }
 }
 
+@media (max-width: 1018px) {
+  .app__search-field {
+    width: 610px;
+  }
+}
+
+@media (max-width: 918px) {
+  .app__search-field {
+    width: 400px;
+  }
+}
+
 @media (max-width: 680px) {
   .app__search-field {
+    width: 265px;
     height: 26px;
   }
 
   .app__search-button {
-    width: 50px;
+    width: 36px;
     height: 26px;
   }
 
@@ -128,6 +141,16 @@
 }
 
 @media (max-width: 470px) {
+  .app__search-field {
+    width: 164px;
+    height: 26px;
+  }
+
+  .app__search-button {
+    width: 28px;
+    height: 26px;
+  }
+
   .app__search-button:after {
     top: 3px;
     left: 9px;

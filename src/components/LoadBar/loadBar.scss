@@ -5,8 +5,6 @@
 
   width: 140px;
   height: 140px;
-
-  border: 1px solid green;
 }
 
 .loader {
@@ -115,7 +113,7 @@
 
 @media (max-width: 470px) {
   .catalogue__loader-wrapper {
-    top: 130px;
+    top: 140px;
     left: 138px;
 
     width: 45px;
