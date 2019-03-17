@@ -1,7 +1,7 @@
 # [GifShow](https://my420.github.io/GifShow/)
 ##### SPA, [React](https://reactjs.org/), [Redux](https://redux.js.org/), [React Router](https://github.com/ReactTraining/react-router), [Create React App](https://facebook.github.io/create-react-app/), [GIPHY API](https://developers.giphy.com/docs/), адаптивный дизайн.
 
-GifShow – это сервис для поиска и просмотра **гифкок** и **стикеров**, использующий Giphy API.
+GifShow – это сервис для поиска и просмотра **гифок** и **стикеров**, использующий Giphy API.
 
 * HTML5, CSS3, JS, ES6.
 * **Адаптивная**, семантическая, кроссбраузерная, валидная вёрстка.
